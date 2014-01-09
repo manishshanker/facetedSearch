@@ -12,11 +12,6 @@
                 searchList: new APP.service.SearchList()
             };
         },
-//        messages: {
-//            "message-name": function () {
-//
-//            }
-//        },
         controlMessages: {
             show: "navigationChangedTo:discover",
             hide: "navigationChangedFrom:discover",
