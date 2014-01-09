@@ -25,7 +25,6 @@
                     }
                 ]
             };
-            console.log("called this")
             this.updated(mockData);
         }
     });
