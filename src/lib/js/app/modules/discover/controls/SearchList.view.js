@@ -24,8 +24,9 @@
         },
         goBackToFirstLevel: function() {
             var that = this;
-            that.$container.$item.find("h2:not(:eq(0))").remove();
-            that.$container.$item.find("ul:not(:eq(0))").remove();
+            that.$container.$item.find(".item:not('.level-0')").addClass("hide-back");
+//            that.$container.$item.find("h2:not(:eq(0))").remove();
+//            that.$container.$item.find("ul:not(:eq(0))").remove();
             that.level = 0;
             addCSSClassToListItem(that, that.level, "show");
             removeCSSClassFromListItem(that, that.level, "hide");
@@ -33,13 +34,11 @@
     });
 
     function removeCSSClassFromListItem(context, level, cssClass) {
-        context.$container.$item.find("h2").eq(level).removeClass(cssClass);
-        context.$container.$item.find("ul").eq(level).removeClass(cssClass);
+        context.$container.$item.find(".level-"+level).removeClass(cssClass);
     }
 
     function addCSSClassToListItem(context, level, cssClass) {
-        context.$container.$item.find("h2").eq(level).addClass(cssClass);
-        context.$container.$item.find("ul").eq(level).addClass(cssClass);
+        context.$container.$item.find(".level-"+level).addClass(cssClass);
     }
 
 }(HAF, jQuery));

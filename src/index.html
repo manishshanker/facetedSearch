@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="lib/css/main.css">
 
     <link rel="stylesheet/less" type="text/css" href="lib/css/discoverPage.less" />
+    <link rel="stylesheet/less" type="text/css" href="lib/css/breadcrumb.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchList.less" />
     <script src="lib/js/vendor/less.min.js"></script>
     <!--/MERGE STYLES-->
@@ -53,11 +54,20 @@
 
     <div class="page-content">
         <section class="page" id="discover">
+	        <div class="breadcrumb">
+		        <ul>
+			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
+				        <li><a href="#level-{{level}}" class="title">{{title}}</a><a href="#delete-{{level}}" class="delete">x</a></li>
+			        </script>
+		        </ul>
+	        </div>
             <div class="content">
                 <div class="search-list">
                     <script id="searchListTemplate" type="text/x-handlebars-template">
-                    <h2>{{title}}</h2>
-                    {{#list children}}<a id="item_{{id}}" href="#/discover/searchItem/{{id}}">{{title}}</a>{{/list}}
+                    <div class="item level-{{level}}">
+	                    <h2>{{title}}</h2>
+	                    {{#list children}}<a href="#/discover/searchItem/{{id}}">{{title}}</a>{{/list}}
+                    </div>
                     </script>
                 </div>
                 <div class="questions">
@@ -104,6 +114,8 @@
 	<script src="lib/js/app/modules/discover/controls/SearchList.view.js"></script>
 	<script src="lib/js/app/modules/discover/controls/SearchList.service.js"></script>
 	<script src="lib/js/app/modules/discover/controls/SearchList.controller.js"></script>
+	<script src="lib/js/app/modules/discover/controls/Breadcrumb.view.js"></script>
+	<script src="lib/js/app/modules/discover/controls/Breadcrumb.controller.js"></script>
     <script src="lib/js/app/modules/discover/DiscoverPage.controller.js"></script>
 
 	<script src="lib/js/app/main.js"></script>

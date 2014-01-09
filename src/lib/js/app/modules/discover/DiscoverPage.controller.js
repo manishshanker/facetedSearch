@@ -4,7 +4,8 @@
     APP.controller.DiscoverPage = HAF.Controller.extend({
         getControls: function () {
             return {
-                searchList: new APP.controller.SearchList()
+                searchList: new APP.controller.SearchList(),
+                breadcrumb: new APP.controller.Breadcrumb()
             };
         },
         getServices: function () {
@@ -18,6 +19,7 @@
                     var that = this;
                     if (stateData.module) {
                         that.services.searchList.fetch(that, stateData.moduleItem, that.onFilterData);
+                        that.controls.breadcrumb.render(that.services.searchList.getMetaInfo(stateData.moduleItem));
                     } else {
                         that.controls.searchList.goBackToFirstLevel();
                     }

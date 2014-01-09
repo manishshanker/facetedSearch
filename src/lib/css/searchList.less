@@ -3,55 +3,48 @@
     width: 230px;
     height: 100%;
     overflow: auto;
+   	background-color: @bgc-search-list;
 
     &.hide {
         height: 0;
     }
 
-    h2 {
-        font-size: 110%;
-        padding: 15px;
-        font-weight: bold;
-        position: absolute;
-        -webkit-transition: opacity 0.5s, top 0.5s;
-        top: 400px;
-        opacity: 0;
+	.item {
+		top: 400px;
+		opacity: 0;
+		-webkit-transition: opacity 0.5s, top 0.5s;
+		position: absolute;
 
-        &.show {
-            top: 0;
-            opacity: 1;
-        }
+		&.show {
+			top: 0;
+			opacity: 1;
+		}
 
-        &.hide {
-            opacity: 0;
-        }
-    }
+		&.hide {
+			opacity: 0;
+		}
 
-    ul {
-        -webkit-transition: opacity 0.5s, top 0.5s;
-        position: absolute;
-        top: 440px;
-        opacity: 0;
+		&.hide-back {
+			opacity: 0;
+			top: 400px;
+		}
 
-        &.show {
-            top: 40px;
-            opacity: 1;
-        }
+		h2 {
+			font-size: 110%;
+			padding: 15px;
+			font-weight: bold;
+		}
 
-        &.hide {
-            height: 0;
-            font-size: 0;
-            overflow: hidden;
-        }
+		ul {
+			li {
+				padding: 5px 5px 5px 15px;
 
-        li {
-            padding: 5px 5px 5px 15px;
+				a {
+					display: inline-block;
+					width: 100%;
+				}
+			}
+		}
 
-            a {
-                display: inline-block;
-                width: 100%;
-            }
-        }
-    }
-
+	}
 }

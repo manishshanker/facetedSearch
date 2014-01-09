@@ -14,10 +14,11 @@ a {
 }
 
 #mainContent {
-    width: 1024px;
+    min-width: 1000px;
+    max-width: 1240px;
     margin: auto;
     background: #FFF;
-    min-height: 650px;
+    min-height: 600px;
     height: 100%;
     position: relative;
 }

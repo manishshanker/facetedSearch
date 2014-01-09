@@ -1,19 +1,16 @@
+@import "theme.less";
 #discover {
-    .breadcrumb {
-        display: none;
-        height: 20px;
-
-        a {
-            display: inline-block;
-            width: 120px;
-        }
-    }
     .content {
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
+	    -webkit-transition: top 0.5s;
+
+	    &.next-level {
+		    top: 30px;
+	    }
     }
     .questions {
         left: 230px;
