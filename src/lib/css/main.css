@@ -1,10 +1,16 @@
 body, html {
     width: 100%;
     height: 100%;
+    font-family: Arial;
 }
 
 li {
     list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
 }
 
 #mainContent {
@@ -12,11 +18,29 @@ li {
     margin: auto;
     background: #f6f6f6;
     min-height: 650px;
-    padding: 10px;
+    height: 100%;
+    position: relative;
+}
+
+header {
+    height: 120px;
+    position: absolute;
+    width: 100%;
+}
+
+h1 {
+    height: 20px;
+    font-size: 120%;
+    padding: 20px;
 }
 
 .page-content {
-	position: relative;
+	position: absolute;
+    left: 0;
+    right: 0;
+    top: 100px;
+    bottom: 0;
+    background: #FFF;
 }
 
 .page {
@@ -24,7 +48,8 @@ li {
 	z-index: -1;
 	position: absolute;
 	-webkit-transition: all 0.5s;
-	top: 50px;
+	top: 0;
+    bottom: 0;
 }
 
 .page-visible {

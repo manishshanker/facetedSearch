@@ -88,7 +88,7 @@
         <echo message="BEGIN: CSS MERGE"/>
         <concat destfile="${outputDir}\lib\css\combined.css" fixlastline="true">
             <union>
-                <fileset dir="${cssSource}" casesensitive="false" includes="normalize.css"/>
+                <fileset dir="${cssSource}" casesensitive="false" includes="reset.css"/>
                 <fileset dir="${cssSource}" casesensitive="false" includes="main.css"/>
                 <fileset dir="${cssSource}" casesensitive="false" includes="**\*.css"/>
             </union>

@@ -2,7 +2,9 @@
     "use strict";
 
     HAF.init(APP.i18nT);
-    (new APP.controller.News()).load();
-    HAF.navigation.load("introduction");
+
+    new APP.controller.DiscoverPage().load();
+
+    HAF.navigation.load("discover");
 
 }(HAF));
