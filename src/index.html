@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="lib/css/navigation.css">
     <link rel="stylesheet" href="lib/css/main.css">
 
+    <link rel="stylesheet/less" type="text/css" href="lib/css/discoverPage.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchList.less" />
     <script src="lib/js/vendor/less.min.js"></script>
     <!--/MERGE STYLES-->
@@ -52,11 +53,20 @@
 
     <div class="page-content">
         <section class="page" id="discover">
-            <div class="search-list">
-                <script id="searchListTemplate" type="text/x-handlebars-template">
-                <h2>{{title}}</h2>
-                {{#list children}}<a id="item_{{id}}" href="#/discover/item/{{id}}">{{title}}</a>{{/list}}
-                </script>
+            <div class="content">
+                <div class="search-list">
+                    <script id="searchListTemplate" type="text/x-handlebars-template">
+                    <h2>{{title}}</h2>
+                    {{#list children}}<a id="item_{{id}}" href="#/discover/searchItem/{{id}}">{{title}}</a>{{/list}}
+                    </script>
+                </div>
+                <div class="questions">
+                    <ul>
+                        <li>Followed Analysts?</li>
+                        <li>Suggested Documents?</li>
+                        <li>Hot Topics?</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -84,7 +94,7 @@
         <script src="lib/js/app/i18n/en_GB.js"></script>
 
     <!--MERGE SCRIPTS-->
-    <script src="lib/js/vendor/zepto.min.js"></script>
+    <script src="lib/js/vendor/jquery.min.js"></script>
     <script src="lib/js/vendor/handlebars-v1.1.2.js"></script>
     <script src="lib/js/vendor/HAF.min.js"></script>
 

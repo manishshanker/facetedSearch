@@ -11,6 +11,12 @@
             return {
                 searchList: new APP.view.SearchList()
             };
+        },
+        renderNewList: function(data) {
+            this.views.searchList.renderNewList(this.templates.searchList, data);
+        },
+        goBackToFirstLevel: function() {
+            this.views.searchList.goBackToFirstLevel();
         }
     });
 

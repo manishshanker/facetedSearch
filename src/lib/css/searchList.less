@@ -2,19 +2,56 @@
 .search-list {
     width: 230px;
     height: 100%;
+    overflow: auto;
+
+    &.hide {
+        height: 0;
+    }
 
     h2 {
         font-size: 110%;
         padding: 15px;
         font-weight: bold;
-    }
+        position: absolute;
+        -webkit-transition: opacity 0.5s, top 0.5s;
+        top: 400px;
+        opacity: 0;
 
-    ul li {
-        padding: 5px 5px 5px 15px;
+        &.show {
+            top: 0;
+            opacity: 1;
+        }
 
-        a {
-            display: inline-block;
-            width: 100%;
+        &.hide {
+            opacity: 0;
         }
     }
+
+    ul {
+        -webkit-transition: opacity 0.5s, top 0.5s;
+        position: absolute;
+        top: 440px;
+        opacity: 0;
+
+        &.show {
+            top: 40px;
+            opacity: 1;
+        }
+
+        &.hide {
+            height: 0;
+            font-size: 0;
+            overflow: hidden;
+        }
+
+        li {
+            padding: 5px 5px 5px 15px;
+
+            a {
+                display: inline-block;
+                width: 100%;
+            }
+        }
+    }
+
 }

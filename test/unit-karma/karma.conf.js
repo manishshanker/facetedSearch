@@ -15,7 +15,7 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
         files: [
             'tests/**/*test.js',
-            '../../src/lib/js/vendor/zepto.min.js',
+            '../../src/lib/js/vendor/jquery.min.js',
             '../../src/lib/js/vendor/handlebars-v1.1.2.js',
             '../../src/lib/js/vendor/HAF.min.js',
             '../../src/lib/js/vendor/**/*.js',

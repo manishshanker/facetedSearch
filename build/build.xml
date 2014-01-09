@@ -44,9 +44,9 @@
         <echo message="BEGIN: JS MERGE"/>
         <concat destfile="${outputDir}\lib\js\combined.js" fixlastline="true">
             <union>
-                <fileset dir="${jsLibSource}" casesensitive="false" includes="zepto.min.js"/>
+                <fileset dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
                 <fileset dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
-                <fileset dir="${jsLibSource}" casesensitive="false" includes="**/*.js" excludes="zepto.min.js, handlebars-v1.1.2.js"/>
+                <fileset dir="${jsLibSource}" casesensitive="false" includes="**/*.js" excludes="jquery.min.js, handlebars-v1.1.2.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="namespace.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
