@@ -3,17 +3,15 @@
 
     APP.view.SearchResult = HAF.View.extend({
         container: "#discover .search-result",
-        load: function() {
+        load: function () {
             this.$el.tabs();
         },
-        hide: function() {
+        hide: function () {
             this.$el.removeClass("show");
         },
-        show: function() {
+        show: function () {
             this.$el.addClass("show");
         }
     });
 
 }(HAF));
-
-
