@@ -4,17 +4,21 @@
 
         return this.each(function() {
             var $el = $(this);
-            $el.on("click", "li a", function(e) {
+            $el.on("click", ".tab-nav li a", function(e) {
                 var selected = $el.data("selected");
                 if (selected) {
+                    $el.find("a[href$="+selected+"]").removeClass("selected");
                     $(selected).hide();
                 }
-                selected = /(#(.+))/.exec($(this).attr("href"))[2];
+                var $link = $(this);
+                $link.addClass("selected");
+                selected = /(#(.+))/.exec($link.attr("href"))[1];
                 $(selected).show();
                 $el.data("selected", selected);
                 e.preventDefault();
-            })
-        })
+            });
+            $el.find(".tab-nav li a:eq(0)").trigger("click");
+        });
 
     }
 

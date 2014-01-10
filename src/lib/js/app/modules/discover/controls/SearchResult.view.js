@@ -1,9 +1,9 @@
-(function (HAF, $) {
+(function (HAF) {
     "use strict";
 
     APP.view.SearchResult = HAF.View.extend({
         container: "#discover .search-result",
-        render: function() {
+        load: function() {
             this.$el.tabs();
         },
         hide: function() {
@@ -14,4 +14,6 @@
         }
     });
 
-}(HAF, jQuery));
+}(HAF));
+
+
