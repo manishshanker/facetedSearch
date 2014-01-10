@@ -1,0 +1,28 @@
+nav {
+	background: #3f3f3f;
+}
+
+nav ul {
+	padding-left: 1px;
+}
+
+nav li {
+	display: inline-block;
+	width: 150px;
+	margin: 5px 1px 0 1px;
+}
+
+nav li a {
+    &:link, &:visited, &:hover, &:active {
+        text-decoration: none;
+        color: #FFF;
+        display: block;
+        padding: 7px 5px;
+        text-align: center;
+
+        &.selected {
+            background: #FFF;
+            color: #000;
+        }
+    }
+}

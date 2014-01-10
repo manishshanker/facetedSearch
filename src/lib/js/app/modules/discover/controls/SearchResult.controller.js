@@ -2,22 +2,24 @@
     "use strict";
 
     APP.controller.SearchResult = HAF.Controller.extend({
-        init: function() {
+        init: function () {
             this.inject({
                 views: {
-                    searchResult: new APP.view.SearchResult()
-//                ,
-//                visualResult: new APP.view.VisualResult(),
-//                listResult: new APP.view.ListResult()
+                    searchResult: new APP.view.SearchResult(),
+//                listResult: new APP.view.ListResult(),
+                    visualResult: new APP.view.VisualResult()
                 }
             });
         },
-        hide: function() {
+        hide: function () {
             this.views.searchResult.hide();
         },
-        show: function() {
+        show: function () {
             this.views.searchResult.show();
             this.views.searchResult.load();
+        },
+        load: function (data) {
+            this.views.visualResult.render(data);
         }
     });
 

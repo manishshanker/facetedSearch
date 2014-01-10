@@ -17,9 +17,9 @@
     <!--MERGE STYLES-->
     <link rel="stylesheet" href="lib/css/reset.css">
     <link rel="stylesheet" href="lib/css/news.css">
-    <link rel="stylesheet" href="lib/css/navigation.css">
     <link rel="stylesheet" href="lib/css/main.css">
 
+    <link rel="stylesheet/less" type="text/css" href="lib/css/navigation.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/discoverPage.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/breadcrumb.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchList.less" />
@@ -85,10 +85,10 @@
                         <li><a href="#resultTypeList">List</a></li>
                     </ul>
                     <div id="resultTypeVisual" class="tab-content">
-                            VISUAL SEARCH
+                        VISUAL
                     </div>
                     <div id="resultTypeList" class="tab-content">
-                            LIST
+                        LIST
                     </div>
                 </div>
             </div>
@@ -122,11 +122,13 @@
     <script src="lib/js/vendor/jquery.min.js"></script>
     <script src="lib/js/vendor/handlebars-v1.1.2.js"></script>
     <script src="lib/js/vendor/HAF.min.js"></script>
+    <script src="lib/js/vendor/vis.min.js"></script>
 
 	<script src="lib/js/app/namespace.js"></script>
 	<script src="lib/js/app/serviceURLs.js"></script>
 
 	<script src="lib/js/app/plugins/jquery.tab.js"></script>
+	<script src="lib/js/app/modules/discover/controls/VisualResult.view.js"></script>
 	<script src="lib/js/app/modules/discover/controls/SearchList.view.js"></script>
 	<script src="lib/js/app/modules/discover/controls/SearchList.service.js"></script>
 	<script src="lib/js/app/modules/discover/controls/SearchList.controller.js"></script>

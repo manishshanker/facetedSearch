@@ -11,7 +11,8 @@
                    questions: new APP.controller.Questions()
                },
                 services: {
-                    searchList: new APP.service.SearchList()
+                    searchList: new APP.service.SearchList(),
+                    searchResult: new APP.service.SearchResult()
                 }
             });
         },
