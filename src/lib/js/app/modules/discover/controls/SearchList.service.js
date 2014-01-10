@@ -3,9 +3,6 @@
 
     APP.service.SearchList = HAF.Service.extend({
         cachedResultData: {},
-        init: function () {
-            this._super.apply(this, arguments);
-        },
         fetch: function (context, id, callback) {
             callback = callback || this.updated;
             var data = getMockData(id);
