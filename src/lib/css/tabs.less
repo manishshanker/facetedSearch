@@ -1,0 +1,25 @@
+@import "theme.less";
+.tabs {
+
+    .tab-nav {
+        li {
+            display: inline-block;
+            margin-right: 1px;
+        }
+
+        li a {
+            display: inline-block;
+            padding: 4px 10px;
+
+            &.selected {
+                background: @bgc-search-list;
+            }
+        }
+    }
+
+    .tab-content {
+        min-width: 100px;
+        min-height: 200px;
+        background: @bgc-search-list;
+    }
+}

@@ -2,21 +2,21 @@
     "use strict";
 
     APP.controller.Breadcrumb = HAF.Controller.extend({
-        getTemplates: function () {
-            return {
-                breadcrumb: new HAF.Template("breadcrumbItemTemplate")
-            };
-        },
-        getViews: function () {
-            return {
-                breadcrumb: new APP.view.Breadcrumb()
-            };
+        init: function() {
+            this.inject({
+                templates: {
+                    breadcrumb: new HAF.Template("breadcrumbItemTemplate")
+                },
+                views: {
+                    breadcrumb: new APP.view.Breadcrumb()
+                }
+            })
         },
         render: function(item) {
-            this.getViews().breadcrumb.render(this.getTemplates().breadcrumb.process(item));
+            this.views.breadcrumb.render(this.templates.breadcrumb.process(item));
         },
         hide: function() {
-            this.getViews().breadcrumb.hide();
+            this.views.breadcrumb.hide();
         }
     });
 

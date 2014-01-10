@@ -11,12 +11,10 @@
 
 	li {
 		display: inline-block;
-		background: @bgc-breadcrumb-item;
-		padding: 5px 20px 5px 5px;
 		position: relative;
 		opacity: 0;
 		-webkit-transition: opacity 0.5s;
-
+        padding-right: 13px;
 		&.show {
 			opacity: 1;
 		}
@@ -24,15 +22,19 @@
 
 	a.title {
 		display: inline-block;
-	}
+        background: @bgc-breadcrumb-item;
+        position: relative;
+        padding: 5px 5px 5px 5px;
+    }
 
-	a.delete {
-		border: 3px solid transparent;
-		border-radius: 10px;
-		background-color: #000000;
-		color: #FFF;
-		position: absolute;
-		right: 5px;
-		font-size: 10px;
-	}
+    span.arrow {
+        width: 0;
+        height: 0;
+        border-top: 13px solid transparent;
+        border-bottom: 13px solid transparent;
+        border-left: 13px solid @bgc-breadcrumb-item;
+        position: absolute;
+        right: 0;
+    }
+
 }
