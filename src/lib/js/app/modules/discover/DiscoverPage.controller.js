@@ -21,6 +21,7 @@
                         that.services.searchList.fetch(that, stateData.moduleItem, that.onFilterData);
                         that.controls.breadcrumb.render(that.services.searchList.getMetaInfo(stateData.moduleItem));
                     } else {
+                        that.controls.breadcrumb.hide();
                         that.controls.searchList.goBackToFirstLevel();
                     }
                 }

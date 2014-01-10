@@ -5,14 +5,22 @@
         level: 0,
         container: "#discover .breadcrumb",
         render: function(html) {
-            var $ul = this.$container.$item.find("ul");
+            var $ul = this.$el.find("ul");
             $ul.append(html);
-            var $discover = $("#discover");
-            $discover.find(".breadcrumb").addClass("show");
-            $discover.find(".content").addClass("next-level");
+            this.$el.addClass("show");
+            $("#discover").find(".content").addClass("next-level");
             setTimeout(function() {
                 $ul.find("li:not(.show)").addClass("show");
             }, 10);
+        },
+        hide: function() {
+            var that = this;
+            that.$el.find(".breadcrumb").removeClass("show").addClass("hide");
+            $("#discover").find(".content").removeClass("next-level");
+            that.$el.find("ul").find("li").removeClass("show").addClass("hide");
+            setTimeout(function() {
+                that.$el.find("ul li").remove();
+            }, 500);
         }
     });
 

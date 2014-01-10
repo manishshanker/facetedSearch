@@ -14,6 +14,9 @@
         },
         render: function(item) {
             this.getViews().breadcrumb.render(this.getTemplates().breadcrumb.process(item));
+        },
+        hide: function() {
+            this.getViews().breadcrumb.hide();
         }
     });
 
