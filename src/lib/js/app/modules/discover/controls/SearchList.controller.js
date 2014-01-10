@@ -2,6 +2,7 @@
     "use strict";
 
     APP.controller.SearchList = HAF.Controller.extend({
+        autoWire: true,
         init: function () {
             this.inject({
                 views: {

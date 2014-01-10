@@ -18,7 +18,7 @@
             this.views.searchResult.show();
             this.views.searchResult.load();
         },
-        load: function (data) {
+        render: function (data) {
             this.views.visualResult.render(data);
         }
     });

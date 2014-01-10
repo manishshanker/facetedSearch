@@ -3,17 +3,15 @@
 
     APP.view.VisualResult = HAF.View.extend({
         container: "#discover #resultTypeVisual",
-        render: function(data) {
-            window.setTimeout(function() {
-                var container = document.getElementById("resultTypeVisual");
-                var options = {
-                    nodes: {
-                        shape: 'circle',
-                        fontSize: 11
-                    }
-                };
-                new vis.Graph(container, data, options);
-            }, 1000);
+        render: function (data) {
+            var container = document.getElementById("resultTypeVisual");
+            var options = {
+                nodes: {
+                    shape: 'circle',
+                    fontSize: 11
+                }
+            };
+            new vis.Graph(container, data, options);
         }
     });
 

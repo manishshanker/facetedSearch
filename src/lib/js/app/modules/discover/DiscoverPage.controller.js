@@ -2,6 +2,7 @@
     "use strict";
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
+        autoWire: true,
         init: function() {
             this.inject({
                controls: {
@@ -25,6 +26,7 @@
                         that.controls.breadcrumb.render(that.services.searchList.getMetaInfo(stateData.moduleItem));
                         that.controls.questions.hide();
                         that.controls.searchResult.show();
+                        that.services.searchResult.fetch(this.controls.searchResult, this.controls.searchResult.render);
                     } else {
                         that.controls.searchResult.hide();
                         that.controls.questions.show();

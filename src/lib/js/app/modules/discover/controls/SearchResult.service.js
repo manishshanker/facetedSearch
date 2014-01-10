@@ -2,8 +2,9 @@
     "use strict";
 
     APP.service.SearchResult = HAF.Service.extend({
-        fetch: function () {
-            this.updated.call(this, getMockData());
+        fetch: function (context, callback) {
+            callback = callback || function() {};
+            callback.call(context, getMockData());
         }
     });
 
