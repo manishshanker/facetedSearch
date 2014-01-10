@@ -2,12 +2,11 @@
     "use strict";
 
     APP.view.VisualResult = HAF.View.extend({
-        container: "#discover #resultTypeVisual",
+        container: "#resultTypeVisual",
         render: function (data) {
             var container = document.getElementById("resultTypeVisual");
             var options = {
                 nodes: {
-                    shape: 'circle',
                     fontSize: 11
                 }
             };

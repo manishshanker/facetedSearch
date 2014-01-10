@@ -10,20 +10,20 @@
 
     function getMockData() {
         var nodes = [
-            {id: 1, label: 'Regions (100)'},
-            {id: 2, label: 'Balance Sheet (200)'},
-            {id: 3, label: 'Activity (400)'},
-            {id: 4, label: 'Regulations (50)'},
-            {id: 5, label: 'Company (300)'},
-            {id: 6, label: 'Legislation (200)'},
-            {id: 7, label: 'Products (200)'},
-            {id: 8, label: 'Income Statements (100)'},
-            {id: 9, label: 'Factors (500)'},
-            {id: 10, label: 'Income Statements (500)'},
-            {id: 11, label: 'Research Topics (500)'},
-            {id: 12, label: 'Countries (400)'},
-            {id: 13, label: 'Sub Sectors (350)'},
-            {id: 14, label: 'Topics (3300)', color: {background: "#000"}, fontColor: "#ffffff"}
+            {id: 1, label: 'Regions\n(100)'},
+            {id: 2, label: 'Balance\nSheet\n(200)'},
+            {id: 3, label: 'Activity\n(400)'},
+            {id: 4, label: 'Regulations\n(50)'},
+            {id: 5, label: 'Company\n(300)'},
+            {id: 6, label: 'Legislation\n(200)'},
+            {id: 7, label: 'Products\n(200)'},
+            {id: 8, label: 'Income\nStatements\n(100)'},
+            {id: 9, label: 'Factors\n(500)'},
+            {id: 10, label: 'Income\nStatements\n(500)'},
+            {id: 11, label: 'Research\nTopics\n(500)'},
+            {id: 12, label: 'Countries\n(400)'},
+            {id: 13, label: 'Sub\nSectors\n(350)'},
+            {id: 14, label: 'Topics\n(3300)', color: {background: "#000"}, fontColor: "#ffffff"}
         ];
 
         // create an array with edges
