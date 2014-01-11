@@ -20,37 +20,21 @@
         },
         onStateChange: function () {
             return {
-                searchList: function (searchList, stateData) {
-                    var that = this;
-                    if (stateData.module) {
-                        that.services.searchList.fetch(that, stateData.moduleItem, that.onFilterData);
-                    } else {
-                        searchList.goBackToFirstLevel();
-                    }
+                searchList: function () {
+                    HAF.navigation.route(this, "/discover/searchItem/:id", loadSearchItem);
+                    HAF.navigation.route(this, "/discover", loadFirstLevel);
                 },
-                searchResult: function(searchResult, stateData) {
-                    var that = this;
-                    if (stateData.module) {
-                        searchResult.show();
-                        that.services.searchResult.fetch(searchResult, searchResult.render);
-                    } else {
-                        searchResult.hide();
-                    }
+                searchResult: function() {
+                    HAF.navigation.route(this, "/discover/searchItem/:id", showSearchResult);
+                    HAF.navigation.route(this, "/discover", hideSearchResult);
                 },
-                breadcrumb: function(breadcrumb, stateData) {
-                    var that = this;
-                    if (stateData.module) {
-                        breadcrumb.render(that.services.searchList.getMetaInfo(stateData.moduleItem));
-                    } else {
-                        breadcrumb.hide();
-                    }
+                breadcrumb: function() {
+                    HAF.navigation.route(this, "/discover/searchItem/:id", showBreadcrumb);
+                    HAF.navigation.route(this, "/discover", hideBreadcrumb);
                 },
-                questions: function(questions, stateData) {
-                    if (stateData.module) {
-                        questions.hide();
-                    } else {
-                        questions.show();
-                    }
+                questions: function() {
+                    HAF.navigation.route(this, "/discover/searchItem/:id", hideQuestions);
+                    HAF.navigation.route(this, "/discover", showQuestions);
                 }
             }
         },
@@ -64,4 +48,37 @@
         }
     });
 
+    function hideQuestions() {
+        this.controls.questions.hide();
+    }
+
+    function showQuestions() {
+        this.controls.questions.show();
+    }
+
+    function hideBreadcrumb() {
+        this.controls.breadcrumb.hide();
+    }
+
+    function showBreadcrumb(id) {
+        this.controls.breadcrumb.render(this.services.searchList.getMetaInfo(id));
+    }
+
+    function showSearchResult() {
+        var searchResult = this.controls.searchResult;
+        searchResult.show();
+        this.services.searchResult.fetch(searchResult, searchResult.render);
+    }
+
+    function hideSearchResult() {
+        this.controls.searchResult.hide();
+    }
+
+    function loadSearchItem(id) {
+        this.services.searchList.fetch(this, id, this.onFilterData);
+    }
+
+    function loadFirstLevel() {
+        this.controls.searchList.goBackToFirstLevel();
+    }
 }(HAF));
