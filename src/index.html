@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ICEX Application;</title>
+    <title>ICEX Application</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -59,16 +59,16 @@
 	        <div id="appBreadcrumb" class="breadcrumb">
 		        <ul>
 			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
-				        <li class="level-{{level}}"><a href="#level-{{level}}" class="title">{{title}}</a><span class="arrow"></span></li>
+				        <li class="level-{{level}}"><a href="#/discover/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
 			        </script>
 		        </ul>
 	        </div>
             <div class="content">
                 <div id="appSearchList" class="search-list">
                     <script id="searchListTemplate" type="text/x-handlebars-template">
-                    <div class="item level-{{level}}">
+                    <div class="item">
 	                    <h2>{{title}}</h2>
-	                    {{#list children}}<a href="#/discover/searchItem/{{id}}">{{title}}</a>{{/list}}
+	                    {{#list items}}<a href="#/discover/{{id}}">{{title}}</a>{{/list}}
                     </div>
                     </script>
                 </div>

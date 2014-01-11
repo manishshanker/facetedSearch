@@ -16,21 +16,25 @@
 
     function findItem(items, id) {
         var itemFound = null;
-        $.each(items, function(key, item) {
+        $.each(items, function (key, item) {
             if (item.id == id) {
                 itemFound = item;
                 return false;
             } else {
-                if (item.children) {
-                    var tmpItemFound = findItem(item.children, id);
-                    if (tmpItemFound) {
-                        itemFound = tmpItemFound;
+                $.each(item.items, function (index, item) {
+                    if (item.id == id) {
+                        itemFound = item;
                         return false;
                     }
-                }
+                    return true;
+                });
             }
             return true;
         });
+        itemFound = itemFound || {
+            title: "Lorem ipsum",
+            id: id
+        };
         return itemFound;
     }
 
@@ -41,7 +45,7 @@
                 title: "Industry",
                 id: "1",
                 level: 0,
-                children: [
+                items: [
                     {
                         title: "Basic Materials",
                         id: "11"
@@ -64,51 +68,49 @@
                     }
                 ]
             };
-        } else if (id==16) {
+        } else if (id == 16) {
             mockData = {
                 title: "Sectors",
                 id: "161",
-                level: 1,
-                children: [
+                items: [
                     {
                         title: "Banks",
-                        id: "1611"
+                        id: "16_1"
                     },
                     {
                         title: "Capital Markets",
-                        id: "1612"
+                        id: "16_2"
                     },
                     {
                         title: "Financial Services",
-                        id: "1613"
+                        id: "16_3"
                     },
                     {
                         title: "Insurance",
-                        id: "1614"
+                        id: "16_4"
                     }
                 ]
             };
         } else {
             mockData = {
                 title: "Lorem ipsum",
-                id: "16121",
-                level: 2,
-                children: [
+                idd: "162",
+                items: [
                     {
-                        title: "Banks",
-                        id: "161211"
+                        title: "Lorem ipsum 1",
+                        id: id + "_1"
                     },
                     {
-                        title: "Capital Markets",
-                        id: "161212"
+                        title: "Lorem ipsum 2",
+                        id: id + "_2"
                     },
                     {
-                        title: "Financial Services",
-                        id: "161213"
+                        title: "Lorem ipsum 3",
+                        id: id + "_3"
                     },
                     {
-                        title: "Insurance",
-                        id: "161214"
+                        title: "Lorem ipsum 4",
+                        id: id + "_5"
                     }
                 ]
             };

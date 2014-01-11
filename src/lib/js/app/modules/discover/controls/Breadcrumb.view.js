@@ -21,6 +21,9 @@
             setTimeout(function() {
                 that.$el.find("ul li").remove();
             }, 500);
+        },
+        removeLastLevel: function() {
+            this.$el.find("li:last").remove();
         }
     });
 

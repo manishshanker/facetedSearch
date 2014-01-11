@@ -1,8 +1,9 @@
 @import "theme.less";
+@import "lesshat.less";
 .breadcrumb {
 	height: 0;
 	opacity: 0;
-	-webkit-transition: height 0.5s, opacity 0.5s;
+	.transition(height 0.5s, opacity 0.5s);
 
 	&.show {
 		height: 30px;
@@ -13,7 +14,7 @@
 		display: inline-block;
 		position: relative;
 		opacity: 0;
-		-webkit-transition: opacity 0.5s;
+		.transition(opacity 0.5s);
         padding-right: 13px;
 		&.show {
 			opacity: 1;

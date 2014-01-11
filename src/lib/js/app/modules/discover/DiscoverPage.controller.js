@@ -21,25 +21,22 @@
         onStateChange: function () {
             return {
                 searchList: function () {
-                    HAF.navigation.route(this, "/discover/searchItem/:id", loadSearchItem);
+                    HAF.navigation.route(this, "/discover/:id", loadSearchItem);
                     HAF.navigation.route(this, "/discover", loadFirstLevel);
                 },
                 searchResult: function() {
-                    HAF.navigation.route(this, "/discover/searchItem/:id", showSearchResult);
+                    HAF.navigation.route(this, "/discover/:id", showSearchResult);
                     HAF.navigation.route(this, "/discover", hideSearchResult);
                 },
                 breadcrumb: function() {
-                    HAF.navigation.route(this, "/discover/searchItem/:id", showBreadcrumb);
+                    HAF.navigation.route(this, "/discover/:id", showBreadcrumb);
                     HAF.navigation.route(this, "/discover", hideBreadcrumb);
                 },
                 questions: function() {
-                    HAF.navigation.route(this, "/discover/searchItem/:id", hideQuestions);
+                    HAF.navigation.route(this, "/discover/:id", hideQuestions);
                     HAF.navigation.route(this, "/discover", showQuestions);
                 }
             }
-        },
-        onFilterData: function(data) {
-            this.controls.searchList.renderNewList(data);
         },
         controlMessages: {
             show: "navigationChangedTo:discover",
@@ -61,7 +58,7 @@
     }
 
     function showBreadcrumb(id) {
-        this.controls.breadcrumb.render(this.services.searchList.getMetaInfo(id));
+        this.controls.breadcrumb.render(this.services.searchList.getMetaInfo(id), id);
     }
 
     function showSearchResult() {
@@ -75,7 +72,10 @@
     }
 
     function loadSearchItem(id) {
-        this.services.searchList.fetch(this, id, this.onFilterData);
+        var that = this;
+        that.services.searchList.fetch(this, id, function(data) {
+            that.controls.searchList.filter(id, data);
+        });
     }
 
     function loadFirstLevel() {

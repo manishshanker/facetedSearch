@@ -8,39 +8,47 @@
             var that = this;
             that._super(html);
             setTimeout(function() {
-                addCSSClassToListItem(that, that.level, "show");
+                showItemInLevel(that, that.level);
             }, 10);
         },
         renderNewList: function(template, data) {
             var that = this;
             setTimeout(function() {
-                addCSSClassToListItem(that, that.level, "hide");
+                hideItemInLevel(that, that.level);
                 that.$el.append(template.process(data));
                 that.level++;
             }, 10);
             setTimeout(function() {
-                addCSSClassToListItem(that, that.level, "show");
+                showItemInLevel(that, that.level);
             }, 50);
+        },
+        removeList: function(id, level) {
+            var that = this;
+            that.currentFilterId = id;
+            hideItemInLevel(that, level+1);
+            showItemInLevel(that, level);
+            setTimeout(function() {
+                that.$el.find(".item").eq(level+1).remove();
+            }, 500);
         },
         goBackToFirstLevel: function() {
             var that = this;
-            var $items = that.$el.find(".item:not('.level-0')");
+            var $items = that.$el.find(".item:not(:eq(0))");
             $items.addClass("hide-back");
             setTimeout(function() {
                 $items.remove();
             }, 500);
             that.level = 0;
-            addCSSClassToListItem(that, that.level, "show");
-            removeCSSClassFromListItem(that, that.level, "hide");
+            showItemInLevel(that, that.level);
         }
     });
 
-    function removeCSSClassFromListItem(context, level, cssClass) {
-        context.$el.find(".level-"+level).removeClass(cssClass);
+    function showItemInLevel(context, level) {
+        context.$el.find(".item").eq(level).removeClass("hide").addClass("show");
     }
 
-    function addCSSClassToListItem(context, level, cssClass) {
-        context.$el.find(".level-"+level).addClass(cssClass);
+    function hideItemInLevel(context, level) {
+        context.$el.find(".item").eq(level).removeClass("show").addClass("hide");
     }
 
 }(HAF, jQuery));
