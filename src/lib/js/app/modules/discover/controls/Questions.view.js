@@ -2,7 +2,7 @@
     "use strict";
 
     APP.view.Questions = HAF.View.extend({
-        container: "#discover .questions",
+        container: "#appQuestions",
         hide: function () {
             this.$el.removeClass("show");
         },

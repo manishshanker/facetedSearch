@@ -2,6 +2,7 @@
     "use strict";
 
     APP.controller.Breadcrumb = HAF.Controller.extend({
+        autoShowHide: true,
         init: function() {
             this.inject({
                 templates: {
@@ -14,9 +15,6 @@
         },
         render: function(item) {
             this.views.breadcrumb.render(this.templates.breadcrumb.process(item));
-        },
-        hide: function() {
-            this.views.breadcrumb.hide();
         }
     });
 

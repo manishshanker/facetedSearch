@@ -56,7 +56,7 @@
 
     <div class="page-content">
         <section class="page" id="discover">
-	        <div class="breadcrumb">
+	        <div id="appBreadcrumb" class="breadcrumb">
 		        <ul>
 			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
 				        <li class="level-{{level}}"><a href="#level-{{level}}" class="title">{{title}}</a><span class="arrow"></span></li>
@@ -64,7 +64,7 @@
 		        </ul>
 	        </div>
             <div class="content">
-                <div class="search-list">
+                <div id="appSearchList" class="search-list">
                     <script id="searchListTemplate" type="text/x-handlebars-template">
                     <div class="item level-{{level}}">
 	                    <h2>{{title}}</h2>
@@ -72,19 +72,19 @@
                     </div>
                     </script>
                 </div>
-                <div class="questions sub-content">
+                <div id="appQuestions" class="questions sub-content">
                     <ul>
                         <li>Followed Analysts?</li>
                         <li>Suggested Documents?</li>
                         <li>Hot Topics?</li>
                     </ul>
                 </div>
-                <div class="search-result tabs sub-content">
+                <div id="appSearchResult" class="search-result tabs sub-content">
                     <ul class="result-type tab-nav">
-                        <li><a href="#resultTypeVisual">Visual</a></li>
+                        <li><a href="#appVisualResult">Visual</a></li>
                         <li><a href="#resultTypeList">List</a></li>
                     </ul>
-                    <div id="resultTypeVisual" class="tab-content"></div>
+                    <div id="appVisualResult" class="tab-content"></div>
                     <div id="resultTypeList" class="tab-content">
                         LIST
                     </div>

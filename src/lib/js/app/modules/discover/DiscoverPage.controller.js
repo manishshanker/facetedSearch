@@ -3,6 +3,7 @@
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoWire: true,
+        autoShowHide: true,
         init: function() {
             this.inject({
                controls: {
@@ -23,15 +24,32 @@
                     var that = this;
                     if (stateData.module) {
                         that.services.searchList.fetch(that, stateData.moduleItem, that.onFilterData);
-                        that.controls.breadcrumb.render(that.services.searchList.getMetaInfo(stateData.moduleItem));
-                        that.controls.questions.hide();
-                        that.controls.searchResult.show();
-                        that.services.searchResult.fetch(this.controls.searchResult, this.controls.searchResult.render);
                     } else {
-                        that.controls.searchResult.hide();
-                        that.controls.questions.show();
-                        that.controls.breadcrumb.hide();
-                        that.controls.searchList.goBackToFirstLevel();
+                        searchList.goBackToFirstLevel();
+                    }
+                },
+                searchResult: function(searchResult, stateData) {
+                    var that = this;
+                    if (stateData.module) {
+                        searchResult.show();
+                        that.services.searchResult.fetch(searchResult, searchResult.render);
+                    } else {
+                        searchResult.hide();
+                    }
+                },
+                breadcrumb: function(breadcrumb, stateData) {
+                    var that = this;
+                    if (stateData.module) {
+                        breadcrumb.render(that.services.searchList.getMetaInfo(stateData.moduleItem));
+                    } else {
+                        breadcrumb.hide();
+                    }
+                },
+                questions: function(questions, stateData) {
+                    if (stateData.module) {
+                        questions.hide();
+                    } else {
+                        questions.show();
                     }
                 }
             }

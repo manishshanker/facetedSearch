@@ -2,18 +2,13 @@
     "use strict";
 
     APP.controller.Questions = HAF.Controller.extend({
+        autoShowHide: true,
         init: function () {
             this.inject({
                 views: {
                     questions: new APP.view.Questions()
                 }
             });
-        },
-        hide: function () {
-            this.views.questions.hide();
-        },
-        show: function () {
-            this.views.questions.show();
         }
     });
 

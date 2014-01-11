@@ -2,7 +2,7 @@
     "use strict";
 
     APP.view.SearchResult = HAF.View.extend({
-        container: "#discover .search-result",
+        container: "#appSearchResult",
         load: function () {
             this.$el.tabs();
         },
@@ -10,6 +10,10 @@
             this.$el.removeClass("show");
         },
         show: function () {
+            if (!this.controlLoaded) {
+                this.load();
+                this.controlLoaded = true;
+            }
             this.$el.addClass("show");
         }
     });

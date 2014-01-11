@@ -3,6 +3,7 @@
 
     APP.controller.SearchList = HAF.Controller.extend({
         autoWire: true,
+        autoShowHide: true,
         init: function () {
             this.inject({
                 views: {

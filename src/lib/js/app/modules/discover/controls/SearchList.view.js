@@ -3,7 +3,7 @@
 
     APP.view.SearchList = HAF.View.extend({
         level: 0,
-        container: "#discover .search-list",
+        container: "#appSearchList",
         render: function(html) {
             var that = this;
             that._super(html);
