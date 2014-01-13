@@ -1,4 +1,5 @@
-@import "theme.less";
+@import "vendor/lesshat";
+@import "theme";
 .search-list {
     width: 230px;
     height: 100%;
@@ -12,7 +13,7 @@
 	.item {
 		top: 400px;
 		opacity: 0;
-		-webkit-transition: opacity 0.5s, top 0.5s;
+		.trasition(opacity 0.5s, top 0.5s);
 		position: absolute;
 
 		&.show {

@@ -1,4 +1,5 @@
-@import "theme.less";
+@import "vendor/lesshat";
+@import "theme";
 #discover {
     .content {
         position: absolute;
@@ -6,7 +7,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-	    -webkit-transition: top 0.5s;
+	    .transition(top 0.5s);
 
 	    &.next-level {
 		    top: 30px;
