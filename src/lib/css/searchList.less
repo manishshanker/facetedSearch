@@ -5,9 +5,24 @@
     height: 100%;
     overflow: auto;
    	background-color: @bgc-search-list;
+    position: relative;
 
     &.hide {
         height: 0;
+    }
+
+    .show-hide-link,
+    .show-hide-link:link,
+    .show-hide-link:visited,
+    .show-hide-link:hover,
+    .show-hide-link:active
+    {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        text-decoration: underline;
+        z-index: 1000;
+        font-size: 80%;
     }
 
 	.item {
@@ -36,16 +51,19 @@
 			font-size: 110%;
 			padding: 15px;
 			font-weight: bold;
+            text-transform: uppercase;
 		}
 
 		ul {
 			li {
-				padding: 5px 5px 5px 15px;
+				padding: 5px 5px 10px 15px;
 
 				a {
-					display: inline-block;
+					font-size: 90%;
+                    display: inline-block;
 					width: 100%;
-				}
+                    text-transform: uppercase;
+                }
 			}
 		}
 

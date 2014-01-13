@@ -6,7 +6,7 @@
         container: "#appSearchList",
         render: function(html) {
             var that = this;
-            that._super(html);
+            that.$el.append(html);
             setTimeout(function() {
                 showItemInLevel(that, that.level);
             }, 10);
