@@ -4,7 +4,12 @@
     <property name="jsLibSource" value="${basedir}\src\lib\js\vendor"/>
     <property name="cssSource" value="${basedir}\src\lib\css"/>
     <property name="outputDir" value="${basedir}\out"/>
+    <property name="jsOutput" value="${outputDir}\lib\js"/>
+    <property name="cssOutput" value="${outputDir}\lib\css"/>
     <property name="outputHtmlFile" value="${outputDir}\index.html"/>
+
+    <property name="rhinoJAR" value="${basedir}\build\jars\js.jar"/>
+    <property name="rhinoLESSJS" value="${basedir}\build\jars\less-rhino-1.4.0.js"/>
 
     <taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">
         <classpath>
@@ -24,7 +29,7 @@
         <delete dir="${outputDir}"/>
     </target>
 
-    <target name="build" depends="copy-source-to-build-folder, merge-css, minify-css, update-css-reference, merge-js, minify-js, update-js-reference, add-timestamp-to-path, generate-manifest"></target>
+    <target name="build" depends="copy-source-to-build-folder, compile-less-to-css, merge-css, minify-css, update-css-reference, merge-js, minify-js, update-js-reference, add-timestamp-to-path, generate-manifest"></target>
 
     <target name="copy-source-to-build-folder">
         <echo message="${outputDir}"/>
@@ -34,27 +39,38 @@
         <copy todir="${outputDir}">
             <fileset dir="${basedir}\src"/>
         </copy>
+    </target>
+
+    <target name="copy-mock-services-to-build-folder" depends="mockServicesCheck" if="mockServicesExist">
         <copy todir="${outputDir}\mockServices">
             <fileset dir="${basedir}\test\mockServices"/>
         </copy>
     </target>
 
+    <target name="mockServicesCheck">
+        <condition property="mockServicesExist">
+            <available file="${basedir}\test\mockServices" type="dir"/>
+        </condition>
+    </target>
+
+
     <target name="merge-js">
         <sequential>
         <echo message="BEGIN: JS MERGE"/>
-        <concat destfile="${outputDir}\lib\js\combined.js" fixlastline="true">
+        <concat destfile="${jsOutput}\combined.js" fixlastline="true">
             <union>
-                <fileset dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
-                <fileset dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
-                <fileset dir="${jsLibSource}" casesensitive="false" includes="**/*.js" excludes="jquery.min.js, handlebars-v1.1.2.js"/>
-                <fileset dir="${jsSource}" casesensitive="false" includes="namespace.js"/>
-                <fileset dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
-                <fileset dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
-                <fileset dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
-                <fileset dir="${jsSource}" casesensitive="false" includes="*.js" />
+                <fileset excludes="**/less*.js" dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
+                <fileset excludes="**/less*.js" dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
+                <fileset excludes="**/less*.js" dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
+                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="namespace.js"/>
+                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
+                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
+                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
+                <fileset excludes="**/less*.js" dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
+                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="*.js" />
             </union>
         </concat>
-        <delete dir="${outputDir}\lib\js" includeemptydirs="true" excludes="combined.js, **/modernizr*, **/i18n/*"/>
+        <delete dir="${jsOutput}" includeemptydirs="true" excludes="combined.js, **/modernizr*, **/i18n/*"/>
         <delete dir="${outputDir}\mockServices" includeemptydirs="true"/>
         <echo message="END: JS MERGE"/>
         </sequential>
@@ -66,8 +82,8 @@
                      warn="false"
                      munge="yes"
                      preserveallsemicolons="true"
-                     outputfolder="${outputDir}\lib\js\">
-            <fileset dir="${outputDir}\lib\js\">
+                     outputfolder="${jsOutput}\">
+            <fileset dir="${jsOutput}\">
                 <include name="combined.js"/>
             </fileset>
         </yuicompress>
@@ -83,40 +99,51 @@
         <echo message="END: UPDATE JS REFERENCE"/>
     </target>
 
-    <target name="merge-css">
+    <target name="compile-less-to-css" depends="merge-less-files">
+        <java jar="${rhinoJAR}" fork="true" output="${cssOutput}\tempLessOut.css">
+            <arg path="${rhinoLESSJS}"/>
+            <arg path="${cssOutput}\temp.less"/>
+        </java>
+    </target>
+
+    <target name="merge-less-files">
         <sequential>
-        <echo message="BEGIN: CSS MERGE"/>
-        <concat destfile="${outputDir}\lib\css\combined.css" fixlastline="true">
-            <union>
-                <fileset dir="${cssSource}" casesensitive="false" includes="reset.css"/>
-                <fileset dir="${cssSource}" casesensitive="false" includes="main.css"/>
-                <fileset dir="${cssSource}" casesensitive="false" includes="**\*.css"/>
-            </union>
-        </concat>
-        <replaceregexp file="${outputDir}\lib\css\combined.css"
-                       match="@import\s&quot;(.+?)&quot;;"
-                       flags="gs"
-                       replace=""/>
-        <delete dir="${outputDir}\lib\css" excludes="combined*.css" includeemptydirs="true"/>
-        <echo message="END: CSS MERGE"/>
+            <echo message="BEGIN: LESS MERGE"/>
+            <concat destfile="${cssOutput}\temp.less" fixlastline="true">
+                <union>
+                    <fileset dir="${cssSource}" casesensitive="false" includes="vendor\*.less"/>
+                    <fileset dir="${cssSource}" casesensitive="false" includes="main.less"/>
+                    <fileset dir="${cssSource}" casesensitive="false" includes="**\*.less"/>
+                </union>
+            </concat>
+            <replaceregexp file="${cssOutput}\temp.less"
+                           match="@import\s&quot;(.+?)&quot;;"
+                           flags="gs"
+                           replace=""/>
+            <delete dir="${cssOutput}" includes="**/*.less" excludes="temp.less" includeemptydirs="true"/>
+            <echo message="END: LESS MERGE"/>
         </sequential>
     </target>
 
-    <target name="compile-less-css">
+    <target name="merge-css">
         <sequential>
-            <echo message="BEGIN: CSS LESS COMPILE"/>
-            <java jar="${basedir}\build\jars\js.jar" fork="true" output="${outputDir}\lib\css\combined.css">
-                <arg path="${basedir}\build\jars\less-rhino-1.1.3.js"/>
-                <arg path="${outputDir}\lib\css\combined.less"/>
-            </java>
-            <echo message="END: CSS LESS COMPILE"/>
+        <echo message="BEGIN: CSS MERGE"/>
+        <concat destfile="${cssOutput}\combined.css" fixlastline="true">
+            <union>
+                <fileset dir="${cssOutput}" casesensitive="false" includes="vendor\*.css"/>
+                <fileset dir="${cssOutput}" casesensitive="false" includes="main.css"/>
+                <fileset dir="${cssOutput}" casesensitive="false" includes="**\*.css"/>
+            </union>
+        </concat>
+        <delete dir="${cssOutput}" excludes="combined*.css" includeemptydirs="true"/>
+        <echo message="END: CSS MERGE"/>
         </sequential>
     </target>
 
     <target name="minify-css">
         <yuicompress linebreak="300" warn="false" munge="yes" preserveallsemicolons="true"
-                     outputfolder="${outputDir}\lib\css">
-            <fileset dir="${outputDir}\lib\css" >
+                     outputfolder="${cssOutput}">
+            <fileset dir="${cssOutput}" >
                 <include name="combine*.css" />
             </fileset>
         </yuicompress>
