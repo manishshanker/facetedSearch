@@ -12,7 +12,6 @@
             }, 10);
         },
         renderNewList: function(template, data) {
-            console.log("renderNewList")
             var that = this;
             setTimeout(function() {
                 hideItemInLevel(that, that.level);
