@@ -1,4 +1,4 @@
-(function (HAF, $) {
+(function (HAF) {
     "use strict";
 
     APP.view.SearchList = HAF.View.extend({
@@ -51,4 +51,4 @@
         context.$el.find(".item").eq(level).removeClass("show").addClass("hide");
     }
 
-}(HAF, jQuery));
+}(HAF));
