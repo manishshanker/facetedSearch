@@ -12,7 +12,7 @@
                 },
                 controls: {
                     searchList: new APP.controller.SearchList(this.messageBus),
-                    breadcrumb: new APP.controller.Breadcrumb(),
+                    breadcrumb: new APP.controller.Breadcrumb(this.messageBus),
                     searchFiltering: new APP.controller.SearchFiltering(),
                     questions: new APP.controller.Questions()
                 },
@@ -21,7 +21,8 @@
                     searchFiltering: new APP.service.SearchFiltering()
                 }
             });
-            this.messageBus.subscribe(this, "search-list-hide", hideList)
+            this.messageBus.subscribe(this, "search-list-hide", hideList);
+            this.messageBus.subscribe(this, "search-list-show", showList);
         },
         onStateChange: function () {
             return {
@@ -50,10 +51,25 @@
         }
     });
 
+    function showList() {
+        var that = this;
+        that.controls.searchList.show();
+        that.views.discoverPage.withoutResults();
+        that.controls.breadcrumb.hideTopic();
+        setTimeout(function() {
+            that.controls.searchFiltering.layoutChange();
+        }, 500);
+//        this.controls.searchResult.hide();
+    }
+
     function hideList() {
-        this.controls.searchList.hideList();
-        this.views.discoverPage.withResults();
-//        this.controls.breadcrumb.showTopic(this.controls.searchList.currentFilterInfo);
+        var that = this;
+        that.controls.searchList.hide();
+        that.views.discoverPage.withResults();
+        that.controls.breadcrumb.showTopic(that.controls.searchList.currentFilterInfo);
+        setTimeout(function() {
+            that.controls.searchFiltering.layoutChange();
+        }, 500);
 //        this.controls.searchResult.show();
     }
 

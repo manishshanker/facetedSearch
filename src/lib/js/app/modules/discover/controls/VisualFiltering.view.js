@@ -20,11 +20,15 @@
         hide: function() {
             $(window).off("resize.visualFilteringRender");
         },
+        layoutChange: function() {
+            var that = this;
+            that.$el.empty();
+            that.render(that.lastDataSet);
+        },
         show: function() {
             var that = this;
             $(window).off("resize.visualFilteringRender").on("resize.visualFilteringRender", function() {
-                that.$el.empty();
-                that.render(that.lastDataSet);
+                that.layoutChange();
             });
         }
     });

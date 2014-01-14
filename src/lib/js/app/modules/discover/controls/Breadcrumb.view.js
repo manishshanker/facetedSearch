@@ -4,6 +4,11 @@
     APP.view.Breadcrumb = HAF.View.extend({
         level: 0,
         container: "#appBreadcrumb",
+        messageBus: null,
+        init: function(messageBus) {
+            this._super();
+            this.messageBus = messageBus;
+        },
         render: function(html) {
             var $ul = this.$el.find("ul");
             $ul.append(html);
@@ -15,6 +20,7 @@
             setTimeout(function() {
                 $ul.find("li:not(.show)").addClass("show");
             }, 10);
+            bindEvents(this);
         },
         hide: function() {
             var that = this;
@@ -30,7 +36,19 @@
         },
         removeLastLevel: function() {
             this.$el.find("li:last").remove();
+        },
+        showTopic: function() {
+            this.$el.find(".show-list").show();
+        },
+        hideTopic: function() {
+            this.$el.find(".show-list").hide();
         }
     });
 
+    function bindEvents(ctx) {
+        ctx.$el.on("click", ".show-list", function(e) {
+            ctx.messageBus.publish("search-list-show");
+            e.preventDefault();
+        });
+    }
 }(HAF, jQuery));

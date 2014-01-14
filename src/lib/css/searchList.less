@@ -27,23 +27,23 @@
 
 	.item {
 		top: 400px;
-		opacity: 0;
+		.opacity(0);
 		.transition(opacity 0.5s, top 0.5s);
 		position: absolute;
 
 		&.show {
 			top: 0;
-			opacity: 1;
+			.opacity(1);
 		}
 
 		&.hide {
 			top: 0;
-            opacity: 0;
+            .opacity(0);
 			pointer-events: none;
 		}
 
 		&.hide-back {
-			opacity: 0;
+			.opacity(0);
 			top: 400px;
 		}
 

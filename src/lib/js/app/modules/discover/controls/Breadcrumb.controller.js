@@ -4,13 +4,13 @@
     APP.controller.Breadcrumb = HAF.Controller.extend({
         autoShowHide: true,
         currentFilterId: null,
-        init: function() {
+        init: function(messageBus) {
             this.inject({
                 templates: {
                     breadcrumb: new HAF.Template("breadcrumbItemTemplate")
                 },
                 views: {
-                    breadcrumb: new APP.view.Breadcrumb()
+                    breadcrumb: new APP.view.Breadcrumb(messageBus)
                 }
             })
         },
@@ -30,6 +30,12 @@
         hide: function() {
             this.currentFilterId = null;
             this._super();
+        },
+        hideTopic: function() {
+            this.views.breadcrumb.hideTopic();
+        },
+        showTopic: function(topicInfo) {
+            this.views.breadcrumb.showTopic(topicInfo);
         }
     });
 

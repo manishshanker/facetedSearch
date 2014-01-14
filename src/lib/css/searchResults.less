@@ -1,0 +1,24 @@
+@import "vendor/lesshat";
+#appSearchResults {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 0;
+	background: #a2a5a5;
+	font-size: 150%;
+	color: #696b6c;
+	.transition(width 0.5s);
+
+	span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -8px;
+		margin-left: -80px;
+	}
+
+	&.show {
+		width: 495px;
+	}
+}

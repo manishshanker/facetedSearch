@@ -37,9 +37,6 @@
         },
         goBackToFirstLevel: function () {
             this.views.searchList.goBackToFirstLevel();
-        },
-        hideList: function() {
-            this.views.searchList.hideList();
         }
     });
 

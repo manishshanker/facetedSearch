@@ -22,6 +22,7 @@
     <link rel="stylesheet/less" type="text/css" href="lib/css/breadcrumb.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchList.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchFiltering.less" />
+    <link rel="stylesheet/less" type="text/css" href="lib/css/searchResults.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/tabs.less" />
     <script src="lib/js/vendor/less.min.js"></script>
     <!--/MERGE STYLES-->
@@ -55,9 +56,10 @@
     <div class="page-content">
         <section class="page" id="discover">
 	        <div id="appBreadcrumb" class="breadcrumb">
+		        <a href="#" class="show-list">Show</a>
 		        <ul>
 			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
-				        <li class="level-{{level}}"><a href="#/discover/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
+				        <li><a href="#/discover/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
 			        </script>
 		        </ul>
 	        </div>
@@ -88,6 +90,7 @@
                         LIST
                     </div>
                 </div>
+	            <div id="appSearchResults"><span>Search Results</span></div>
             </div>
         </section>
 

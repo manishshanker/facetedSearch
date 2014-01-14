@@ -11,6 +11,9 @@
                 }
             });
         },
+        layoutChange: function () {
+            this.views.visualFiltering.layoutChange();
+        },
         render: function (data) {
             this.views.visualFiltering.render(processResponseForGraph(data));
         }

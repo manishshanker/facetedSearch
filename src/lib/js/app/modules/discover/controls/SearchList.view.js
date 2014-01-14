@@ -6,8 +6,8 @@
         container: "#appSearchList",
         messageBus: null,
         init: function(messageBus) {
-            this.messageBus = messageBus;
             this._super();
+            this.messageBus = messageBus;
             bindEvents(this);
         },
         render: function(html) {
@@ -47,7 +47,10 @@
             that.level = 0;
             showItemInLevel(that, that.level);
         },
-        hideList: function() {
+        show: function() {
+            this.$el.removeClass("hide");
+        },
+        hide: function() {
             this.$el.addClass("hide");
         }
     });

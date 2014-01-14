@@ -2,22 +2,38 @@
 @import "theme";
 .breadcrumb {
 	height: 0;
-	opacity: 0;
+	.opacity(0);
 	.transition(height 0.5s, opacity 0.5s);
 
 	&.show {
 		height: 30px;
-		opacity: 1;
+		.opacity(1);
+	}
+
+	ul {
+		display: inline-block;
+	}
+
+	a.show-list,
+	a.show-list:link,
+	a.show-list:visited,
+	a.show-list:hover,
+	a.show-list:active {
+		font-size: 85%;
+		color: #35357c;
+		text-decoration: underline;
+		display: none;
+		margin-right: 15px;
 	}
 
 	li {
 		display: inline-block;
 		position: relative;
-		opacity: 0;
+		.opacity(0);
 		.transition(opacity 0.5s);
         padding-right: 13px;
 		&.show {
-			opacity: 1;
+			.opacity(1);
 		}
 	}
 
