@@ -5,10 +5,10 @@
         autoWire: true,
         autoShowHide: true,
         currentFilterId: null,
-        init: function () {
+        init: function (messageBus) {
             this.inject({
                 views: {
-                    searchList: new APP.view.SearchList()
+                    searchList: new APP.view.SearchList(messageBus)
                 },
                 templates: {
                     searchList: new HAF.Template("searchListTemplate")
@@ -32,6 +32,9 @@
         },
         goBackToFirstLevel: function () {
             this.views.searchList.goBackToFirstLevel();
+        },
+        hideList: function() {
+            this.views.searchList.hideList();
         }
     });
 

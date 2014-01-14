@@ -1,8 +1,8 @@
 (function (HAF) {
     "use strict";
 
-    APP.view.SearchResult = HAF.View.extend({
-        container: "#appSearchResult",
+    APP.view.SearchFiltering = HAF.View.extend({
+        container: "#appSearchFiltering",
         load: function () {
             this.$el.tabs();
         },

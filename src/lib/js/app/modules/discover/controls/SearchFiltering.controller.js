@@ -1,18 +1,18 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.SearchResult = HAF.Controller.extend({
+    APP.controller.SearchFiltering = HAF.Controller.extend({
         autoShowHide: true,
         init: function () {
             this.inject({
                 views: {
-                    searchResult: new APP.view.SearchResult(),
-                    visualResult: new APP.view.VisualResult()
+                    searchFiltering: new APP.view.SearchFiltering(),
+                    visualFiltering: new APP.view.VisualFiltering()
                 }
             });
         },
         render: function (data) {
-            this.views.visualResult.render(processResponseForGraph(data));
+            this.views.visualFiltering.render(processResponseForGraph(data));
         }
     });
 

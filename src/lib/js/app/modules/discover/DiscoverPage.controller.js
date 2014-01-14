@@ -3,19 +3,22 @@
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoWire: true,
+        messageBus: null,
         init: function() {
+            this.messageBus = new HAF.Messaging();
             this.inject({
                controls: {
-                   searchList: new APP.controller.SearchList(),
+                   searchList: new APP.controller.SearchList(this.messageBus),
                    breadcrumb: new APP.controller.Breadcrumb(),
-                   searchResult: new APP.controller.SearchResult(),
+                   searchFiltering: new APP.controller.SearchFiltering(),
                    questions: new APP.controller.Questions()
                },
                 services: {
                     searchList: new APP.service.SearchList(),
-                    searchResult: new APP.service.SearchResult()
+                    searchFiltering: new APP.service.SearchFiltering()
                 }
             });
+            this.messageBus.subscribe(this, "search-list-hide", hideList)
         },
         onStateChange: function () {
             return {
@@ -23,9 +26,9 @@
                     HAF.navigation.route(this, "/discover/:id", loadSearchItem);
                     HAF.navigation.route(this, "/discover", loadFirstLevel);
                 },
-                searchResult: function() {
-                    HAF.navigation.route(this, "/discover/:id", showSearchResult);
-                    HAF.navigation.route(this, "/discover", hideSearchResult);
+                searchFiltering: function() {
+                    HAF.navigation.route(this, "/discover/:id", showSearchFiltering);
+                    HAF.navigation.route(this, "/discover", hideSearchFiltering);
                 },
                 breadcrumb: function() {
                     HAF.navigation.route(this, "/discover/:id", showBreadcrumb);
@@ -44,6 +47,10 @@
         }
     });
 
+    function hideList() {
+        this.controls.searchList.hideList();
+    }
+
     function hideQuestions() {
         this.controls.questions.hide();
     }
@@ -60,14 +67,14 @@
         this.controls.breadcrumb.render(this.services.searchList.getMetaInfo(id), id);
     }
 
-    function showSearchResult() {
-        var searchResult = this.controls.searchResult;
-        searchResult.show();
-        this.services.searchResult.fetch(searchResult, searchResult.render);
+    function showSearchFiltering() {
+        var searchFiltering = this.controls.searchFiltering;
+        searchFiltering.show();
+        this.services.searchFiltering.fetch(searchFiltering, searchFiltering.render);
     }
 
-    function hideSearchResult() {
-        this.controls.searchResult.hide();
+    function hideSearchFiltering() {
+        this.controls.searchFiltering.hide();
     }
 
     function loadSearchItem(id) {

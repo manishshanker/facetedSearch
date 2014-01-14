@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    APP.service.SearchResult = APP.service.SearchResult.extend({
+    APP.service.SearchFiltering = APP.service.SearchFiltering.extend({
         fetch: function (context, callback) {
             callback = callback || function() {};
             callback.call(context, getMockData());

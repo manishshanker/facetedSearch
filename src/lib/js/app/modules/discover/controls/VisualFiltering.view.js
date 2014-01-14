@@ -1,8 +1,8 @@
 (function (HAF) {
     "use strict";
 
-    APP.view.VisualResult = HAF.View.extend({
-        container: "#appVisualResult",
+    APP.view.VisualFiltering = HAF.View.extend({
+        container: "#appVisualFiltering",
         graph: null,
         lastDataSet: null,
         render: function (data) {
@@ -18,11 +18,11 @@
             that.graph = new vis.Graph(container, data, options);
         },
         hide: function() {
-            $(window).off("resize.visualResultRender");
+            $(window).off("resize.visualFilteringRender");
         },
         show: function() {
             var that = this;
-            $(window).off("resize.visualResultRender").on("resize.visualResultRender", function() {
+            $(window).off("resize.visualFilteringRender").on("resize.visualFilteringRender", function() {
                 that.$el.empty();
                 that.render(that.lastDataSet);
             });

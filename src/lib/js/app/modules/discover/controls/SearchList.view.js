@@ -4,6 +4,12 @@
     APP.view.SearchList = HAF.View.extend({
         level: 0,
         container: "#appSearchList",
+        messageBus: null,
+        init: function(messageBus) {
+            this.messageBus = messageBus;
+            this._super();
+            bindEvents(this);
+        },
         render: function(html) {
             var that = this;
             that.$el.append(html);
@@ -40,8 +46,18 @@
             }, 500);
             that.level = 0;
             showItemInLevel(that, that.level);
+        },
+        hideList: function() {
+            this.$el.addClass("hide");
         }
     });
+
+    function bindEvents(context) {
+        context.$el.on("click", ".show-hide-link", function(e) {
+            context.messageBus.publish("search-list-hide");
+            e.preventDefault();
+        });
+    }
 
     function showItemInLevel(context, level) {
         context.$el.find(".item").eq(level).removeClass("hide").addClass("show");
