@@ -3,7 +3,6 @@
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoWire: true,
-        autoShowHide: true,
         init: function() {
             this.inject({
                controls: {
