@@ -5,6 +5,7 @@
         autoWire: true,
         autoShowHide: true,
         currentFilterId: null,
+        currentFilterInfo: null,
         init: function (messageBus) {
             this.inject({
                 views: {
@@ -29,6 +30,10 @@
                 that.views.searchList.renderNewList(that.templates.searchList, data);
             }
             that.currentFilterId = id;
+            that.currentFilterInfo = {
+                title: data.title,
+                id: data.id
+            };
         },
         goBackToFirstLevel: function () {
             this.views.searchList.goBackToFirstLevel();

@@ -4,15 +4,18 @@
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoWire: true,
         messageBus: null,
-        init: function() {
+        init: function () {
             this.messageBus = new HAF.Messaging();
             this.inject({
-               controls: {
-                   searchList: new APP.controller.SearchList(this.messageBus),
-                   breadcrumb: new APP.controller.Breadcrumb(),
-                   searchFiltering: new APP.controller.SearchFiltering(),
-                   questions: new APP.controller.Questions()
-               },
+                views: {
+                    discoverPage: new APP.view.DiscoverPage()
+                },
+                controls: {
+                    searchList: new APP.controller.SearchList(this.messageBus),
+                    breadcrumb: new APP.controller.Breadcrumb(),
+                    searchFiltering: new APP.controller.SearchFiltering(),
+                    questions: new APP.controller.Questions()
+                },
                 services: {
                     searchList: new APP.service.SearchList(),
                     searchFiltering: new APP.service.SearchFiltering()
@@ -26,15 +29,15 @@
                     HAF.navigation.route(this, "/discover/:id", loadSearchItem);
                     HAF.navigation.route(this, "/discover", loadFirstLevel);
                 },
-                searchFiltering: function() {
+                searchFiltering: function () {
                     HAF.navigation.route(this, "/discover/:id", showSearchFiltering);
                     HAF.navigation.route(this, "/discover", hideSearchFiltering);
                 },
-                breadcrumb: function() {
+                breadcrumb: function () {
                     HAF.navigation.route(this, "/discover/:id", showBreadcrumb);
                     HAF.navigation.route(this, "/discover", hideBreadcrumb);
                 },
-                questions: function() {
+                questions: function () {
                     HAF.navigation.route(this, "/discover/:id", hideQuestions);
                     HAF.navigation.route(this, "/discover", showQuestions);
                 }
@@ -49,6 +52,9 @@
 
     function hideList() {
         this.controls.searchList.hideList();
+        this.views.discoverPage.withResults();
+//        this.controls.breadcrumb.showTopic(this.controls.searchList.currentFilterInfo);
+//        this.controls.searchResult.show();
     }
 
     function hideQuestions() {
@@ -79,7 +85,7 @@
 
     function loadSearchItem(id) {
         var that = this;
-        that.services.searchList.fetch(this, id, function(data) {
+        that.services.searchList.fetch(this, id, function (data) {
             that.controls.searchList.filter(id, data);
         });
     }
