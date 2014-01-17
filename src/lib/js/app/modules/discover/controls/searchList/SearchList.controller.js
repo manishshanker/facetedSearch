@@ -6,8 +6,8 @@
         autoShowHide: true,
         currentFilterId: null,
         currentFilterInfo: null,
-        init: function (messageBus) {
-            this.inject({
+        init: function (messageBus, dependency) {
+            this.inject(dependency || {
                 views: {
                     searchList: new APP.view.SearchList(messageBus)
                 },
