@@ -1,18 +1,20 @@
 (function (window) {
     "use strict";
-    window.addEventListener('load', function (e) {
+    if (window.addEventListener && window.applicationCache) {
 
-        window.applicationCache.addEventListener('updateready', function (e) {
-            if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-                // Browser downloaded a new app cache.
-                if (confirm('A new version of this application is available. Load it?')) {
-                    window.location.reload();
+        window.addEventListener('load', function () {
+            window.applicationCache.addEventListener('updateready', function (e) {
+                if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+                    // Browser downloaded a new app cache.
+                    if (confirm('A new version of this application is available. Load it?')) {
+                        window.location.reload();
+                    }
+                } else {
+                    // Manifest didn't changed. Nothing new to server.
                 }
-            } else {
-                // Manifest didn't changed. Nothing new to server.
-            }
+            }, false);
         }, false);
 
-    }, false);
+    }
 })(window);
 
