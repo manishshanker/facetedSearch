@@ -14,7 +14,7 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'tests/**/*test.js',
+            '**/*test.js',
             '../../src/lib/js/vendor/jquery.min.js',
             '../../src/lib/js/vendor/handlebars-v1.1.2.js',
             '../../src/lib/js/vendor/HAF.min.js',
@@ -22,7 +22,7 @@ module.exports = function (config) {
             '../../src/lib/js/app/namespace.js',
             '../../src/lib/js/app/serviceURLs.js',
             '../../src/lib/js/app/**/*.js',
-            "../mockServices/**/*.js"
+            "../support/mockServices/**/*.js"
         ],
 
         preprocessors: {
@@ -60,7 +60,7 @@ module.exports = function (config) {
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+        autoWatch: false,
 
 
         // Start these browsers, currently available:

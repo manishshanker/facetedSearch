@@ -59,15 +59,15 @@
         <echo message="BEGIN: JS MERGE"/>
         <concat destfile="${jsOutput}\combined.js" fixlastline="true">
             <union>
-                <fileset excludes="**/less*.js" dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
-                <fileset excludes="**/less*.js" dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
-                <fileset excludes="**/less*.js" dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
-                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="namespace.js"/>
-                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
-                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
-                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
-                <fileset excludes="**/less*.js" dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
-                <fileset excludes="**/less*.js" dir="${jsSource}" casesensitive="false" includes="*.js" />
+                <fileset dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
+                <fileset dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
+                <fileset dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
+                <fileset dir="${jsSource}" casesensitive="false" includes="namespace.js"/>
+                <fileset dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
+                <fileset dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
+                <fileset dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
+                <fileset dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
+                <fileset dir="${jsSource}" casesensitive="false" includes="*.js" />
             </union>
         </concat>
         <delete dir="${jsOutput}" includeemptydirs="true" excludes="combined.js, **/modernizr*, **/i18n/*"/>
