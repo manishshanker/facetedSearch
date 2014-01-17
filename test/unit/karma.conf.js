@@ -22,7 +22,7 @@ module.exports = function (config) {
             '../../src/lib/js/app/namespace.js',
             '../../src/lib/js/app/serviceURLs.js',
             '../../src/lib/js/app/**/*.js',
-            "../support/mockServices/**/*.js"
+            "../mockServices/**/*.js"
         ],
 
         preprocessors: {

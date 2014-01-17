@@ -29,7 +29,7 @@
         <delete dir="${outputDir}"/>
     </target>
 
-    <target name="build" depends="copy-source-to-build-folder, compile-less-to-css, merge-css, minify-css, update-css-reference, merge-js, minify-js, update-js-reference, add-timestamp-to-path, generate-manifest"></target>
+    <target name="build" depends="copy-source-to-build-folder, copy-mock-services-to-build-folder, compile-less-to-css, merge-css, minify-css, update-css-reference, merge-js, minify-js, update-js-reference, add-timestamp-to-path, generate-manifest"></target>
 
     <target name="copy-source-to-build-folder">
         <echo message="${outputDir}"/>
@@ -61,13 +61,13 @@
             <union>
                 <fileset dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
                 <fileset dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
-                <fileset dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
+                <fileset excludes="**/---*" dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="namespace.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
-                <fileset dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
-                <fileset dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
-                <fileset dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
-                <fileset dir="${jsSource}" casesensitive="false" includes="*.js" />
+                <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
+                <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
+                <fileset excludes="**/---*" dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
+                <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="*.js" />
             </union>
         </concat>
         <delete dir="${jsOutput}" includeemptydirs="true" excludes="combined.js, **/modernizr*, **/i18n/*"/>
