@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html manifest="application.appcache" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]>
+<html manifest="application.appcache" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]>
+<html manifest="application.appcache" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html manifest="application.appcache" class="no-js"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ICEX Application</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link type="text/css" rel="stylesheet" href="17012014012535/css/combined.css" />
+
+    <script src="17012014012535/js/vendor/modernizr-2.6.2.min.js"></script>
+
+</head>
+<body>
+<div id="mainContent">
+    <header>
+        <h1>ICEX</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#/discover">Discover</a>
+                </li><li>
+                    <a href="#/research">Research</a>
+                </li><li>
+                    <a href="#/calendar">Calendar</a>
+                </li><li>
+                    <a href="#/csaManagement">CSA Management</a>
+                </li><li>
+                    <a href="#/priced">Priced</a>
+                </li><li>
+                <a href="#/contactUs">Contact Us</a>
+            </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-content">
+        <section class="page" id="discover">
+	        <div id="appBreadcrumb" class="breadcrumb">
+		        <a href="#" class="show-list">Show</a>
+		        <ul>
+			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
+				        <li><a href="#/discover/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
+			        </script>
+		        </ul>
+	        </div>
+            <div class="content">
+                <div id="appSearchList" class="search-list">
+                    <a href="#" class="show-hide-link">Hide</a>
+                    <script id="searchListTemplate" type="text/x-handlebars-template">
+                    <div class="item">
+	                    <h2>{{title}}</h2>
+	                    {{#list items}}<a href="#/discover/{{id}}">{{title}}</a>{{/list}}
+                    </div>
+                    </script>
+                </div>
+                <div id="appQuestions" class="questions sub-content">
+                    <ul>
+                        <li>Followed Analysts?</li>
+                        <li>Suggested Documents?</li>
+                        <li>Hot Topics?</li>
+                    </ul>
+                </div>
+                <div id="appSearchFiltering" class="search-filtering tabs sub-content">
+                    <ul class="result-type tab-nav">
+                        <li><a href="#appVisualFiltering">Visual</a></li>
+                        <li><a href="#resultTypeList">List</a></li>
+                    </ul>
+                    <div id="appVisualFiltering" class="tab-content"></div>
+                    <div id="resultTypeList" class="tab-content">
+                        LIST
+                    </div>
+                </div>
+	            <div id="appSearchResults"><span>Search Results</span></div>
+            </div>
+        </section>
+
+        <section class="page" id="research">
+            <h2>Research</h2>
+        </section>
+
+        <section class="page" id="calendar">
+            <h2>Calendar</h2>
+        </section>
+
+        <section class="page" id="CSAManagement">
+            <h2>CSA Management</h2>
+        </section>
+
+        <section class="page" id="priced">
+            <h2>Priced</h2>
+        </section>
+
+        <section class="page" id="contactUs">
+            <h2>Contact Us</h2>
+        </section>
+
+    </div>
+
+    <footer>2014 ICEX Investor's Content Exchange Company, LLP. Copyright &copy; All right reserved</footer>
+
+</div>
+
+<script src="17012014012535/js/app/i18n/en_GB.js"></script>
+
+<script src='17012014012535/js/combined.js' ></script>
+
+</body>
+</html>
