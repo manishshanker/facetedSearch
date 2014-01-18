@@ -1,12 +1,11 @@
-(function (HAF) {
+(function (HAF, $) {
     "use strict";
 
     APP.view.VisualFiltering = HAF.View.extend({
         container: "#appVisualFiltering",
+        messageBus: null,
         graph: null,
-        lastDataSet: null,
         render: function (data) {
-            this.lastDataSet = data;
             var that = this;
             var container = that.$el[0];
             var options = {
@@ -16,23 +15,30 @@
                 }
             };
             that.graph = new vis.Graph(container, data, options);
+            vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
         },
         hide: function() {
             $(window).off("resize.visualFilteringRender");
         },
-        layoutChange: function() {
+        layoutChange: function(data) {
             var that = this;
+            vis.events.removeListener(that.graph, "select", onSelect);
             that.$el.empty();
-            that.render(that.lastDataSet);
+            that.render(data);
         },
         show: function() {
             var that = this;
             $(window).off("resize.visualFilteringRender").on("resize.visualFilteringRender", function() {
-                that.layoutChange();
+                that.messageBus.publish("visual-filtering-layout-change");
             });
         }
     });
 
-}(HAF));
+    function onSelect() {
+        var selectItemId = parseInt(this.graph.getSelection());
+        this.messageBus.publish("visual-filtering-filtered", selectItemId);
+    }
+
+}(HAF, jQuery));
 
 

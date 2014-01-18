@@ -5,6 +5,9 @@
         autoWire: true,
         inject: function() {
             var messageBus = new HAF.Messaging();
+            messageBus.subscribe(this, "search-list-hide", hideList);
+            messageBus.subscribe(this, "search-list-show", showList);
+            messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
             return {
                 views: {
                     discoverPage: new APP.view.DiscoverPage()
@@ -12,7 +15,7 @@
                 controls: {
                     searchList: new APP.controller.SearchList(messageBus),
                     breadcrumb: new APP.controller.Breadcrumb(messageBus),
-                    searchFiltering: new APP.controller.SearchFiltering(),
+                    searchFiltering: new APP.controller.SearchFiltering(messageBus),
                     questions: new APP.controller.Questions()
                 },
                 services: {
@@ -21,11 +24,6 @@
                 },
                 messageBus: messageBus
             };
-        },
-        load: function () {
-            this._super();
-            this.messageBus.subscribe(this, "search-list-hide", hideList);
-            this.messageBus.subscribe(this, "search-list-show", showList);
         },
         onStateChange: function () {
             return {
@@ -54,6 +52,12 @@
         }
     });
 
+    function onVisualFilter(id) {
+        var that = this;
+        that.services.searchFiltering.getChild(id, function(data) {
+            that.controls.searchFiltering.updateFilter(data);
+        });
+    }
     function showList() {
         var that = this;
         that.controls.searchList.show();
