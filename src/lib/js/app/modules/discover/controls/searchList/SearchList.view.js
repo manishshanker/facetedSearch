@@ -5,7 +5,7 @@
         level: -1,
         container: "#appSearchList",
         bindings: {
-            "click .show-hide-link": onSearchListHide
+            "click .hide-list": onSearchListHide
         },
         render: function (html) {
             var that = this;
