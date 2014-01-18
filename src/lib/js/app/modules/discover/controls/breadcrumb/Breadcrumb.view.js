@@ -4,7 +4,7 @@
     APP.view.Breadcrumb = HAF.View.extend({
         level: 0,
         container: "#appBreadcrumb",
-        render: function(html) {
+        render: function (html) {
             var $ul = this.$el.find("ul");
             $ul.append(html);
             this.$el.addClass("show");
@@ -12,12 +12,14 @@
             //TODO: not nice, need to move out
             $("#discover").find(".content").addClass("next-level");
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $ul.find("li:not(.show)").addClass("show");
             }, 10);
-            bindEvents(this);
         },
-        hide: function() {
+        bindings: {
+            "click .show-list": onSearchListShow
+        },
+        hide: function () {
             var that = this;
             that.$el.find(".breadcrumb").removeClass("show").addClass("hide");
 
@@ -25,25 +27,23 @@
             $("#discover").find(".content").removeClass("next-level");
 
             that.$el.find("ul").find("li").removeClass("show").addClass("hide");
-            setTimeout(function() {
+            setTimeout(function () {
                 that.$el.find("ul li").remove();
             }, 500);
         },
-        removeLastLevel: function() {
+        removeLastLevel: function () {
             this.$el.find("li:last").remove();
         },
-        showTopic: function() {
+        showTopic: function () {
             this.$el.find(".show-list").show();
         },
-        hideTopic: function() {
+        hideTopic: function () {
             this.$el.find(".show-list").hide();
         }
     });
 
-    function bindEvents(ctx) {
-        ctx.$el.on("click", ".show-list", function(e) {
-            ctx.messageBus.publish("search-list-show");
-            e.preventDefault();
-        });
+    function onSearchListShow(e) {
+        this.messageBus.publish("search-list-show");
+        e.preventDefault();
     }
 }(HAF, jQuery));
