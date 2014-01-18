@@ -3,6 +3,7 @@
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoLoadControls: true,
+        autoShowHide: true,
         inject: function () {
             var messageBus = new HAF.Messaging();
             return {

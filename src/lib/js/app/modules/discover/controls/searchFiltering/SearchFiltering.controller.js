@@ -3,6 +3,7 @@
 
     APP.controller.SearchFiltering = HAF.Controller.extend({
         autoShowHide: true,
+        autoLayout: true,
         lastDataSet: null,
         inject: function () {
             return {
@@ -15,9 +16,6 @@
         load: function() {
             this.messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
             this.messageBus.subscribe(this, "visual-filtering-layout-change", onVisualFilterLayoutChange);
-        },
-        layoutChange: function () {
-            this.views.visualFiltering.layoutChange(this.lastDataSet);
         },
         updateFilter: function (data) {
             this.lastDataSet = processResponseForGraph(data, this.lastDataSet.nodes, this.lastDataSet.edges, true);

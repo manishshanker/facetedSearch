@@ -2,6 +2,7 @@
     "use strict";
 
     APP.view.VisualFiltering = HAF.View.extend({
+        autoLayout: true,
         container: "#appVisualFiltering",
         messageBus: null,
         graph: null,
@@ -17,20 +18,11 @@
             that.graph = new vis.Graph(container, data, options);
             vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
         },
-        hide: function() {
-            $(window).off("resize.visualFilteringRender");
-        },
         layoutChange: function(data) {
             var that = this;
             vis.events.removeListener(that.graph, "select", onSelect);
             that.$el.empty();
             that.render(data);
-        },
-        show: function() {
-            var that = this;
-            $(window).off("resize.visualFilteringRender").on("resize.visualFilteringRender", function() {
-                that.messageBus.publish("visual-filtering-layout-change");
-            });
         }
     });
 
