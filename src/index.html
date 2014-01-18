@@ -70,7 +70,11 @@
                     <script id="searchListTemplate" type="text/x-handlebars-template">
                     <div class="item">
 	                    <h2>{{title}}</h2>
-	                    {{#list items}}<a href="#/discover/{{id}}">{{title}}</a>{{/list}}
+	                    {{#if items}}
+	                        {{#list items}}<a href="#/discover/{{id}}">{{title}}</a>{{/list}}
+	                    {{else}}
+	                        <ul><li>No Items</li></ul>
+	                    {{/if}}
                     </div>
                     </script>
                 </div>
