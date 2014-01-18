@@ -14,7 +14,7 @@
                 }
             };
         },
-        render: function(item, id) {
+        update: function(item, id) {
             item.pathId = id;
             if (this.currentFilterId) {
                 if (id.split("_").length > this.currentFilterId.split("_").length) {

@@ -22,7 +22,7 @@
         updateFilter: function (data) {
             this.lastDataSet = processResponseForGraph(data, this.lastDataSet.nodes, this.lastDataSet.edges, true);
         },
-        render: function (data) {
+        update: function (data) {
             this.lastDataSet = processResponseForGraph(data, null, null, false);
             this.views.visualFiltering.render(this.lastDataSet);
         }

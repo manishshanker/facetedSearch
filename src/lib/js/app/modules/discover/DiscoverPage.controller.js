@@ -2,9 +2,8 @@
     "use strict";
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
-        autoWire: true,
         autoLoadControls: true,
-        inject: function() {
+        inject: function () {
             var messageBus = new HAF.Messaging();
             return {
                 views: {
@@ -23,30 +22,24 @@
                 messageBus: messageBus
             };
         },
-        load: function() {
+        load: function () {
             this._super();
             this.messageBus.subscribe(this, "search-list-hide", hideList);
             this.messageBus.subscribe(this, "search-list-show", showList);
             this.messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
         },
-        onStateChange: function () {
-            return {
-                searchList: function () {
-                    HAF.navigation.route(this, "/discover/:id", loadSearchItem);
-                    HAF.navigation.route(this, "/discover", loadFirstLevel);
-                },
-                searchFiltering: function () {
-                    HAF.navigation.route(this, "/discover/:id", showSearchFiltering);
-                    HAF.navigation.route(this, "/discover", hideSearchFiltering);
-                },
-                breadcrumb: function () {
-                    HAF.navigation.route(this, "/discover/:id", showBreadcrumb);
-                    HAF.navigation.route(this, "/discover", hideBreadcrumb);
-                },
-                questions: function () {
-                    HAF.navigation.route(this, "/discover/:id", hideQuestions);
-                    HAF.navigation.route(this, "/discover", showQuestions);
-                }
+        routes: {
+            "/discover/:id": function (id) {
+                loadSearchItem.call(this, id);
+                showSearchFiltering.call(this, id);
+                showBreadcrumb.call(this, id);
+                hideQuestions.call(this, id);
+            },
+            "/discover": function () {
+                loadSearchItem.call(this);
+                hideSearchFiltering.call(this);
+                hideBreadcrumb.call(this);
+                showQuestions.call(this);
             }
         },
         controlMessages: {
@@ -58,16 +51,17 @@
 
     function onVisualFilter(id) {
         var that = this;
-        that.services.searchFiltering.getChild(id, function(data) {
+        that.services.searchFiltering.getChild(id, function (data) {
             that.controls.searchFiltering.updateFilter(data);
         });
     }
+
     function showList() {
         var that = this;
         that.controls.searchList.show();
         that.views.discoverPage.withoutResults();
         that.controls.breadcrumb.hideTopic();
-        setTimeout(function() {
+        setTimeout(function () {
             that.controls.searchFiltering.layoutChange();
         }, 500);
 //        this.controls.searchResult.hide();
@@ -78,7 +72,7 @@
         that.controls.searchList.hide();
         that.views.discoverPage.withResults();
         that.controls.breadcrumb.showTopic(that.controls.searchList.currentFilterInfo);
-        setTimeout(function() {
+        setTimeout(function () {
             that.controls.searchFiltering.layoutChange();
         }, 500);
 //        this.controls.searchResult.show();
@@ -97,13 +91,13 @@
     }
 
     function showBreadcrumb(id) {
-        this.controls.breadcrumb.render(this.services.searchList.getMetaInfo(id), id);
+        this.controls.breadcrumb.update(this.services.searchList.getMetaInfo(id), id);
     }
 
     function showSearchFiltering() {
         var searchFiltering = this.controls.searchFiltering;
         searchFiltering.show();
-        this.services.searchFiltering.fetch(searchFiltering, searchFiltering.render);
+        this.services.searchFiltering.fetch(searchFiltering, searchFiltering.update);
     }
 
     function hideSearchFiltering() {
@@ -113,11 +107,8 @@
     function loadSearchItem(id) {
         var that = this;
         that.services.searchList.fetch(this, id, function (data) {
-            that.controls.searchList.filter(id, data);
+            that.controls.searchList.update(id, data);
         });
     }
 
-    function loadFirstLevel() {
-        this.controls.searchList.goBackToFirstLevel();
-    }
 }(HAF));

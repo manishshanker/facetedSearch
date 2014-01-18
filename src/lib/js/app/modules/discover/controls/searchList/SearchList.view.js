@@ -2,23 +2,16 @@
     "use strict";
 
     APP.view.SearchList = HAF.View.extend({
-        level: 0,
+        level: -1,
         container: "#appSearchList",
         bind: function() {
             bindEvents(this);
         },
         render: function(html) {
             var that = this;
-            that.$el.append(html);
-            setTimeout(function() {
-                showItemInLevel(that, that.level);
-            }, 10);
-        },
-        renderNewList: function(template, data) {
-            var that = this;
             setTimeout(function() {
                 hideItemInLevel(that, that.level);
-                that.$el.append(template.process(data));
+                that.$el.append(html);
                 that.level++;
             }, 10);
             setTimeout(function() {
@@ -33,16 +26,6 @@
             setTimeout(function() {
                 that.$el.find(".item").eq(level+1).remove();
             }, 500);
-        },
-        goBackToFirstLevel: function() {
-            var that = this;
-            var $items = that.$el.find(".item:not(:eq(0))");
-            $items.addClass("hide-back");
-            setTimeout(function() {
-                $items.remove();
-            }, 500);
-            that.level = 0;
-            showItemInLevel(that, that.level);
         },
         show: function() {
             this.$el.removeClass("hide");
