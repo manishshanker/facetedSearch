@@ -3,24 +3,27 @@
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoWire: true,
-        messageBus: null,
-        init: function () {
-            this.messageBus = new HAF.Messaging();
-            this.inject({
+        inject: function() {
+            var messageBus = new HAF.Messaging();
+            return {
                 views: {
                     discoverPage: new APP.view.DiscoverPage()
                 },
                 controls: {
-                    searchList: new APP.controller.SearchList(this.messageBus),
-                    breadcrumb: new APP.controller.Breadcrumb(this.messageBus),
+                    searchList: new APP.controller.SearchList(messageBus),
+                    breadcrumb: new APP.controller.Breadcrumb(messageBus),
                     searchFiltering: new APP.controller.SearchFiltering(),
                     questions: new APP.controller.Questions()
                 },
                 services: {
                     searchList: new APP.service.SearchList(),
                     searchFiltering: new APP.service.SearchFiltering()
-                }
-            });
+                },
+                messageBus: messageBus
+            };
+        },
+        load: function () {
+            this._super();
             this.messageBus.subscribe(this, "search-list-hide", hideList);
             this.messageBus.subscribe(this, "search-list-show", showList);
         },

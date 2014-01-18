@@ -6,15 +6,15 @@
         autoShowHide: true,
         currentFilterId: null,
         currentFilterInfo: null,
-        init: function (messageBus, dependency) {
-            this.inject(dependency || {
+        inject: function() {
+            return {
                 views: {
-                    searchList: new APP.view.SearchList(messageBus)
+                    searchList: new APP.view.SearchList(this.messageBus)
                 },
                 templates: {
                     searchList: new HAF.Template("searchListTemplate")
                 }
-            })
+            };
         },
         filter: function (id, data) {
             var that = this;

@@ -4,10 +4,7 @@
     APP.view.SearchList = HAF.View.extend({
         level: 0,
         container: "#appSearchList",
-        messageBus: null,
-        init: function(messageBus) {
-            this._super();
-            this.messageBus = messageBus;
+        bind: function() {
             bindEvents(this);
         },
         render: function(html) {

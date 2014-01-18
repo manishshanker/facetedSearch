@@ -4,11 +4,6 @@
     APP.view.Breadcrumb = HAF.View.extend({
         level: 0,
         container: "#appBreadcrumb",
-        messageBus: null,
-        init: function(messageBus) {
-            this._super();
-            this.messageBus = messageBus;
-        },
         render: function(html) {
             var $ul = this.$el.find("ul");
             $ul.append(html);

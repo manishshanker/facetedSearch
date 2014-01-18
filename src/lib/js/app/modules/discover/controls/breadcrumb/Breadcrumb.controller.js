@@ -4,15 +4,15 @@
     APP.controller.Breadcrumb = HAF.Controller.extend({
         autoShowHide: true,
         currentFilterId: null,
-        init: function(messageBus) {
-            this.inject({
+        inject: function() {
+            return {
                 templates: {
                     breadcrumb: new HAF.Template("breadcrumbItemTemplate")
                 },
                 views: {
-                    breadcrumb: new APP.view.Breadcrumb(messageBus)
+                    breadcrumb: new APP.view.Breadcrumb(this.messageBus)
                 }
-            })
+            };
         },
         render: function(item, id) {
             item.pathId = id;

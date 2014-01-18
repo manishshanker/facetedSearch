@@ -3,13 +3,13 @@
 
     APP.controller.SearchFiltering = HAF.Controller.extend({
         autoShowHide: true,
-        init: function () {
-            this.inject({
+        inject: function() {
+            return {
                 views: {
                     searchFiltering: new APP.view.SearchFiltering(),
                     visualFiltering: new APP.view.VisualFiltering()
                 }
-            });
+            };
         },
         layoutChange: function () {
             this.views.visualFiltering.layoutChange();
