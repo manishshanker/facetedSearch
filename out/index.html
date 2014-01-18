@@ -15,9 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link type="text/css" rel="stylesheet" href="17012014084522/css/combined.css" />
+    <link type="text/css" rel="stylesheet" href="18012014045356/css/combined.css" />
 
-    <script src="17012014084522/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="18012014045356/js/vendor/---modernizr-2.6.2.min.js"></script>
 
 </head>
 <body>
@@ -55,11 +55,15 @@
 	        </div>
             <div class="content">
                 <div id="appSearchList" class="search-list">
-                    <a href="#" class="show-hide-link">Hide</a>
+                    <a href="#" class="hide-list">Hide</a>
                     <script id="searchListTemplate" type="text/x-handlebars-template">
                     <div class="item">
 	                    <h2>{{title}}</h2>
-	                    {{#list items}}<a href="#/discover/{{id}}">{{title}}</a>{{/list}}
+	                    {{#if items}}
+	                        {{#list items}}<a href="#/discover/{{id}}">{{title}}</a>{{/list}}
+	                    {{else}}
+	                        <ul><li>No Items</li></ul>
+	                    {{/if}}
                     </div>
                     </script>
                 </div>
@@ -110,9 +114,9 @@
 
 </div>
 
-<script src="17012014084522/js/app/i18n/en_GB.js"></script>
+<script src="18012014045356/js/app/i18n/en_GB.js"></script>
 
-<script src='17012014084522/js/combined.js' ></script>
+<script src='18012014045356/js/combined.js' ></script>
 
 </body>
 </html>
