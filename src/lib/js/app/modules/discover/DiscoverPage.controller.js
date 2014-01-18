@@ -3,11 +3,9 @@
 
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoWire: true,
+        autoLoadControls: true,
         inject: function() {
             var messageBus = new HAF.Messaging();
-            messageBus.subscribe(this, "search-list-hide", hideList);
-            messageBus.subscribe(this, "search-list-show", showList);
-            messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
             return {
                 views: {
                     discoverPage: new APP.view.DiscoverPage()
@@ -24,6 +22,12 @@
                 },
                 messageBus: messageBus
             };
+        },
+        load: function() {
+            this._super();
+            this.messageBus.subscribe(this, "search-list-hide", hideList);
+            this.messageBus.subscribe(this, "search-list-show", showList);
+            this.messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
         },
         onStateChange: function () {
             return {

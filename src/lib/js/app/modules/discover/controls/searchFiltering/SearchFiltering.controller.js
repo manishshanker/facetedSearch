@@ -5,8 +5,6 @@
         autoShowHide: true,
         lastDataSet: null,
         inject: function () {
-            this.messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
-            this.messageBus.subscribe(this, "visual-filtering-layout-change", onVisualFilterLayoutChange);
             return {
                 views: {
                     searchFiltering: new APP.view.SearchFiltering(),
@@ -14,8 +12,12 @@
                 }
             };
         },
+        load: function() {
+            this.messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
+            this.messageBus.subscribe(this, "visual-filtering-layout-change", onVisualFilterLayoutChange);
+        },
         layoutChange: function () {
-            this.views.visualFiltering.layoutChange();
+            this.views.visualFiltering.layoutChange(this.lastDataSet);
         },
         updateFilter: function (data) {
             this.lastDataSet = processResponseForGraph(data, this.lastDataSet.nodes, this.lastDataSet.edges, true);
