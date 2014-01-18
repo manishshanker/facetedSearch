@@ -18,7 +18,10 @@
             that.graph = new vis.Graph(container, data, options);
             vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
         },
-        layoutChange: function(data) {
+        layoutChange: function() {
+            this.messageBus.publish("visual-filtering-layout-change");
+        },
+        redraw: function(data) {
             var that = this;
             vis.events.removeListener(that.graph, "select", onSelect);
             that.$el.empty();

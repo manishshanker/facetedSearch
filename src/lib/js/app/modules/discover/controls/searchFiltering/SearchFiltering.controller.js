@@ -27,7 +27,7 @@
     });
 
     function onVisualFilterLayoutChange() {
-        this.views.visualFiltering.layoutChange(this.lastDataSet);
+        this.views.visualFiltering.redraw(this.lastDataSet);
     }
 
     function onVisualFilter(selectItemId) {
