@@ -95,7 +95,17 @@
                         LIST
                     </div>
                 </div>
-	            <div id="appSearchResults"><span>Search Results</span></div>
+	            <div id="appSearchResults">
+                    <script id="searchResultTemplate" type="text/x-handlebars-template">
+                        {{#list results 'results'}}
+                            <h3>{{#if pdfLink}}<a href="{{pdfLink}}" class="pdf-icon"></a>{{/if}}{{#if unlock}}<a href="{{unlockUrl}}" class="lock-icon"></a>{{/if}}{{title}}</h3>
+                            <h4>{{subTitle}}</h4>
+                            <h5>{{contributor}}</h5>
+                            <p>{{description}}</p>
+                            {{#list tags 'tags'}}<span>{{name}}</span>{{/list}}<a href="#" class="show-more">show more...</a></span>
+                        {{/list}}
+                    </script>
+	            </div>
             </div>
         </section>
 
@@ -144,6 +154,9 @@
 <script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.service.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.controller.js"></script>
+<script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.view.js"></script>
+<script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.service.js"></script>
+<script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.controller.js"></script>
 <script src="lib/js/app/modules/discover/controls/questions/Questions.controller.js"></script>
 <script src="lib/js/app/modules/discover/controls/questions/Questions.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/breadcrumb/Breadcrumb.view.js"></script>

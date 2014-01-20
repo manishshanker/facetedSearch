@@ -14,11 +14,13 @@
                     searchList: new APP.controller.SearchList(messageBus),
                     breadcrumb: new APP.controller.Breadcrumb(messageBus),
                     searchFiltering: new APP.controller.SearchFiltering(messageBus),
-                    questions: new APP.controller.Questions()
+                    questions: new APP.controller.Questions(),
+                    searchResults: new APP.controller.SearchResults()
                 },
                 services: {
                     searchList: new APP.service.SearchList(),
-                    searchFiltering: new APP.service.SearchFiltering()
+                    searchFiltering: new APP.service.SearchFiltering(),
+                    searchResults: new APP.service.SearchResults()
                 },
                 messageBus: messageBus
             };
@@ -65,7 +67,7 @@
         setTimeout(function () {
             that.controls.searchFiltering.layoutChange();
         }, 500);
-//        this.controls.searchResult.hide();
+        this.controls.searchResults.hide();
     }
 
     function hideList() {
@@ -76,7 +78,10 @@
         setTimeout(function () {
             that.controls.searchFiltering.layoutChange();
         }, 500);
-//        this.controls.searchResult.show();
+        that.controls.searchResults.show();
+        that.services.searchResults.fetch(function(data) {
+            that.controls.searchResults.update(data);
+        });
     }
 
     function hideQuestions() {

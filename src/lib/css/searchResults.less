@@ -1,26 +1,54 @@
 @import "vendor/lesshat";
+@import "theme";
 #appSearchResults {
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	width: 0;
-	background: #a2a5a5;
-	font-size: 150%;
-	color: #696b6c;
+	color: #848788;
     overflow-x: hidden;
-
 	.transition(width 0.5s);
+    .opacity(0);
 
-	span {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-top: -8px;
-		margin-left: -80px;
-	}
+    &.show {
+        width: 495px;
+        .opacity(1);
+    }
 
-	&.show {
-		width: 495px;
-	}
+    li.results-item {
+        margin-bottom: 15px;
+        padding: 5px 2px;
+
+        &.item-hover {
+            background-color: @bgc-resultsItemHover;
+        }
+    }
+
+	h3 {
+        font-size: 100%;
+        color: #000;
+    }
+
+    h4 {
+        font-size: 90%;
+    }
+
+    h5 {
+        font-size: 80%;
+    }
+
+    p {
+        font-size: 80%;
+    }
+
+    .tags .tags-item {
+        background-color: @bgc-tags;
+        display: inline-block;
+        font-size: 75%;
+        color: @tc-tags;
+        margin-right: 3px;
+        padding: 2px 5px;
+    }
+
 }
