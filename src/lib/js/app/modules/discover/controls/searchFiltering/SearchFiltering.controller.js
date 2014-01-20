@@ -27,13 +27,17 @@
                     edges: new vis.DataSet()
                 }
             }
+            this.lastDataSet.nodes.clear();
+            this.lastDataSet.edges.clear();
             this.views.visualFiltering.render(this.lastDataSet);
             addDataToGraph(this.lastDataSet, data);
         },
         hide: function() {
             this._super();
-            this.lastDataSet.nodes.clear();
-            this.lastDataSet.edges.clear();
+            if (this.lastDataSet) {
+                this.lastDataSet.nodes.clear();
+                this.lastDataSet.edges.clear();
+            }
         }
     });
 
