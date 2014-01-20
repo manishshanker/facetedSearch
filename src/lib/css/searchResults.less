@@ -1,5 +1,6 @@
 @import "vendor/lesshat";
 @import "theme";
+@containerWidth: 495px;
 #appSearchResults {
 	position: absolute;
 	top: 0;
@@ -8,18 +9,18 @@
 	width: 0;
 	color: #848788;
     overflow-x: hidden;
-	.transition(width 0.5s);
+	.transition(width 0.5s, opacity 0.5s);
     .opacity(0);
 
     &.show {
-        width: 495px;
+        width: @containerWidth;
         .opacity(1);
     }
 
     li.results-item {
         margin-bottom: 15px;
         padding: 5px 2px;
-
+        width: @containerWidth;
         &.item-hover {
             background-color: @bgc-resultsItemHover;
         }
