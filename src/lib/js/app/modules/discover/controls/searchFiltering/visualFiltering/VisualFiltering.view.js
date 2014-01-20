@@ -6,6 +6,7 @@
         container: "#appVisualFiltering",
         messageBus: null,
         graph: null,
+        lastSelectedNode: null,
         render: function (data) {
             var that = this;
             var container = that.$el[0];
@@ -19,7 +20,7 @@
             vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
         },
         layoutChange: function() {
-            this.messageBus.publish("visual-filtering-layout-change");
+            this.graph.redraw();
         },
         redraw: function(data) {
             var that = this;
@@ -31,7 +32,12 @@
 
     function onSelect() {
         var selectItemId = parseInt(this.graph.getSelection());
-        this.messageBus.publish("visual-filtering-filtered", selectItemId);
+        if (this.lastSelectedNode === selectItemId) {
+            this.messageBus.publish("visual-filtering-filtered", selectItemId);
+            this.lastSelectedNode = null;
+        }
+        this.lastSelectedNode = selectItemId;
+        this.graph.setSelection([]);
     }
 
 }(HAF, jQuery));

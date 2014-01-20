@@ -15,7 +15,6 @@
         },
         load: function() {
             this.messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
-            this.messageBus.subscribe(this, "visual-filtering-layout-change", onVisualFilterLayoutChange);
         },
         updateFilter: function (data) {
             addRelatedNodesToGraph(data.id, data.related, this.lastDataSet.nodes, this.lastDataSet.edges);
@@ -40,10 +39,6 @@
             }
         }
     });
-
-    function onVisualFilterLayoutChange() {
-        this.views.visualFiltering.redraw(this.lastDataSet);
-    }
 
     function onVisualFilter(selectItemId) {
         var that = this;
