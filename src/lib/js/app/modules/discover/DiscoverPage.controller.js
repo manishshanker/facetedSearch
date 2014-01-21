@@ -43,6 +43,7 @@
                 hideSearchFiltering.call(this);
                 hideBreadcrumb.call(this);
                 showQuestions.call(this);
+                showList.call(this);
             }
         },
         controlMessages: {
