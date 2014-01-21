@@ -71,7 +71,7 @@
                     <div class="item">
 	                    <h2>{{title}}</h2>
 	                    {{#if items}}
-	                        {{#list items}}<a href="#/discover/{{id}}">{{title}}</a>{{/list}}
+	                        {{#list items}}<a href="#/discover/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
 	                    {{else}}
 	                        <ul><li>No Items</li></ul>
 	                    {{/if}}

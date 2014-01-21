@@ -30,6 +30,7 @@
 		.opacity(0);
 		.transition(opacity 0.5s, top 0.5s);
 		position: absolute;
+        width: 100%;
 
 		&.show {
 			top: 0;
@@ -47,7 +48,7 @@
 			top: 400px;
 		}
 
-		h2 {
+        h2 {
 			font-size: 110%;
 			padding: 15px;
 			font-weight: bold;
@@ -62,7 +63,17 @@
 					font-size: 75%;
                     display: inline-block;
 					width: 100%;
+                    position: relative;
                     text-transform: uppercase;
+                }
+
+                .count {
+                    display: inline-block;
+                    position: absolute;
+                    right: 0;
+                    background-color: @bgc-count;
+                    padding: 2px 5px;
+                    .border-radius(8px);
                 }
 			}
 		}

@@ -21,23 +21,28 @@
                 items: [
                     {
                         title: "Basic Materials",
-                        id: "11"
+                        id: "11",
+                        count: 100
                     },
                     {
                         title: "Business Services",
-                        id: "12"
+                        id: "12",
+                        count: 150
                     },
                     {
                         title: "Consumer Cyclicals",
-                        id: "13"
+                        id: "13",
+                        count: 120
                     },
                     {
                         title: "Consumer Non-Cyclicals",
-                        id: "15"
+                        id: "15",
+                        count: 100
                     },
                     {
                         title: "Financials",
-                        id: "16"
+                        id: "16",
+                        count: 1
                     }
                 ]
             };
