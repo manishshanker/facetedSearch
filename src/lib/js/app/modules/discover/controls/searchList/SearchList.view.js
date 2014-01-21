@@ -5,7 +5,9 @@
         level: -1,
         container: "#appSearchList",
         bindings: {
-            "click .hide-list": onSearchListHide
+            "click .hide-list": function(e) {
+                onSearchListHide(e, this);
+            }
         },
         render: function (html) {
             var that = this;
@@ -35,8 +37,8 @@
         }
     });
 
-    function onSearchListHide(e) {
-        this.messageBus.publish("search-list-hide");
+    function onSearchListHide(e, ctx) {
+        ctx.messageBus.publish("search-list-hide");
         e.preventDefault();
     }
 

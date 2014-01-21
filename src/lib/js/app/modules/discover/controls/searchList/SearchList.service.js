@@ -14,12 +14,12 @@
     function findItem(items, id) {
         var itemFound = null;
         $.each(items, function (key, item) {
-            if (item.id == id) {
+            if (item.id === id) {
                 itemFound = item;
                 return false;
             } else {
                 $.each(item.items, function (index, item) {
-                    if (item.id == id) {
+                    if (item.id === id) {
                         itemFound = item;
                         return false;
                     }

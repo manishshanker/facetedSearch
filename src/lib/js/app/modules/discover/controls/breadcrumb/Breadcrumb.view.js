@@ -17,7 +17,9 @@
             }, 10);
         },
         bindings: {
-            "click .show-list": onSearchListShow
+            "click .show-list": function(e) {
+                onSearchListShow(e, this);
+            }
         },
         hide: function () {
             var that = this;
@@ -42,8 +44,8 @@
         }
     });
 
-    function onSearchListShow(e) {
-        this.messageBus.publish("search-list-show");
+    function onSearchListShow(e, ctx) {
+        ctx.messageBus.publish("search-list-show");
         e.preventDefault();
     }
 }(HAF, jQuery));

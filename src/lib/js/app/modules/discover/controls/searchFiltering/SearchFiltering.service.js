@@ -1,4 +1,4 @@
-(function (HAF, $) {
+(function (HAF) {
     "use strict";
 
     APP.service.SearchFiltering = HAF.Service.extend({
@@ -7,4 +7,4 @@
         }
     });
 
-}(HAF, jQuery));
+}(HAF));

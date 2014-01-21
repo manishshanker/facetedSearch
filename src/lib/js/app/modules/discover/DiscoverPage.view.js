@@ -1,4 +1,4 @@
-(function (HAF, $) {
+(function (HAF) {
     "use strict";
 
     APP.view.DiscoverPage = HAF.View.extend({
@@ -12,4 +12,4 @@
         }
     });
 
-}(HAF, jQuery));
+}(HAF));

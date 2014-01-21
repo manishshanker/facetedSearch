@@ -27,23 +27,29 @@
         },
         load: function () {
             this._super();
-            this.messageBus.subscribe(this, "search-list-hide", hideList);
-            this.messageBus.subscribe(this, "search-list-show", showList);
-            this.messageBus.subscribe(this, "visual-filtering-filtered", onVisualFilter);
+            this.messageBus.subscribe(this, "search-list-hide", function() {
+                hideList(this);
+            });
+            this.messageBus.subscribe(this, "search-list-show", function() {
+                showList(this);
+            });
+            this.messageBus.subscribe(this, "visual-filtering-filtered", function(id) {
+                onVisualFilter(id, this);
+            });
         },
         routes: {
             "/discover/:id": function (id) {
-                loadSearchItem.call(this, id);
-                showSearchFiltering.call(this, id);
-                showBreadcrumb.call(this, id);
-                hideQuestions.call(this, id);
+                loadSearchItem(this, id);
+                showSearchFiltering(this);
+                showBreadcrumb(this, id);
+                hideQuestions(this);
             },
             "/discover": function () {
-                loadSearchItem.call(this);
-                hideSearchFiltering.call(this);
-                hideBreadcrumb.call(this);
-                showQuestions.call(this);
-                showList.call(this);
+                loadSearchItem(this);
+                hideSearchFiltering(this);
+                hideBreadcrumb(this);
+                showQuestions(this);
+                showList(this);
             }
         },
         controlMessages: {
@@ -53,64 +59,60 @@
         }
     });
 
-    function onVisualFilter(id) {
-        var that = this;
-        that.services.searchFiltering.getChild(id, function (data) {
-            that.controls.searchFiltering.update(data);
+    function onVisualFilter(id, ctx) {
+        ctx.services.searchFiltering.getChild(id, function (data) {
+            ctx.controls.searchFiltering.update(data);
         });
     }
 
-    function showList() {
-        var that = this;
-        that.controls.searchList.show();
-        that.views.discoverPage.withoutResults();
-        that.controls.breadcrumb.hideTopic();
-        that.controls.searchFiltering.layoutChange();
-        this.controls.searchResults.hide();
+    function showList(ctx) {
+        ctx.controls.searchList.show();
+        ctx.views.discoverPage.withoutResults();
+        ctx.controls.breadcrumb.hideTopic();
+        ctx.controls.searchFiltering.layoutChange();
+        ctx.controls.searchResults.hide();
     }
 
-    function hideList() {
-        var that = this;
-        that.controls.searchList.hide();
-        that.views.discoverPage.withResults();
-        that.controls.breadcrumb.showTopic(that.controls.searchList.currentFilterInfo);
-        that.controls.searchFiltering.layoutChange();
-        that.controls.searchResults.show();
-        that.services.searchResults.fetch(function(data) {
-            that.controls.searchResults.update(data);
+    function hideList(ctx) {
+        ctx.controls.searchList.hide();
+        ctx.views.discoverPage.withResults();
+        ctx.controls.breadcrumb.showTopic(ctx.controls.searchList.currentFilterInfo);
+        ctx.controls.searchFiltering.layoutChange();
+        ctx.controls.searchResults.show();
+        ctx.services.searchResults.fetch(function(data) {
+            ctx.controls.searchResults.update(data);
         });
     }
 
-    function hideQuestions() {
-        this.controls.questions.hide();
+    function hideQuestions(ctx) {
+        ctx.controls.questions.hide();
     }
 
-    function showQuestions() {
-        this.controls.questions.show();
+    function showQuestions(ctx) {
+        ctx.controls.questions.show();
     }
 
-    function hideBreadcrumb() {
-        this.controls.breadcrumb.hide();
+    function hideBreadcrumb(ctx) {
+        ctx.controls.breadcrumb.hide();
     }
 
-    function showBreadcrumb(id) {
-        this.controls.breadcrumb.update(this.services.searchList.getMetaInfo(id), id);
+    function showBreadcrumb(ctx, id) {
+        ctx.controls.breadcrumb.update(ctx.services.searchList.getMetaInfo(id), id);
     }
 
-    function showSearchFiltering() {
-        var searchFiltering = this.controls.searchFiltering;
+    function showSearchFiltering(ctx) {
+        var searchFiltering = ctx.controls.searchFiltering;
         searchFiltering.show();
-        this.services.searchFiltering.fetch(searchFiltering, searchFiltering.update);
+        ctx.services.searchFiltering.fetch(searchFiltering, searchFiltering.update);
     }
 
-    function hideSearchFiltering() {
-        this.controls.searchFiltering.hide();
+    function hideSearchFiltering(ctx) {
+        ctx.controls.searchFiltering.hide();
     }
 
-    function loadSearchItem(id) {
-        var that = this;
-        that.services.searchList.fetch(this, id, function (data) {
-            that.controls.searchList.update(id, data);
+    function loadSearchItem(ctx, id) {
+        ctx.services.searchList.fetch(ctx, id, function (data) {
+            ctx.controls.searchList.update(id, data);
         });
     }
 

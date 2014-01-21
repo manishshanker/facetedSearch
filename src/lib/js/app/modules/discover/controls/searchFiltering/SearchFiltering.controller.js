@@ -13,16 +13,16 @@
             };
         },
         update: function (data) {
-            this.lastDataSet = getNewDataSet.call(this);
+            this.lastDataSet = getNewDataSet(this);
             addDataToGraph(this.lastDataSet, data);
             this.views.visualFiltering.render(this.lastDataSet);
         }
     });
 
-    function getNewDataSet() {
-        if (this.lastDataSet) {
-            this.lastDataSet.nodes.clear();
-            this.lastDataSet.edges.clear();
+    function getNewDataSet(ctx) {
+        if (ctx.lastDataSet) {
+            ctx.lastDataSet.nodes.clear();
+            ctx.lastDataSet.edges.clear();
         }
         return{
             nodes: new vis.DataSet(),

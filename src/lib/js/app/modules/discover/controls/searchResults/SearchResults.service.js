@@ -4,7 +4,7 @@
     APP.service.SearchResults = HAF.Service.extend({
         fetch: function(callback) {
             setTimeout(function() {
-                callback(getMockData())
+                callback(getMockData());
             }, 1);
         }
     });

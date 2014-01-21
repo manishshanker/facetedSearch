@@ -1,4 +1,4 @@
-(function (HAF, $) {
+(function (HAF) {
     "use strict";
 
     var GRAPH_OPTIONS = {
@@ -30,15 +30,19 @@
         },
         layoutChange: function () {
             var that = this;
+            if (!that.loaded) {
+                return;
+            }
             that.$el.find(".graph").css({
                 opacity: 0
             });
-            setTimeout(function() {
+            clearTimeout(this.rerenderTimer);
+            this.rerenderTimer = setTimeout(function() {
                 that.render(that.lastDataSet);
                 that.graph.redraw();
                 setTimeout(function() {
                     showGraph(that);
-                }, 500)
+                }, 500);
             }, 500);
         }
     });
@@ -46,13 +50,13 @@
     function hideGraph(that) {
         that.$el.find(".graph").animate({
             opacity: 0
-        }, 200)
+        }, 200);
     }
 
     function showGraph(that) {
         that.$el.find(".graph").animate({
             opacity: 1
-        }, 200)
+        }, 200);
     }
 
     function renderGraph(that, data) {
@@ -60,23 +64,24 @@
         that.graph = that.graph || new vis.Graph(container, {}, GRAPH_OPTIONS);
         that.graph.setData(data);
         if (!that.loaded) {
-            vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
+            vis.events.addListener(that.graph, "select", function() {
+                onSelect(that);
+            });
             that.loaded = true;
         }
     }
 
-    function onSelect() {
-        var that = this;
-        var selectItemId = parseInt(that.graph.getSelection());
-        if (that.lastSelectedNode === selectItemId) {
-            that.$el.addClass("loading");
-            that.messageBus.publish("visual-filtering-filtered", selectItemId);
-            that.lastSelectedNode = null;
+    function onSelect(ctx) {
+        var selectItemId = parseInt(ctx.graph.getSelection());
+        if (ctx.lastSelectedNode === selectItemId) {
+            ctx.$el.addClass("loading");
+            ctx.messageBus.publish("visual-filtering-filtered", selectItemId);
+            ctx.lastSelectedNode = null;
         }
-        that.lastSelectedNode = selectItemId;
-        that.graph.setSelection([]);
+        ctx.lastSelectedNode = selectItemId;
+        ctx.graph.setSelection([]);
     }
 
-}(HAF, jQuery));
+}(HAF));
 
 

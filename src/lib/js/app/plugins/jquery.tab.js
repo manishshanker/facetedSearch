@@ -1,4 +1,5 @@
 (function($) {
+    "use strict";
 
     $.fn.tabs = function() {
 
@@ -20,6 +21,6 @@
             $el.find(".tab-nav li a:eq(0)").trigger("click");
         });
 
-    }
+    };
 
 }(jQuery));
