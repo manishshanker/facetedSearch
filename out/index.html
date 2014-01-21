@@ -15,9 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link type="text/css" rel="stylesheet" href="20012014114439/css/combined.css" />
+    <link type="text/css" rel="stylesheet" href="21012014123143/css/combined.css" />
 
-    <script src="20012014114439/js/vendor/---modernizr-2.6.2.min.js"></script>
+    <script src="21012014123143/js/vendor/---modernizr-2.6.2.min.js"></script>
 
 </head>
 <body>
@@ -84,7 +84,17 @@
                         LIST
                     </div>
                 </div>
-	            <div id="appSearchResults"><span>Search Results</span></div>
+	            <div id="appSearchResults">
+                    <script id="searchResultTemplate" type="text/x-handlebars-template">
+                        {{#list results 'results'}}
+                            <h3>{{#if pdfLink}}<a href="{{pdfLink}}" class="pdf-icon"></a>{{/if}}{{#if unlock}}<a href="{{unlockUrl}}" class="lock-icon"></a>{{/if}}{{title}}</h3>
+                            <h4>{{subTitle}}</h4>
+                            <h5>{{contributor}}</h5>
+                            <p>{{description}}</p>
+                            {{#list tags 'tags'}}<span>{{name}}</span>{{/list}}<a href="#" class="show-more">show more...</a></span>
+                        {{/list}}
+                    </script>
+	            </div>
             </div>
         </section>
 
@@ -114,9 +124,9 @@
 
 </div>
 
-<script src="20012014114439/js/app/i18n/en_GB.js"></script>
+<script src="21012014123143/js/app/i18n/en_GB.js"></script>
 
-<script src='20012014114439/js/combined.js' ></script>
+<script src='21012014123143/js/combined.js' ></script>
 
 </body>
 </html>
