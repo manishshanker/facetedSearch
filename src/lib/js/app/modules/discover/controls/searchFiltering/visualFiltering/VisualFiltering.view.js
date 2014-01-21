@@ -1,6 +1,16 @@
 (function (HAF, $) {
     "use strict";
 
+    var GRAPH_OPTIONS = {
+        nodes: {
+            fontSize: 11,
+            color: {
+                background: "#cccccc"
+            }
+        }
+    };
+
+
     APP.view.VisualFiltering = HAF.View.extend({
         autoLayout: true,
         container: "#appVisualFiltering",
@@ -47,13 +57,7 @@
 
     function renderGraph(that, data) {
         var container = that.$el.find(".graph")[0];
-        var options = {
-            nodes: {
-                fontSize: 11,
-                color: {background: "#cccccc"}
-            }
-        };
-        that.graph = that.graph || new vis.Graph(container, {}, options);
+        that.graph = that.graph || new vis.Graph(container, {}, GRAPH_OPTIONS);
         that.graph.setData(data);
         if (!that.loaded) {
             vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
