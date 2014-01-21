@@ -43,13 +43,36 @@
         font-size: 80%;
     }
 
-    .tags .tags-item {
-        background-color: @bgc-tags;
+    .show-more, .show-less {
+        color: @tc-link;
+        font-size: 80%;
+    }
+
+    .show-less {
+        display: none;
+    }
+
+    .show-all {
+        .show-less {
+            display: inline-block;
+        }
+        .show-more {
+            display: none;
+        }
+    }
+
+    .tags {
+
         display: inline-block;
-        font-size: 75%;
-        color: @tc-tags;
-        margin-right: 3px;
-        padding: 2px 5px;
+
+        .tags-item {
+            background-color: @bgc-tags;
+            display: inline-block;
+            font-size: 75%;
+            color: @tc-tags;
+            margin-right: 3px;
+            padding: 2px 5px;
+        }
     }
 
 }
