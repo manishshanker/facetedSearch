@@ -7,37 +7,68 @@
         messageBus: null,
         graph: null,
         lastSelectedNode: null,
+        lastDataSet: null,
         render: function (data) {
             var that = this;
-            var container = that.$el[0];
-            var options = {
-                nodes: {
-                    fontSize: 11,
-                    color: {background: "#cccccc"}
-                }
-            };
-            that.graph = new vis.Graph(container, data, options);
-            vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
+            that.lastDataSet = data;
+            hideGraph(that);
+            setTimeout(function () {
+                renderGraph(that, data);
+                showGraph(that);
+            }, 300);
         },
-        layoutChange: function() {
-            this.graph.redraw();
-        },
-        redraw: function(data) {
+        layoutChange: function () {
             var that = this;
-            vis.events.removeListener(that.graph, "select", onSelect);
-            that.$el.empty();
-            that.render(data);
+            that.$el.find(".graph-frame").css({
+                opacity: 0
+            });
+            setTimeout(function() {
+                that.render(that.lastDataSet);
+                that.graph.redraw();
+                setTimeout(function() {
+                    showGraph(that);
+                }, 500)
+            }, 500);
         }
     });
 
-    function onSelect() {
-        var selectItemId = parseInt(this.graph.getSelection());
-        if (this.lastSelectedNode === selectItemId) {
-            this.messageBus.publish("visual-filtering-filtered", selectItemId);
-            this.lastSelectedNode = null;
+    function hideGraph(that) {
+        that.$el.find(".graph-frame").animate({
+            opacity: 0
+        }, 200)
+    }
+
+    function showGraph(that) {
+        that.$el.find(".graph-frame").animate({
+            opacity: 1
+        }, 200)
+    }
+
+    function renderGraph(that, data) {
+        var container = that.$el[0];
+        var options = {
+            nodes: {
+                fontSize: 11,
+                color: {background: "#cccccc"}
+            }
+        };
+        that.graph = that.graph || new vis.Graph(container, {}, options);
+        that.graph.setData(data);
+        if (!that.loaded) {
+            vis.events.addListener(that.graph, "select", $.proxy(onSelect, that));
+            that.loaded = true;
         }
-        this.lastSelectedNode = selectItemId;
-        this.graph.setSelection([]);
+    }
+
+    function onSelect() {
+        var that = this;
+        var selectItemId = parseInt(that.graph.getSelection());
+        if (that.lastSelectedNode === selectItemId) {
+            that.messageBus.publish("visual-filtering-filtered", selectItemId);
+            that.lastSelectedNode = null;
+        }
+        that.lastSelectedNode = selectItemId;
+        that.graph.setSelection([]);
     }
 
 }(HAF, jQuery));

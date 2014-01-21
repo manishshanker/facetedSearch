@@ -55,7 +55,7 @@
     function onVisualFilter(id) {
         var that = this;
         that.services.searchFiltering.getChild(id, function (data) {
-            that.controls.searchFiltering.updateFilter(data);
+            that.controls.searchFiltering.update(data);
         });
     }
 
@@ -64,9 +64,7 @@
         that.controls.searchList.show();
         that.views.discoverPage.withoutResults();
         that.controls.breadcrumb.hideTopic();
-        setTimeout(function () {
-            that.controls.searchFiltering.layoutChange();
-        }, 500);
+        that.controls.searchFiltering.layoutChange();
         this.controls.searchResults.hide();
     }
 
@@ -75,9 +73,7 @@
         that.controls.searchList.hide();
         that.views.discoverPage.withResults();
         that.controls.breadcrumb.showTopic(that.controls.searchList.currentFilterInfo);
-        setTimeout(function () {
-            that.controls.searchFiltering.layoutChange();
-        }, 500);
+        that.controls.searchFiltering.layoutChange();
         that.controls.searchResults.show();
         that.services.searchResults.fetch(function(data) {
             that.controls.searchResults.update(data);
