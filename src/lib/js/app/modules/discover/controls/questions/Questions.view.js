@@ -6,7 +6,7 @@
         hide: function () {
             this.$el.removeClass("show");
         },
-        show: function() {
+        show: function () {
             this.$el.addClass("show");
         }
     });

@@ -37,10 +37,10 @@
                 opacity: 0
             });
             clearTimeout(this.rerenderTimer);
-            this.rerenderTimer = setTimeout(function() {
+            this.rerenderTimer = setTimeout(function () {
                 that.render(that.lastDataSet);
                 that.graph.redraw();
-                setTimeout(function() {
+                setTimeout(function () {
                     showGraph(that);
                 }, 500);
             }, 500);
@@ -64,7 +64,7 @@
         that.graph = that.graph || new vis.Graph(container, {}, GRAPH_OPTIONS);
         that.graph.setData(data);
         if (!that.loaded) {
-            vis.events.addListener(that.graph, "select", function() {
+            vis.events.addListener(that.graph, "select", function () {
                 onSelect(that);
             });
             that.loaded = true;

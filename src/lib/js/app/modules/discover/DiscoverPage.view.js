@@ -3,11 +3,11 @@
 
     APP.view.DiscoverPage = HAF.View.extend({
         container: "#discover",
-        withResults: function() {
+        withResults: function () {
             this.$el.find(".sub-content").addClass("with-results");
 
         },
-        withoutResults: function() {
+        withoutResults: function () {
             this.$el.find(".sub-content").removeClass("with-results");
         }
     });

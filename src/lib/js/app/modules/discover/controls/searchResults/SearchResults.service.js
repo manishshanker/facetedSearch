@@ -2,8 +2,8 @@
     "use strict";
 
     APP.service.SearchResults = HAF.Service.extend({
-        fetch: function(callback) {
-            setTimeout(function() {
+        fetch: function (callback) {
+            setTimeout(function () {
                 callback(getMockData());
             }, 1);
         }

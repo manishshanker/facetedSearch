@@ -39,7 +39,7 @@
     }
 
     function addRelatedNodesToGraph(parentId, data, nodes, edges) {
-        HAF.each(data, function(item) {
+        HAF.each(data, function (item) {
             nodes.add({
                 id: item.id,
                 label: convertSpaceToNewLineAndAddCount(item.title, item.count)

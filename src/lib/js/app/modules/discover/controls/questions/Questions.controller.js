@@ -3,7 +3,7 @@
 
     APP.controller.Questions = HAF.Controller.extend({
         autoShowHide: true,
-        inject: function() {
+        inject: function () {
             return {
                 views: {
                     questions: new APP.view.Questions()

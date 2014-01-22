@@ -5,7 +5,7 @@
         level: -1,
         container: "#appSearchList",
         bindings: {
-            "click .hide-list": function(e) {
+            "click .hide-list": function (e) {
                 onSearchListHide(e, this);
             }
         },

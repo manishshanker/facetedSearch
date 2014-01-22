@@ -17,7 +17,7 @@
             }, 10);
         },
         bindings: {
-            "click .show-list": function(e) {
+            "click .show-list": function (e) {
                 onSearchListShow(e, this);
             }
         },

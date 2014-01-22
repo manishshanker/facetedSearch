@@ -1,14 +1,14 @@
-(function($) {
+(function ($) {
     "use strict";
 
-    $.fn.tabs = function() {
+    $.fn.tabs = function () {
 
-        return this.each(function() {
+        return this.each(function () {
             var $el = $(this);
-            $el.on("click", ".tab-nav li a", function(e) {
+            $el.on("click", ".tab-nav li a", function (e) {
                 var selected = $el.data("selected");
                 if (selected) {
-                    $el.find("a[href$="+selected+"]").removeClass("selected");
+                    $el.find("a[href$=" + selected + "]").removeClass("selected");
                     $(selected).hide();
                 }
                 var $link = $(this);
