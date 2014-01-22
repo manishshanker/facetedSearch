@@ -3,11 +3,18 @@
     <words>
       <w>&quot;/discover&quot;</w>
       <w>&quot;/discover/:id&quot;</w>
+      <w>&lt;!--[if gt ie 8]&gt;&lt;!--&gt;</w>
+      <w>&lt;!--[if ie 7]&gt; &lt;html class=&quot;no-js lt-ie9 lt-ie8&quot;&gt;&lt;![endif]--&gt;</w>
+      <w>&lt;!--[if ie 8]&gt; &lt;html class=&quot;no-js lt-ie9&quot;&gt;&lt;![endif]--&gt;</w>
       <w>banco</w>
+      <w>endif</w>
+      <w>icex</w>
       <w>ipsum</w>
       <w>lorem</w>
+      <w>modernizr</w>
       <w>santander</w>
       <w>updateready</w>
+      <w>viewport</w>
     </words>
   </dictionary>
 </component>
