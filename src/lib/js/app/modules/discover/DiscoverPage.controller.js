@@ -27,13 +27,13 @@
         },
         load: function () {
             this._super();
-            this.messageBus.subscribe(this, "search-list-hide", function() {
+            this.messageBus.subscribe(this, "search-list-hide", function () {
                 hideList(this);
             });
-            this.messageBus.subscribe(this, "search-list-show", function() {
+            this.messageBus.subscribe(this, "search-list-show", function () {
                 showList(this);
             });
-            this.messageBus.subscribe(this, "visual-filtering-filtered", function(id) {
+            this.messageBus.subscribe(this, "visual-filtering-filtered", function (id) {
                 onVisualFilter(id, this);
             });
         },
@@ -79,7 +79,7 @@
         ctx.controls.breadcrumb.showTopic(ctx.controls.searchList.currentFilterInfo);
         ctx.controls.searchFiltering.layoutChange();
         ctx.controls.searchResults.show();
-        ctx.services.searchResults.fetch(function(data) {
+        ctx.services.searchResults.fetch(function (data) {
             ctx.controls.searchResults.update(data);
         });
     }

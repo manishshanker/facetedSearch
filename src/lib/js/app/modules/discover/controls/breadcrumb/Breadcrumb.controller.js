@@ -4,7 +4,7 @@
     APP.controller.Breadcrumb = HAF.Controller.extend({
         autoShowHide: true,
         currentFilterId: null,
-        inject: function() {
+        inject: function () {
             return {
                 templates: {
                     breadcrumb: new HAF.Template("breadcrumbItemTemplate")
@@ -14,27 +14,32 @@
                 }
             };
         },
-        update: function(item, id) {
+        update: function (item, id) {
+            var newLevelLength, oldLevelLength;
             item.pathId = id;
             if (this.currentFilterId) {
-                if (id.split("_").length > this.currentFilterId.split("_").length) {
+                newLevelLength = id.split("_").length;
+                oldLevelLength = this.currentFilterId.split("_").length;
+                if (newLevelLength > oldLevelLength) {
                     this.views.breadcrumb.render(this.templates.breadcrumb.process(item));
                 } else {
-                    this.views.breadcrumb.removeLastLevel();
+                    for (var n = 0; n < (oldLevelLength - newLevelLength); n++) {
+                        this.views.breadcrumb.removeLastLevel();
+                    }
                 }
             } else {
                 this.views.breadcrumb.render(this.templates.breadcrumb.process(item));
             }
             this.currentFilterId = id;
         },
-        hide: function() {
+        hide: function () {
             this.currentFilterId = null;
             this._super();
         },
-        hideTopic: function() {
+        hideTopic: function () {
             this.views.breadcrumb.hideTopic();
         },
-        showTopic: function(topicInfo) {
+        showTopic: function (topicInfo) {
             this.views.breadcrumb.showTopic(topicInfo);
         }
     });

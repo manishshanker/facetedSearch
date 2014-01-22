@@ -5,7 +5,7 @@
         autoShowHide: true,
         currentFilterId: null,
         currentFilterInfo: null,
-        inject: function() {
+        inject: function () {
             return {
                 views: {
                     searchList: new APP.view.SearchList(this.messageBus)
@@ -16,13 +16,13 @@
             };
         },
         update: function (id, data) {
-            var that = this;
+            var that = this, currentLevel, newLevel;
             if (!id) {
                 that.currentFilterId = null;
             }
             if (that.currentFilterId) {
-                var currentLevel = that.currentFilterId.split("_").length;
-                var newLevel = id.split("_").length+1;
+                currentLevel = that.currentFilterId.split("_").length;
+                newLevel = id.split("_").length + 1;
                 if (currentLevel < newLevel) {
                     that.views.searchList.render(that.templates.searchList.process(data));
                 } else {
