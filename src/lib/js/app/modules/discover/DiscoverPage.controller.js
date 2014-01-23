@@ -4,16 +4,16 @@
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoLoadControls: true,
         autoShowHide: true,
+        injectMessageBus: true,
         inject: function () {
-            var messageBus = new HAF.Messaging();
             return {
                 views: {
                     discoverPage: new APP.view.DiscoverPage()
                 },
                 controls: {
-                    searchList: new APP.controller.SearchList(messageBus),
-                    breadcrumb: new APP.controller.Breadcrumb(messageBus),
-                    searchFiltering: new APP.controller.SearchFiltering(messageBus),
+                    searchList: new APP.controller.SearchList(this.messageBus),
+                    breadcrumb: new APP.controller.Breadcrumb(this.messageBus),
+                    searchFiltering: new APP.controller.SearchFiltering(this.messageBus),
                     questions: new APP.controller.Questions(),
                     searchResults: new APP.controller.SearchResults()
                 },
@@ -21,8 +21,7 @@
                     searchList: new APP.service.SearchList(),
                     searchFiltering: new APP.service.SearchFiltering(),
                     searchResults: new APP.service.SearchResults()
-                },
-                messageBus: messageBus
+                }
             };
         },
         load: function () {

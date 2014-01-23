@@ -22,10 +22,6 @@
                 that.views.breadcrumb.render(that.templates.breadcrumb.process(item));
             }
         },
-        hide: function () {
-            this.currentFilterId = null;
-            this._super();
-        },
         hideTopic: function () {
             this.views.breadcrumb.hideTopic();
         },
