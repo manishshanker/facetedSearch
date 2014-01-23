@@ -58,10 +58,25 @@ h1 {
 
     .btn-mails, .btn-alerts, .btn-config {
         display: inline-block;
-        height: 10px;
-        width: 10px;
+        height: 16px;
+        width: 20px;
         background: #ccc;
         vertical-align: middle;
+        position: relative;
+    }
+
+    .btn-mails, .btn-alerts {
+        span {
+            background-color: #fff;
+            color: #ff0000;
+            display: inline-block;
+            .border-radius(6px);
+            position: absolute;
+            left: -8px;
+            top: -8px;
+            font-size: 70%;
+            padding: 2px 4px;
+        }
     }
 
 
