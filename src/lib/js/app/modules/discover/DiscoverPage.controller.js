@@ -93,10 +93,12 @@
     }
 
     function hideBreadcrumb(ctx) {
+        ctx.views.discoverPage.withoutBreadcrumb();
         ctx.controls.breadcrumb.hide();
     }
 
     function showBreadcrumb(ctx, ids) {
+        ctx.views.discoverPage.withBreadcrumb();
         ctx.services.searchList.getMetaInfo(ctx, ids, function(data) {
             ctx.controls.breadcrumb.update(data, ids);
         });
