@@ -2,32 +2,18 @@
     "use strict";
 
     APP.view.SearchList = HAF.View.extend({
-        level: -1,
         container: "#appSearchList",
         bindings: {
             "click .hide-list": function (e) {
                 onSearchListHide(e, this);
             }
         },
-        render: function (html) {
-            var that = this;
-            setTimeout(function () {
-                hideItemInLevel(that, that.level);
-                that.$el.append(html);
-                that.level++;
-            }, 10);
-            setTimeout(function () {
-                showItemInLevel(that, that.level);
-            }, 50);
+        render: function (direction, html) {
+            addAndShowList(this, direction, html);
         },
-        removeList: function (id, level) {
+        removeList: function (direction, onRemove) {
             var that = this;
-            that.currentFilterId = id;
-            hideItemInLevel(that, level + 1);
-            showItemInLevel(that, level);
-            setTimeout(function () {
-                that.$el.find(".item").eq(level + 1).remove();
-            }, 500);
+            hideAndRemoveList(that, direction, onRemove);
         },
         show: function () {
             this.$el.removeClass("hide");
@@ -37,17 +23,28 @@
         }
     });
 
+    function addAndShowList(ctx, direction, html) {
+        ctx.$el.append(html);
+        if (direction === 1) {
+            ctx.$el.find(".item").eq(0).removeClass("hide").addClass("show");
+        } else {
+            window.setTimeout(function () {
+                ctx.$el.find(".item").eq(0).removeClass("hide").addClass("show");
+            }, 10);
+        }
+    }
+
     function onSearchListHide(e, ctx) {
         ctx.messageBus.publish("search-list-hide");
         e.preventDefault();
     }
 
-    function showItemInLevel(context, level) {
-        context.$el.find(".item").eq(level).removeClass("hide").addClass("show");
-    }
-
-    function hideItemInLevel(context, level) {
-        context.$el.find(".item").eq(level).removeClass("show").addClass("hide");
+    function hideAndRemoveList(ctx, direction, onRemove) {
+        ctx.$el.find(".item").removeClass("show").addClass(direction === -1 ? "hide" : "hide-back");
+        setTimeout(function () {
+            ctx.$el.find(".item").remove();
+            onRemove();
+        }, 500);
     }
 
 }(HAF));

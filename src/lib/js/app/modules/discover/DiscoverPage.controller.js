@@ -76,7 +76,7 @@
     function hideList(ctx) {
         ctx.controls.searchList.hide();
         ctx.views.discoverPage.withResults();
-        ctx.controls.breadcrumb.showTopic(ctx.controls.searchList.currentFilterInfo);
+        ctx.controls.breadcrumb.showTopic(ctx.services.searchList.currentFilterInfo);
         ctx.controls.searchFiltering.layoutChange();
         ctx.controls.searchResults.show();
         ctx.services.searchResults.fetch(function (data) {
@@ -96,8 +96,10 @@
         ctx.controls.breadcrumb.hide();
     }
 
-    function showBreadcrumb(ctx, id) {
-        ctx.controls.breadcrumb.update(ctx.services.searchList.getMetaInfo(id), id);
+    function showBreadcrumb(ctx, ids) {
+        ctx.services.searchList.getMetaInfo(ctx, ids, function(data) {
+            ctx.controls.breadcrumb.update(data, ids);
+        });
     }
 
     function showSearchFiltering(ctx) {
@@ -110,9 +112,9 @@
         ctx.controls.searchFiltering.hide();
     }
 
-    function loadSearchItem(ctx, id) {
-        ctx.services.searchList.fetch(ctx, id, function (data) {
-            ctx.controls.searchList.update(id, data);
+    function loadSearchItem(ctx, ids) {
+        ctx.services.searchList.fetch(ctx, ids, function (data) {
+            ctx.controls.searchList.update(ids, data);
         });
     }
 

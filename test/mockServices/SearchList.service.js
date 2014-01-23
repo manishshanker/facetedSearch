@@ -1,102 +1,106 @@
-(function (HAF, $) {
+(function (APP) {
     "use strict";
 
     APP.service.SearchList = APP.service.SearchList.extend({
-        cachedResultData: {},
-        fetch: function (context, id, callback) {
+        cachedResultData: null,
+        fetch: function (context, ids, callback) {
             callback = callback || this.updated;
-            var data = getMockData(id);
-            this.cachedResultData[data.id] = data;
-            callback.call(context || this, data);
+            this.cachedResultData = this.cachedResultData || mockData;
+            var data = this.getDataForId(ids);
+            this.currentFilterInfo = {
+                title: data.title,
+                id: data.id
+            };
+            callback.call(context, data);
         }
     });
 
-    function getMockData(id) {
-        var mockData = {};
-        if (!id) {
-            mockData = {
-                title: "Industry",
-                id: "1",
-                level: 0,
-                items: [
-                    {
-                        title: "Basic Materials",
-                        id: "11",
-                        count: 100
-                    },
-                    {
-                        title: "Business Services",
-                        id: "12",
-                        count: 150
-                    },
-                    {
-                        title: "Consumer Cyclicals",
-                        id: "13",
-                        count: 120
-                    },
-                    {
-                        title: "Consumer Non-Cyclicals",
-                        id: "15",
-                        count: 100
-                    },
-                    {
-                        title: "Financials",
-                        id: "16",
-                        count: 1
+    var mockData = {
+        title: "",
+        id: "",
+        subGroup: {
+            id: "1",
+            title: "Industry",
+            items: [
+                {
+                    title: "Basic Materials",
+                    id: "11",
+                    count: 100,
+                    subGroup: getMock("11")
+                },
+                {
+                    title: "Business Services",
+                    id: "12",
+                    count: 150,
+                    subGroup: getMock("12")
+                },
+                {
+                    title: "Consumer Cyclicals",
+                    id: "13",
+                    count: 120,
+                    subGroup: getMock("13")
+                },
+                {
+                    title: "Consumer Non-Cyclicals",
+                    id: "15",
+                    count: 100,
+                    subGroup: getMock("15")
+                },
+                {
+                    title: "Financials",
+                    id: "16",
+                    count: 1,
+                    subGroup: {
+                        id: "161",
+                        title: "Sectors",
+                        items: [
+                            {
+                                title: "Banks",
+                                id: "16_1",
+                                subGroup: getMock("16_1")
+                            },
+                            {
+                                title: "Capital Markets",
+                                id: "16_2",
+                                subGroup: getMock("16_2")
+                            },
+                            {
+                                title: "Financial Services",
+                                id: "16_3",
+                                subGroup: getMock("16_3")
+                            },
+                            {
+                                title: "Insurance",
+                                id: "16_4",
+                                subGroup: getMock("16_4")
+                            },
+                            {
+                                title: "Real Estate",
+                                id: "16_5",
+                                subGroup: getMock("16_5")
+                            }
+                        ]
                     }
-                ]
-            };
-        } else if (id == 16) {
-            mockData = {
-                title: "Sectors",
-                id: "161",
-                items: [
-                    {
-                        title: "Banks",
-                        id: "16_1"
-                    },
-                    {
-                        title: "Capital Markets",
-                        id: "16_2"
-                    },
-                    {
-                        title: "Financial Services",
-                        id: "16_3"
-                    },
-                    {
-                        title: "Insurance",
-                        id: "16_4"
-                    },
-                    {
-                        title: "Real Estate",
-                        id: "16_5"
-                    }
-                ]
-            };
-        } else {
-            mockData = {
-                title: "Lorem ipsum",
-                idd: "162",
-                items: [
-                    {
-                        title: "Lorem ipsum 1",
-                        id: id + "_1"
-                    },
-                    {
-                        title: "Lorem ipsum 2",
-                        id: id + "_2"
-                    },
-                    {
-                        title: "Lorem ipsum 3",
-                        id: id + "_3"
-                    },
-                    {
-                        title: "Lorem ipsum 4",
-                        id: id + "_5"
-                    }
-                ]
-            };
+                }
+            ]
         }
-        return mockData;
+    };
+
+    function getMock(id) {
+        return {
+            id: id + "_0",
+            title: "Lorem",
+            items: (function () {
+                var d = [];
+                for (var n = 0; n < 10; n++) {
+                    d.push({
+                        title: "Lorem Ipsum " + n,
+                        id: id + "_" + (n + 1)
+                    });
+                }
+                return d;
+            }())
+        };
     }
-}(HAF, jQuery));
+
+}(APP));

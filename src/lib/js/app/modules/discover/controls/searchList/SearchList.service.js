@@ -2,36 +2,52 @@
     "use strict";
 
     APP.service.SearchList = HAF.Service.extend({
-        cachedResultData: {},
-        fetch: function (context, id, callback) {
+        cachedResultData: null,
+        currentFilterInfo: null,
+        fetch: function (context, ids, callback) {
             //ajax call and cache response
         },
-        getMetaInfo: function (id) {
-            return findItem(this.cachedResultData, id);
+        getDataForId: function (ids) {
+            var data;
+            if (!ids) {
+                data = this.cachedResultData;
+            } else {
+                data = findItem(this.cachedResultData, ids);
+            }
+            return data || {};
+        },
+        getMetaInfo: function (ctx, ids, callback) {
+            ids = ids.split("_");
+            var data = [];
+            var d = [];
+            for (var n = 0; n < ids.length; n++) {
+                d.push(ids[n]);
+                data.push(findItem(this.cachedResultData, d.join("_")));
+            }
+            callback(data || []);
         }
     });
 
     function findItem(items, id) {
         var itemFound = null;
-        $.each(items, function (key, item) {
-            if (item.id === id) {
-                itemFound = item;
-                return false;
-            } else {
-                $.each(item.items, function (index, item) {
-                    if (item.id === id) {
-                        itemFound = item;
-                        return false;
-                    }
-                    return true;
-                });
-            }
-            return true;
-        });
-        itemFound = itemFound || {
-            title: "Lorem ipsum",
-            id: id
-        };
+        id = id + "";
+        if (items.id === id) {
+            itemFound = items;
+        }
+        if (!itemFound && items.items) {
+            $.each(items.items, function (i, item) {
+                if (item.id === id) {
+                    itemFound = item;
+                }
+                if (!itemFound) {
+                    itemFound = findItem(item, id);
+                }
+                return !itemFound;
+            });
+        }
+        if (!itemFound && items.subGroup) {
+            itemFound = findItem(items.subGroup, id);
+        }
         return itemFound;
     }
 

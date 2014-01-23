@@ -3,8 +3,7 @@
 
     APP.controller.SearchList = HAF.Controller.extend({
         autoShowHide: true,
-        currentFilterId: null,
-        currentFilterInfo: null,
+        currentLevel: -1,
         inject: function () {
             return {
                 views: {
@@ -16,26 +15,13 @@
             };
         },
         update: function (id, data) {
-            var that = this, currentLevel, newLevel;
-            if (!id) {
-                that.currentFilterId = null;
-            }
-            if (that.currentFilterId) {
-                currentLevel = that.currentFilterId.split("_").length;
-                newLevel = id.split("_").length + 1;
-                if (currentLevel < newLevel) {
-                    that.views.searchList.render(that.templates.searchList.process(data));
-                } else {
-                    that.views.searchList.removeList(id, newLevel);
-                }
-            } else {
-                that.views.searchList.render(that.templates.searchList.process(data));
-            }
-            that.currentFilterId = data.id;
-            that.currentFilterInfo = {
-                title: data.title,
-                id: data.id
-            };
+            var that = this;
+            var newLevel = id ? id.split("_").length : 1;
+            var direction = newLevel > this.currentLevel ? -1 : 1;
+            that.views.searchList.removeList(direction, function() {
+                that.views.searchList.render(direction, that.templates.searchList.process(data));
+            });
+            this.currentLevel = id ? id.split("_").length : 0;
         }
     });
 

@@ -14,23 +14,25 @@
                 }
             };
         },
-        update: function (item, id) {
+        update: function (items, id) {
+            var that = this;
             var newLevelLength, oldLevelLength;
-            item.pathId = id;
-            if (this.currentFilterId) {
+            var newItem = items[items.length - 1];
+            newItem.pathId = id;
+            if (that.currentFilterId) {
                 newLevelLength = id.split("_").length;
-                oldLevelLength = this.currentFilterId.split("_").length;
+                oldLevelLength = that.currentFilterId.split("_").length;
                 if (newLevelLength > oldLevelLength) {
-                    this.views.breadcrumb.render(this.templates.breadcrumb.process(item));
+                    that.views.breadcrumb.render(that.templates.breadcrumb.process(newItem));
                 } else {
                     for (var n = 0; n < (oldLevelLength - newLevelLength); n++) {
-                        this.views.breadcrumb.removeLastLevel();
+                        that.views.breadcrumb.removeLastLevel();
                     }
                 }
             } else {
-                this.views.breadcrumb.render(this.templates.breadcrumb.process(item));
+                that.views.breadcrumb.render(that.templates.breadcrumb.process(newItem));
             }
-            this.currentFilterId = id;
+            that.currentFilterId = id;
         },
         hide: function () {
             this.currentFilterId = null;
