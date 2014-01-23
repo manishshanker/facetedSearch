@@ -75,7 +75,7 @@
         var selectItemId = parseInt(ctx.graph.getSelection());
         if (ctx.lastSelectedNode === selectItemId) {
             ctx.$el.addClass("loading");
-            ctx.messageBus.publish("visual-filtering-filtered", selectItemId);
+            ctx.messageBus.publish("search-filtering-changed", selectItemId);
             ctx.lastSelectedNode = null;
         }
         ctx.lastSelectedNode = selectItemId;

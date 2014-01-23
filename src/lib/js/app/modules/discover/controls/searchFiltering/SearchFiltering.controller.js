@@ -19,16 +19,11 @@
         load: function () {
             var that = this;
             that.messageBus.subscribe(that, "search-filter-tab-changes", function(tabName) {
-                if (tabName === "appListFiltering" && !that.listFilteringLoaded) {
-                    that.controls.listFiltering.update(that.lastDataSet);
-                    that.listFilteringLoaded = true;
-                    that.currentControl = that.controls.listFiltering;
-                } else {
-                    that.currentControl = that.controls.visualFiltering;
-                }
+                that.currentControl = tabName === "appListFiltering" ? that.controls.listFiltering : that.controls.visualFiltering;
+
                 //if the control was rendered already, update it when the tab is switched
-                if (this.lastDataSet) {
-                    that.currentControl.update(this.lastDataSet);
+                if (that.lastDataSet) {
+                    that.currentControl.update(that.lastDataSet);
                 }
             });
             that.currentControl = that.controls.visualFiltering;

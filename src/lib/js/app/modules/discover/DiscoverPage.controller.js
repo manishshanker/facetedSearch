@@ -33,8 +33,8 @@
             this.messageBus.subscribe(this, "search-list-show", function () {
                 showList(this);
             });
-            this.messageBus.subscribe(this, "visual-filtering-filtered", function (id) {
-                onVisualFilter(id, this);
+            this.messageBus.subscribe(this, "search-filtering-changed", function (id) {
+                onSearchFilteringChanged(id, this);
             });
         },
         routes: {
@@ -59,7 +59,7 @@
         }
     });
 
-    function onVisualFilter(id, ctx) {
+    function onSearchFilteringChanged(id, ctx) {
         ctx.services.searchFiltering.getChild(id, function (data) {
             ctx.controls.searchFiltering.update(data);
         });

@@ -62,8 +62,8 @@
                 </li><li>
                     <a href="#/priced">Priced</a>
                 </li><li>
-                <a href="#/contactUs">Contact Us</a>
-            </li>
+                    <a href="#/contactUs">Contact Us</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -74,7 +74,7 @@
 		        <a href="#" class="show-list">Show</a>
 		        <ul>
 			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
-				        <li><a href="#/discover/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
+				        <li><a href="{{urlWithBase 'discover'}}/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
 			        </script>
 		        </ul>
 	        </div>
@@ -85,7 +85,7 @@
                     <div class="item">
 	                    <h2>{{subGroup.title}}</h2>
 	                    {{#if subGroup.items}}
-	                        {{#list subGroup.items 'item-list'}}<a href="#/discover/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+	                        {{#list subGroup.items 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
 	                    {{else}}
 	                        <ul><li>No Items</li></ul>
 	                    {{/if}}
@@ -112,7 +112,7 @@
                         <script id="filteringListTemplate" type="text/x-handlebars-template">
                             <div class="item">
                                 {{#if related}}
-                                {{#list related 'item-list'}}<a href="#/discover/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+                                {{#list related 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
                                 {{else}}
                                 <ul><li>No Items</li></ul>
                                 {{/if}}
@@ -172,6 +172,7 @@
 <script src="lib/js/app/serviceURLs.js"></script>
 
 <script src="lib/js/app/plugins/jquery.tab.js"></script>
+<script src="lib/js/app/plugins/hb.urlWithBaseHelper.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.controller.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.controller.js"></script>
