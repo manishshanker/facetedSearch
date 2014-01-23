@@ -16,9 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link type="text/css" rel="stylesheet" href="23012014113804/css/combined.css" />
+    <link type="text/css" rel="stylesheet" href="23012014021758/css/combined.css" />
 
-    <script src="23012014113804/js/vendor/---modernizr-2.6.2.min.js"></script>
+    <script src="23012014021758/js/vendor/---modernizr-2.6.2.min.js"></script>
 
 </head>
 <body>
@@ -30,8 +30,8 @@
             <li class="no-sep"><button class="btn-global-search">Search</button></li>
             <li><a href="#" class="btn-history">History</a></li>
             <li><a href="#" class="btn-saved-searches">Saved Searches</a></li>
-            <li><a href="#" class="btn-mails">_</a></li>
-            <li><a href="#" class="btn-alerts">_</a></li>
+            <li><a href="#" class="btn-mails"><span>8</span></a></li>
+            <li><a href="#" class="btn-alerts"><span>2</span></a></li>
             <li><span class="welcome-text">Welcome AMANDA BAUMAN</span></li>
             <li class="no-sep"><a href="#" class="btn-config">_</a></li>
         </ul>
@@ -48,8 +48,8 @@
                 </li><li>
                     <a href="#/priced">Priced</a>
                 </li><li>
-                <a href="#/contactUs">Contact Us</a>
-            </li>
+                    <a href="#/contactUs">Contact Us</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -60,7 +60,7 @@
 		        <a href="#" class="show-list">Show</a>
 		        <ul>
 			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
-				        <li><a href="#/discover/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
+				        <li><a href="{{urlWithBase 'discover'}}/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
 			        </script>
 		        </ul>
 	        </div>
@@ -71,7 +71,7 @@
                     <div class="item">
 	                    <h2>{{subGroup.title}}</h2>
 	                    {{#if subGroup.items}}
-	                        {{#list subGroup.items}}<a href="#/discover/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+	                        {{#list subGroup.items 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
 	                    {{else}}
 	                        <ul><li>No Items</li></ul>
 	                    {{/if}}
@@ -88,14 +88,22 @@
                 <div id="appSearchFiltering" class="search-filtering tabs sub-content">
                     <ul class="result-type tab-nav">
                         <li><a href="#appVisualFiltering">Visual</a></li>
-                        <li><a href="#resultTypeList">List</a></li>
+                        <li><a href="#appListFiltering">List</a></li>
                     </ul>
                     <div id="appVisualFiltering" class="tab-content">
                         <div class="graph"></div>
                         <div class="loading-message">Loading...</div>
                     </div>
-                    <div id="resultTypeList" class="tab-content">
-                        LIST
+                    <div id="appListFiltering" class="tab-content">
+                        <script id="filteringListTemplate" type="text/x-handlebars-template">
+                            <div class="item">
+                                {{#if related}}
+                                {{#list related 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+                                {{else}}
+                                <ul><li>No Items</li></ul>
+                                {{/if}}
+                            </div>
+                        </script>
                     </div>
                 </div>
 	            <div id="appSearchResults">
@@ -138,9 +146,9 @@
 
 </div>
 
-<script src="23012014113804/js/app/i18n/en_GB.js"></script>
+<script src="23012014021758/js/app/i18n/en_GB.js"></script>
 
-<script src='23012014113804/js/combined.js' ></script>
+<script src='23012014021758/js/combined.js' ></script>
 
 </body>
 </html>
