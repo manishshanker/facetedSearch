@@ -1,0 +1,24 @@
+@import "vendor/lesshat";
+@import "theme";
+ul.item-list {
+    li {
+        padding: 5px 5px 10px 15px;
+
+        a {
+            font-size: 75%;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .count {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            background-color: @bgc-count;
+            padding: 2px 5px;
+            .border-radius(8px);
+        }
+    }
+}

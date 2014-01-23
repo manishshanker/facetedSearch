@@ -19,10 +19,12 @@
     <!--MERGE STYLES-->
     <link rel="stylesheet/less" type="text/css" href="lib/css/vendor/reset.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="lib/css/itemList.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/header.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/navigation.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/discoverPage.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/breadcrumb.less" />
+    <link rel="stylesheet/less" type="text/css" href="lib/css/listFiltering.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchList.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchFiltering.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/searchResults.less" />
@@ -83,7 +85,7 @@
                     <div class="item">
 	                    <h2>{{subGroup.title}}</h2>
 	                    {{#if subGroup.items}}
-	                        {{#list subGroup.items}}<a href="#/discover/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+	                        {{#list subGroup.items 'item-list'}}<a href="#/discover/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
 	                    {{else}}
 	                        <ul><li>No Items</li></ul>
 	                    {{/if}}
@@ -100,14 +102,22 @@
                 <div id="appSearchFiltering" class="search-filtering tabs sub-content">
                     <ul class="result-type tab-nav">
                         <li><a href="#appVisualFiltering">Visual</a></li>
-                        <li><a href="#resultTypeList">List</a></li>
+                        <li><a href="#appListFiltering">List</a></li>
                     </ul>
                     <div id="appVisualFiltering" class="tab-content">
                         <div class="graph"></div>
                         <div class="loading-message">Loading...</div>
                     </div>
-                    <div id="resultTypeList" class="tab-content">
-                        LIST
+                    <div id="appListFiltering" class="tab-content">
+                        <script id="filteringListTemplate" type="text/x-handlebars-template">
+                            <div class="item">
+                                {{#if related}}
+                                {{#list related 'item-list'}}<a href="#/discover/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+                                {{else}}
+                                <ul><li>No Items</li></ul>
+                                {{/if}}
+                            </div>
+                        </script>
                     </div>
                 </div>
 	            <div id="appSearchResults">
@@ -162,6 +172,9 @@
 <script src="lib/js/app/serviceURLs.js"></script>
 
 <script src="lib/js/app/plugins/jquery.tab.js"></script>
+<script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.controller.js"></script>
+<script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.view.js"></script>
+<script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.controller.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchList/SearchList.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchList/SearchList.service.js"></script>

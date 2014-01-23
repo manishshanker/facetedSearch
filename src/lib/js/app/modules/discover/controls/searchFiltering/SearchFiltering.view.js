@@ -4,7 +4,12 @@
     APP.view.SearchFiltering = HAF.View.extend({
         container: "#appSearchFiltering",
         load: function () {
-            this.$el.tabs();
+            var that = this;
+            that.$el.tabs({
+                onChange: function(data) {
+                    that.messageBus.publish("search-filter-tab-changes", data);
+                }
+            });
         },
         hide: function () {
             this.$el.removeClass("show");

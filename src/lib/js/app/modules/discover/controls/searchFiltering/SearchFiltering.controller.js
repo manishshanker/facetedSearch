@@ -4,61 +4,39 @@
     APP.controller.SearchFiltering = HAF.Controller.extend({
         autoShowHide: true,
         autoLayout: true,
+        currentControl: null,
         inject: function () {
             return {
                 views: {
-                    searchFiltering: new APP.view.SearchFiltering(),
-                    visualFiltering: new APP.view.VisualFiltering(this.messageBus)
+                    searchFiltering: new APP.view.SearchFiltering(this.messageBus)
+                },
+                controls: {
+                    visualFiltering: new APP.controller.VisualFiltering(this.messageBus),
+                    listFiltering: new APP.controller.ListFiltering(this.messageBus)
                 }
             };
         },
+        load: function () {
+            var that = this;
+            that.messageBus.subscribe(that, "search-filter-tab-changes", function(tabName) {
+                if (tabName === "appListFiltering" && !that.listFilteringLoaded) {
+                    that.controls.listFiltering.update(that.lastDataSet);
+                    that.listFilteringLoaded = true;
+                    that.currentControl = that.controls.listFiltering;
+                } else {
+                    that.currentControl = that.controls.visualFiltering;
+                }
+                //if the control was rendered already, update it when the tab is switched
+                if (this.lastDataSet) {
+                    that.currentControl.update(this.lastDataSet);
+                }
+            });
+            that.currentControl = that.controls.visualFiltering;
+        },
         update: function (data) {
-            this.lastDataSet = getNewDataSet(this);
-            addDataToGraph(this.lastDataSet, data);
-            this.views.visualFiltering.render(this.lastDataSet);
+            this.lastDataSet = data;
+            this.currentControl.update(this.lastDataSet);
         }
     });
-
-    function getNewDataSet(ctx) {
-        if (ctx.lastDataSet) {
-            ctx.lastDataSet.nodes.clear();
-            ctx.lastDataSet.edges.clear();
-        }
-        return{
-            nodes: new vis.DataSet(),
-            edges: new vis.DataSet()
-        };
-    }
-
-    function addDataToGraph(dataset, data) {
-        var parentId = data.id;
-        var nodes = dataset.nodes;
-        var edges = dataset.edges;
-        addParentNodeToGraph(dataset, data);
-        addRelatedNodesToGraph(parentId, data.related, nodes, edges);
-    }
-
-    function addRelatedNodesToGraph(parentId, data, nodes, edges) {
-        HAF.each(data, function (item) {
-            nodes.add({
-                id: item.id,
-                label: convertSpaceToNewLineAndAddCount(item.title, item.count)
-            });
-            edges.add({from: parentId, to: item.id});
-        });
-    }
-
-    function addParentNodeToGraph(dataset, data) {
-        dataset.nodes.add({
-            id: data.id,
-            label: convertSpaceToNewLineAndAddCount(data.title, data.count),
-            color: {background: "#000"},
-            fontColor: "#ffffff"
-        });
-    }
-
-    function convertSpaceToNewLineAndAddCount(title, count) {
-        return (title + " (" + count + ")").replace(/[\s]/g, "\n");
-    }
 
 }(HAF));
