@@ -4,6 +4,7 @@
     APP.view.Breadcrumb = HAF.View.extend({
         level: 0,
         container: "#appBreadcrumb",
+        autoManageEventBind: true,
         render: function (html) {
             var $ul = this.$el.find("ul");
             $ul.append(html);
@@ -39,7 +40,7 @@
     });
 
     function onSearchListShow(e, ctx) {
-        ctx.messageBus.publish("search-list-show");
+        ctx.parentMessageBus.publish("search-list-show");
         e.preventDefault();
     }
 }(HAF));

@@ -17,7 +17,11 @@ describe("DiscoverPage.controller", function () {
         it("should initialise without error", function () {
             var messageBus = new HAF.Messaging();
             spyOn(messageBus, "subscribe");
-            var controller = new APP.controller.DiscoverPage(messageBus);
+            var controller = new APP.controller.DiscoverPage({
+                inject: {
+                    messageBus: messageBus
+                }
+            });
             controller.load();
             expect(messageBus.subscribe).toHaveBeenCalledWith(jasmine.any(Object), "search-list-hide", jasmine.any(Function));
             expect(messageBus.subscribe).toHaveBeenCalledWith(jasmine.any(Object), "search-list-show", jasmine.any(Function));

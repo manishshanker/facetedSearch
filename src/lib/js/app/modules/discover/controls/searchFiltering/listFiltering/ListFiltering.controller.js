@@ -6,7 +6,7 @@
         inject: function () {
             return {
                 views: {
-                    listFiltering: new APP.view.ListFiltering(this.messageBus)
+                    listFiltering: new APP.view.ListFiltering(this.parentMessageBus)
                 },
                 templates: {
                     listFiltering: new HAF.Template("filteringListTemplate")

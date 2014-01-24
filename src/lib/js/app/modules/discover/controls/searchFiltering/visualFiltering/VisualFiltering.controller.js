@@ -6,7 +6,7 @@
         inject: function () {
             return {
                 views: {
-                    visualFiltering: new APP.view.VisualFiltering(this.messageBus)
+                    visualFiltering: new APP.view.VisualFiltering(this.parentMessageBus)
                 }
             };
         },

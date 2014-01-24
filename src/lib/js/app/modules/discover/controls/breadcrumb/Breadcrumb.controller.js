@@ -9,7 +9,7 @@
                     breadcrumb: new HAF.Template("breadcrumbItemTemplate")
                 },
                 views: {
-                    breadcrumb: new APP.view.Breadcrumb(this.messageBus)
+                    breadcrumb: new APP.view.Breadcrumb(this.parentMessageBus)
                 }
             };
         },

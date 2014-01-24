@@ -14,7 +14,6 @@
     APP.view.VisualFiltering = HAF.View.extend({
         autoLayout: true,
         container: "#appVisualFiltering",
-        messageBus: null,
         graph: null,
         lastSelectedNode: null,
         lastDataSet: null,
@@ -75,7 +74,7 @@
         var selectItemId = parseInt(ctx.graph.getSelection());
         if (ctx.lastSelectedNode === selectItemId) {
             ctx.$el.addClass("loading");
-            ctx.messageBus.publish("search-filtering-changed", selectItemId);
+            ctx.parentMessageBus.publish("search-filtering-changed", selectItemId);
             ctx.lastSelectedNode = null;
         }
         ctx.lastSelectedNode = selectItemId;

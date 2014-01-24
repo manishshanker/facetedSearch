@@ -7,7 +7,7 @@
             var that = this;
             that.$el.tabs({
                 onChange: function(data) {
-                    that.messageBus.publish("search-filter-tab-changes", data);
+                    that.parentMessageBus.publish("search-filter-tab-changes", data);
                 }
             });
         },

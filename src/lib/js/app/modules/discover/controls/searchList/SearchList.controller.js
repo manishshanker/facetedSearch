@@ -7,7 +7,7 @@
         inject: function () {
             return {
                 views: {
-                    searchList: new APP.view.SearchList(this.messageBus)
+                    searchList: new APP.view.SearchList(this.parentMessageBus)
                 },
                 templates: {
                     searchList: new HAF.Template("searchListTemplate")
