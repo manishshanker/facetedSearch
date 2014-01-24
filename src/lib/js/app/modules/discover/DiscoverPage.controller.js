@@ -25,30 +25,26 @@
             };
         },
         load: function () {
-            this._super();
-            this.messageBus.subscribe(this, "search-list-hide", function () {
-                hideList(this);
-            });
-            this.messageBus.subscribe(this, "search-list-show", function () {
-                showList(this);
-            });
-            this.messageBus.subscribe(this, "search-filtering-changed", function (id) {
-                onSearchFilteringChanged(id, this);
+            var that = this;
+            that._super();
+            that.messageBus.subscribe(that, {
+                "search-list-hide": function () {
+                    hideList(that);
+                },
+                "search-list-show": function () {
+                    showList(that);
+                },
+                "search-filtering-changed": function (id) {
+                    onSearchFilteringChanged(id, that);
+                }
             });
         },
         routes: {
             "/discover/:id": function (id) {
-                loadSearchItem(this, id);
-                showSearchFiltering(this);
-                showBreadcrumb(this, id);
-                hideQuestions(this);
+                showResults(this, id);
             },
             "/discover": function () {
-                loadSearchItem(this);
-                hideSearchFiltering(this);
-                hideBreadcrumb(this);
-                showQuestions(this);
-                showList(this);
+                hideResults(this);
             }
         },
         controlMessages: {
@@ -57,6 +53,21 @@
             stateChange: "navigationStateChange:discover"
         }
     });
+
+    function hideResults(ctx) {
+        loadSearchItem(ctx);
+        hideSearchFiltering(ctx);
+        hideBreadcrumb(ctx);
+        showQuestions(ctx);
+        showList(ctx);
+    }
+
+    function showResults(ctx, id) {
+        loadSearchItem(ctx, id);
+        showSearchFiltering(ctx);
+        showBreadcrumb(ctx, id);
+        hideQuestions(ctx);
+    }
 
     function onSearchFilteringChanged(id, ctx) {
         ctx.services.searchFiltering.getChild(id, function (data) {
@@ -98,7 +109,7 @@
 
     function showBreadcrumb(ctx, ids) {
         ctx.views.discoverPage.withBreadcrumb();
-        ctx.services.searchList.getMetaInfo(ctx, ids, function(data) {
+        ctx.services.searchList.getMetaInfo(ctx, ids, function (data) {
             ctx.controls.breadcrumb.update(data, ids);
         });
     }
