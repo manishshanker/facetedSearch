@@ -6,7 +6,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Karma-Jasmine" level="project" />
+    <orderEntry type="library" name="Node.js Dependencies for ICExFacetedSearch" level="project" />
   </component>
 </module>
 
