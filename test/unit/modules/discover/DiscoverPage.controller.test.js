@@ -15,6 +15,13 @@ describe("DiscoverPage.controller", function () {
 
     describe(".init", function () {
         it("should initialise without error", function () {
+            var controller = new APP.controller.DiscoverPage();
+            controller.load();
+        });
+    });
+
+    describe(".load", function () {
+        it("should subscribe to messages", function () {
             var messageBus = new HAF.Messaging();
             spyOn(messageBus, "subscribe");
             var controller = new APP.controller.DiscoverPage({
