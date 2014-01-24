@@ -3,7 +3,6 @@
 
     APP.view.SearchList = HAF.View.extend({
         container: "#appSearchList",
-        autoManageEventBind: true,
         bindings: {
             "click .hide-list": function (e) {
                 onSearchListHide(e, this);

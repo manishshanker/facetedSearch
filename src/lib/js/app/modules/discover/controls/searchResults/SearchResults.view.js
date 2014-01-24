@@ -3,7 +3,6 @@
 
     APP.view.SearchResults = HAF.View.extend({
         container: "#appSearchResults",
-        autoManageEventBind: true,
         bindings: {
             "mouseenter .results-item": function (e, item) {
                 $(item).addClass("item-hover");

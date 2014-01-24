@@ -4,7 +4,6 @@
     APP.view.Breadcrumb = HAF.View.extend({
         level: 0,
         container: "#appBreadcrumb",
-        autoManageEventBind: true,
         render: function (html) {
             var $ul = this.$el.find("ul");
             $ul.append(html);
