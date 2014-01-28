@@ -3,12 +3,8 @@
 
     APP.controller.VisualFiltering = HAF.Controller.extend({
         autoLayout: true,
-        inject: function () {
-            return {
-                views: {
-                    visualFiltering: new APP.view.VisualFiltering(this.parentMessageBus)
-                }
-            };
+        inject: {
+            views: ["visualFiltering"]
         },
         update: function(data) {
             var graphData = getNewDataSet(this);

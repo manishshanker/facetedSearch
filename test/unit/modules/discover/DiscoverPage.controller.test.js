@@ -4,8 +4,9 @@ describe("DiscoverPage.controller", function () {
     var $fragments;
 
     beforeEach(function () {
+        HAF.init(APP, APP.i18nT);
         $fragments = $("<div id='fragments'></div>");
-        $fragments.html("<div id='searchListTemplate'>{{title}}</div><div id='searchResultTemplate'>{{title}}</div><div id='breadcrumbItemTemplate'>{{title}}</div><div id='filteringListTemplate'>{{title}}</div>");
+        $fragments.html("<div id='tmplSearchList'>{{title}}</div><div id='tmplSearchResults'>{{title}}</div><div id='tmplBreadcrumbItem'>{{title}}</div><div id='tmplListFiltering'>{{title}}</div>");
         $("body").append($fragments);
     });
 

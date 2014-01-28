@@ -2,19 +2,13 @@
     "use strict";
 
     APP.controller.SearchFiltering = HAF.Controller.extend({
-        autoShowHide: true,
-        autoLayout: true,
         currentControl: null,
-        inject: function () {
-            return {
-                views: {
-                    searchFiltering: new APP.view.SearchFiltering(this.parentMessageBus)
-                },
-                controls: {
-                    visualFiltering: new APP.controller.VisualFiltering(this.parentMessageBus),
-                    listFiltering: new APP.controller.ListFiltering(this.parentMessageBus)
-                }
-            };
+        autoLayout: true,
+        autoShowHide: true,
+        injector: "SearchFiltering",
+        inject: {
+            views: ["searchFiltering"],
+            controls: ["visualFiltering", "listFiltering"]
         },
         load: function () {
             var that = this;

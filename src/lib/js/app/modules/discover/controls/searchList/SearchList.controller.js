@@ -4,15 +4,9 @@
     APP.controller.SearchList = HAF.Controller.extend({
         autoShowHide: true,
         currentLevel: -1,
-        inject: function () {
-            return {
-                views: {
-                    searchList: new APP.view.SearchList(this.parentMessageBus)
-                },
-                templates: {
-                    searchList: new HAF.Template("searchListTemplate")
-                }
-            };
+        inject: {
+            views: ["searchList"],
+            templates: ["searchList"]
         },
         update: function (id, data) {
             var that = this;

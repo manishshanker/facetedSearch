@@ -73,7 +73,7 @@
 	        <div id="appBreadcrumb" class="breadcrumb">
 		        <a href="#" class="show-list">Show</a>
 		        <ul>
-			        <script id="breadcrumbItemTemplate" type="text/x-handlebars-template">
+			        <script id="tmplBreadcrumbItem" type="text/x-handlebars-template">
 				        <li><a href="{{urlWithBase 'discover'}}/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
 			        </script>
 		        </ul>
@@ -81,7 +81,7 @@
             <div class="content">
                 <div id="appSearchList" class="search-list">
                     <a href="#" class="hide-list">Hide</a>
-                    <script id="searchListTemplate" type="text/x-handlebars-template">
+                    <script id="tmplSearchList" type="text/x-handlebars-template">
                     <div class="item">
 	                    <h2>{{subGroup.title}}</h2>
 	                    {{#if subGroup.items}}
@@ -109,7 +109,7 @@
                         <div class="loading-message">Loading...</div>
                     </div>
                     <div id="appListFiltering" class="tab-content">
-                        <script id="filteringListTemplate" type="text/x-handlebars-template">
+                        <script id="tmplListFiltering" type="text/x-handlebars-template">
                             <div class="item">
                                 {{#if related}}
                                 {{#list related 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
@@ -121,7 +121,7 @@
                     </div>
                 </div>
 	            <div id="appSearchResults">
-                    <script id="searchResultTemplate" type="text/x-handlebars-template">
+                    <script id="tmplSearchResults" type="text/x-handlebars-template">
                         {{#list results 'results'}}
                             <h3>{{#if pdfLink}}<a href="{{pdfLink}}" class="pdf-icon"></a>{{/if}}{{#if unlock}}<a href="{{unlockUrl}}" class="lock-icon"></a>{{/if}}{{title}}</h3>
                             <h4>{{subTitle}}</h4>
@@ -183,6 +183,7 @@
 <script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.service.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.controller.js"></script>
+<script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.dependency.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.service.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.controller.js"></script>
