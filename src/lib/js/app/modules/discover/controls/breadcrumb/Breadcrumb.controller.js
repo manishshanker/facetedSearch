@@ -10,11 +10,14 @@
         update: function (items) {
             var that = this;
             that.views.breadcrumb.remove();
-            for (var n = 0; n < items.length; n++) {
-                var item = items[n];
-                item.pathId = item.id;
-                that.views.breadcrumb.render(that.templates.breadcrumbItem.process(item));
-            }
+            var tmplBreadcrumbItem = this.templates.breadcrumbItem;
+            tmplBreadcrumbItem.load(function() {
+                for (var n = 0; n < items.length; n++) {
+                    var item = items[n];
+                    item.pathId = item.id;
+                    that.views.breadcrumb.render(tmplBreadcrumbItem.process(item));
+                }
+            });
         },
         hideTopic: function () {
             this.views.breadcrumb.hideTopic();
