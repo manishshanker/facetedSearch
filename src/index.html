@@ -17,6 +17,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
     <!--MERGE STYLES-->
+    <link rel="stylesheet" type="text/css" href="lib/css/vendor/jquery-ui-1.10.4.custom.css" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/vendor/reset.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/main.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/itemList.less" />
@@ -40,7 +41,7 @@
     <header>
         <h1>ICEX</h1>
         <ul class="controls">
-            <li class="no-sep"><label><input type="text" class="global-search"/></label></li>
+            <li class="no-sep"><label><input type="text" id="appGlobalSearch" class="global-search"/></label></li>
             <li class="no-sep"><button class="btn-global-search">Search</button></li>
             <li><a href="#" class="btn-history">History</a></li>
             <li><a href="#" class="btn-saved-searches">Saved Searches</a></li>
@@ -167,12 +168,17 @@
 <script src="lib/js/vendor/handlebars-v1.1.2.js"></script>
 <script src="lib/js/vendor/HAF.min.js"></script>
 <script src="lib/js/vendor/vis.min.js"></script>
+<script src="lib/js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
 
 <script src="lib/js/app/namespace.js"></script>
 <script src="lib/js/app/serviceURLs.js"></script>
 
 <script src="lib/js/app/plugins/jquery.tab.js"></script>
 <script src="lib/js/app/plugins/hb.urlWithBaseHelper.js"></script>
+<script src="lib/js/app/modules/search/GlobalSearch.controller.js"></script>
+<script src="lib/js/app/modules/search/GlobalSearch.template.js"></script>
+<script src="lib/js/app/modules/search/GlobalSearch.service.js"></script>
+<script src="lib/js/app/modules/search/GlobalSearch.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.controller.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.view.js"></script>
 <script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.controller.js"></script>
@@ -196,6 +202,7 @@
 
 <script src="../test/mockServices/SearchFiltering.service.js"></script>
 <script src="../test/mockServices/SearchList.service.js"></script>
+<script src="../test/mockServices/GlobalSearch.service.js"></script>
 
 <script src="lib/js/app/appCache.js"></script>
 <script src="lib/js/app/main.js"></script>
