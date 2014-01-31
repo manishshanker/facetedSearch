@@ -3,23 +3,13 @@
 
     APP.view.SearchFiltering = HAF.View.extend({
         container: "#appSearchFiltering",
-        load: function () {
+        render: function() {
             var that = this;
             that.$el.tabs({
                 onChange: function(data) {
                     that.parentMessageBus.publish("search-filter-tab-changes", data);
                 }
             });
-        },
-        hide: function () {
-            this.$el.removeClass("show");
-        },
-        show: function () {
-            if (!this.controlLoaded) {
-                this.load();
-                this.controlLoaded = true;
-            }
-            this.$el.addClass("show");
         }
     });
 

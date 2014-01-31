@@ -18,12 +18,6 @@
                 $(item).parents(".results-item").eq(0).removeClass("show-all");
                 e.preventDefault();
             }
-        },
-        show: function () {
-            this.$el.addClass("show");
-        },
-        hide: function () {
-            this.$el.removeClass("show");
         }
     });
 

@@ -12,6 +12,7 @@
         },
         load: function () {
             var that = this;
+            that.views.searchFiltering.render();
             that.parentMessageBus.subscribe(that, "search-filter-tab-changes", function(tabName) {
                 that.currentControl = tabName === "appListFiltering" ? that.controls.listFiltering : that.controls.visualFiltering;
 

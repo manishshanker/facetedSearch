@@ -14,12 +14,6 @@
         removeList: function (direction, onRemove) {
             var that = this;
             hideAndRemoveList(that, direction, onRemove);
-        },
-        show: function () {
-            this.$el.removeClass("hide");
-        },
-        hide: function () {
-            this.$el.addClass("hide");
         }
     });
 
