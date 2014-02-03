@@ -7,8 +7,7 @@
         injectLocalMessageBus: true,
         inject: {
             views: ["discoverPage"],
-            controls: ["searchList", "breadcrumb", "searchFiltering", "questions", "searchResults"],
-            services: ["searchList", "searchFiltering", "searchResults"]
+            controls: ["searchList", "breadcrumb", "searchFiltering", "questions", "searchResults"]
         },
         load: function () {
             var that = this;
@@ -19,9 +18,6 @@
                 },
                 "search-list-show": function () {
                     showList(that);
-                },
-                "search-filtering-changed": function (id) {
-                    onSearchFilteringChanged(id, that);
                 }
             });
         },
@@ -55,12 +51,6 @@
         hideQuestions(ctx);
     }
 
-    function onSearchFilteringChanged(id, ctx) {
-        ctx.services.searchFiltering.getChild(id, function (data) {
-            ctx.controls.searchFiltering.update(data);
-        });
-    }
-
     function showList(ctx) {
         ctx.controls.searchList.show();
         ctx.views.discoverPage.withoutResults();
@@ -72,12 +62,10 @@
     function hideList(ctx) {
         ctx.controls.searchList.hide();
         ctx.views.discoverPage.withResults();
-        ctx.controls.breadcrumb.showTopic(ctx.services.searchList.currentFilterInfo);
+        ctx.controls.breadcrumb.showTopic(ctx.controls.searchList.getCurrentFilterInfo());
         ctx.controls.searchFiltering.layoutChange();
         ctx.controls.searchResults.show();
-        ctx.services.searchResults.fetch(function (data) {
-            ctx.controls.searchResults.update(data);
-        });
+        ctx.controls.searchResults.fetch();
     }
 
     function hideQuestions(ctx) {
@@ -95,15 +83,15 @@
 
     function showBreadcrumb(ctx, ids) {
         ctx.views.discoverPage.withBreadcrumb();
-        ctx.services.searchList.getMetaInfo(ctx, ids, function (data) {
-            ctx.controls.breadcrumb.update(data, ids);
+        ctx.controls.searchList.getMetaInfo(ids, function(metaInfo) {
+            ctx.controls.breadcrumb.update(metaInfo, ids);
         });
     }
 
     function showSearchFiltering(ctx) {
         var searchFiltering = ctx.controls.searchFiltering;
         searchFiltering.show();
-        ctx.services.searchFiltering.fetch(searchFiltering, searchFiltering.update);
+        ctx.controls.searchFiltering.fetch();
     }
 
     function hideSearchFiltering(ctx) {
@@ -111,9 +99,7 @@
     }
 
     function loadSearchItem(ctx, ids) {
-        ctx.services.searchList.fetch(ctx, ids, function (data) {
-            ctx.controls.searchList.update(ids, data);
-        });
+        ctx.controls.searchList.load(ids);
     }
 
 }(HAF));

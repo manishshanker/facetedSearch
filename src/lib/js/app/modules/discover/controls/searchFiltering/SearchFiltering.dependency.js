@@ -14,6 +14,11 @@
             "listFiltering": function(ctx) {
                 return new APP.controller.ListFiltering(ctx.messageBus);
             }
+        },
+        services: {
+            "searchFiltering": function() {
+                return new APP.service.SearchFiltering();
+            }
         }
     };
 
