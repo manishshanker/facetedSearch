@@ -10,19 +10,19 @@
     function mockData(term) {
         return $.grep([
             {
-                value: "jquery the write less, do more, javascript library",
-                label: "jQuery",
-                desc: "the write less, do more, JavaScript library"
+                value: "document abc finance real state",
+                label: "Document ABC",
+                desc: "in Finance, Real State"
             },
             {
-                value: "jquery-ui the official user interface library for jquery",
-                label: "jQuery UI",
-                desc: "the official user interface library for jQuery"
+                value: "document 123 finance",
+                label: "Document 123",
+                desc: "in Finance"
             },
             {
-                value: "sizzlejs a pure javascript css selector engine",
-                label: "Sizzle JS",
-                desc: "a pure-JavaScript CSS selector engine"
+                value: "document xyz real state",
+                label: "Document XYZ",
+                desc: "in Real State"
             }
         ], function (item) {
             return item.value.indexOf(term) > -1;

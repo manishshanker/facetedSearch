@@ -23,6 +23,7 @@
 
     function getItemRenderer(templateProvider) {
         return function ($ul, item) {
+            $ul.addClass('global-search');
             return $(templateProvider(this.term, item)).data("item.autocomplete", item).appendTo($ul);
         };
     }
