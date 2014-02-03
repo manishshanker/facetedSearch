@@ -3,12 +3,26 @@
 
     APP.controller.VisualFiltering = HAF.Controller.extend({
         autoLayout: true,
+        injectLocalMessageBus: true,
         inject: {
-            views: ["visualFiltering"]
+            views: ["visualFiltering"],
+            services: ["visualFiltering"]
         },
-        update: function(data) {
-            var graphData = getNewDataSet(this);
-            addDataToGraph(graphData, data);
+        load: function() {
+            var that = this;
+            that.localMessageBus.subscribe("search-filtering-changed", function (id) {
+                if (/^I_/.test(id)) {
+                    that.views.visualFiltering.setStateLoading();
+                    that.messageBus.publish("search-filtering-changed", that.services.visualFiltering.parseId(id));
+                }
+            });
+        },
+        update: function (data) {
+            var that = this;
+            data = that.services.visualFiltering.transformData(data);
+            var graphData = getNewDataSet(that);
+            graphData.nodes.add(data.nodes);
+            graphData.edges.add(data.edges);
             this.views.visualFiltering.render(graphData);
         }
     });
@@ -22,37 +36,6 @@
             nodes: new vis.DataSet(),
             edges: new vis.DataSet()
         };
-    }
-
-    function addDataToGraph(dataset, data) {
-        var parentId = data.id;
-        var nodes = dataset.nodes;
-        var edges = dataset.edges;
-        addParentNodeToGraph(dataset, data);
-        addRelatedNodesToGraph(parentId, data.related, nodes, edges);
-    }
-
-    function addRelatedNodesToGraph(parentId, data, nodes, edges) {
-        HAF.each(data, function (item) {
-            nodes.add({
-                id: item.id,
-                label: convertSpaceToNewLineAndAddCount(item.title, item.count)
-            });
-            edges.add({from: parentId, to: item.id});
-        });
-    }
-
-    function addParentNodeToGraph(dataset, data) {
-        dataset.nodes.add({
-            id: data.id,
-            label: convertSpaceToNewLineAndAddCount(data.title, data.count),
-            color: {background: "#000"},
-            fontColor: "#ffffff"
-        });
-    }
-
-    function convertSpaceToNewLineAndAddCount(title, count) {
-        return (title + " (" + count + ")").replace(/[\s]/g, "\n");
     }
 
 }(HAF));

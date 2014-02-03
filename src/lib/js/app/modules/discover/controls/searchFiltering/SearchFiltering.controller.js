@@ -3,6 +3,7 @@
 
     APP.controller.SearchFiltering = HAF.Controller.extend({
         currentControl: null,
+        autoLoadControls: true,
         autoLayout: true,
         autoShowHide: true,
         injector: "SearchFiltering",
@@ -12,6 +13,7 @@
         },
         load: function () {
             var that = this;
+            that._super();
             that.views.searchFiltering.render();
             that.messageBus.subscribe(that, "search-filter-tab-changes", function(tabName) {
                 that.currentControl = tabName === "appListFiltering" ? that.controls.listFiltering : that.controls.visualFiltering;

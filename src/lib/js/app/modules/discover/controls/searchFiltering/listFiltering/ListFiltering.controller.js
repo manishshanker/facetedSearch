@@ -2,10 +2,16 @@
     "use strict";
 
     APP.controller.ListFiltering = HAF.Controller.extend({
-        autoWire: true,
         inject: {
             templates: ["listFiltering"],
-            views: ["listFiltering"]
+            views: ["listFiltering"],
+            services: ["listFiltering"]
+        },
+        update: function(data) {
+            var that = this;
+            that.templates.listFiltering.load(function() {
+                that.views.listFiltering.render(that.templates.listFiltering.process(that.services.listFiltering.transformData(data)));
+            });
         }
     });
 

@@ -3,7 +3,10 @@
 
     APP.service.SearchFiltering = HAF.Service.extend({
         fetch: function (context, callback) {
-            //make ajax call and send processedResponse
+            //TODO: make ajax call and send processedResponse
+        },
+        getChild: function () {
+            //TODO: make ajax call
         }
     });
 

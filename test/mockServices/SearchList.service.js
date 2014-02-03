@@ -25,26 +25,31 @@
                 {
                     title: "Basic Materials",
                     id: "11",
-                    subGroup: getMock("11")
+                    subGroup: getMock("11"),
+                    count: 200
                 },
                 {
                     title: "Business Services",
                     id: "12",
-                    subGroup: getMock("12")
+                    subGroup: getMock("12"),
+                    count: 200
                 },
                 {
                     title: "Consumer Cyclicals",
                     id: "13",
-                    subGroup: getMock("13")
+                    subGroup: getMock("13"),
+                    count: 400
                 },
                 {
                     title: "Consumer Non-Cyclicals",
                     id: "15",
-                    subGroup: getMock("15")
+                    subGroup: getMock("15"),
+                    count: 300
                 },
                 {
                     title: "Financials",
                     id: "16",
+                    count: 350,
                     subGroup: {
                         id: "161",
                         title: "Sectors",
@@ -52,27 +57,32 @@
                             {
                                 title: "Banks",
                                 id: "16_1",
-                                subGroup: getMock("16_1")
+                                subGroup: getMock("16_1"),
+                                count: 100
                             },
                             {
                                 title: "Capital Markets",
                                 id: "16_2",
-                                subGroup: getMock("16_2")
+                                subGroup: getMock("16_2"),
+                                count: 50
                             },
                             {
                                 title: "Financial Services",
                                 id: "16_3",
-                                subGroup: getMock("16_3")
+                                subGroup: getMock("16_3"),
+                                count: 50
                             },
                             {
                                 title: "Insurance",
                                 id: "16_4",
-                                subGroup: getMock("16_4")
+                                subGroup: getMock("16_4"),
+                                count: 50
                             },
                             {
                                 title: "Real Estate",
                                 id: "16_5",
-                                subGroup: getMock("16_5")
+                                subGroup: getMock("16_5"),
+                                count: 100
                             }
                         ]
                     }

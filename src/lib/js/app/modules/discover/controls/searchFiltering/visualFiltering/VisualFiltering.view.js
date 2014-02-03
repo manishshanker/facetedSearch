@@ -6,7 +6,13 @@
             fontSize: 11,
             color: {
                 background: "#cccccc"
-            }
+            },
+            shape: "dot",
+            radius: 3
+        },
+        edges: {
+            color: "#ddd",
+            length: 50
         }
     };
 
@@ -43,6 +49,9 @@
                     showGraph(that);
                 }, 500);
             }, 500);
+        },
+        setStateLoading: function() {
+            this.$el.addClass("loading");
         }
     });
 
@@ -71,13 +80,13 @@
     }
 
     function onSelect(ctx) {
-        var selectItemId = parseInt(ctx.graph.getSelection());
-        if (ctx.lastSelectedNode === selectItemId) {
-            ctx.$el.addClass("loading");
-            ctx.messageBus.publish("search-filtering-changed", selectItemId);
+        var selectedItems = ctx.graph.getSelection();
+        var selectedItemId = (selectedItems && selectedItems.length && selectedItems[0]) || null;
+        if (ctx.lastSelectedNode === selectedItemId) {
+            ctx.messageBus.publish("search-filtering-changed", selectedItemId);
             ctx.lastSelectedNode = null;
         }
-        ctx.lastSelectedNode = selectItemId;
+        ctx.lastSelectedNode = selectedItemId;
         ctx.graph.setSelection([]);
     }
 
