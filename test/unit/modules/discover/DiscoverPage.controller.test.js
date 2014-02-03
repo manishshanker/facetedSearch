@@ -27,7 +27,7 @@ describe("DiscoverPage.controller", function () {
             spyOn(messageBus, "subscribe");
             var controller = new APP.controller.DiscoverPage({
                 inject: {
-                    messageBus: messageBus
+                    localMessageBus: messageBus
                 }
             });
             controller.load();
