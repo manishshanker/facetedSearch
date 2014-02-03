@@ -26,12 +26,14 @@
             dataset.nodes.push({
                 id: relationshipId,
                 label: relation.type,
-                color: {background: "#eea409"}
+                color: {background: "#eea409"},
+                fontColor: "#BD8001"
             });
             dataset.edges.push({
                 from: parentId,
                 to: relationshipId,
-                length: 150
+                length: 150,
+                color: "rgba(219, 195, 144, 0.71)"
             });
             HAF.each(relation.items, function (item) {
                 var itemId = "I_" + item.id;

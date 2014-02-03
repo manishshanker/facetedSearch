@@ -77,6 +77,21 @@
                         }
                         return data;
                     }())
+                },
+                {
+                    type: "close to",
+                    id: "222",
+                    items: (function () {
+                        var data = [];
+                        for (var n = 1; n < (2 + Math.floor(Math.random() * 5)); n++) {
+                            data.push({
+                                id: 200 + n,
+                                title: "Lorem",
+                                count: Math.floor(Math.random() * 600)
+                            });
+                        }
+                        return data;
+                    }())
                 }
             ]
         };
