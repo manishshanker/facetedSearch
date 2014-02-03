@@ -16,9 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link type="text/css" rel="stylesheet" href="31012014092034/css/combined.css" />
+    <link type="text/css" rel="stylesheet" href="03022014043059/css/combined.css" />
 
-    <script src="31012014092034/js/vendor/---modernizr-2.6.2.min.js"></script>
+    <script src="03022014043059/js/vendor/---modernizr-2.6.2.min.js"></script>
 
 </head>
 <body>
@@ -26,7 +26,7 @@
     <header>
         <h1>ICEX</h1>
         <ul class="controls">
-            <li class="no-sep"><label><input type="text" id="appGlobalSearch" class="global-search"/></label></li>
+            <li class="no-sep"><label><input type="text" id="appGlobalSearch" class="global-search" placeholder="e.g. doc"/></label></li>
             <li class="no-sep"><button class="btn-global-search">Search</button></li>
             <li><a href="#" class="btn-history">History</a></li>
             <li><a href="#" class="btn-saved-searches">Saved Searches</a></li>
@@ -97,8 +97,8 @@
                     <div id="appListFiltering" class="tab-content">
                         <script id="tmplListFiltering" type="text/x-handlebars-template">
                             <div class="item">
-                                {{#if related}}
-                                {{#list related 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+                                {{#if relations}}
+                                {{#list relations 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}"><span class="type">({{type}})</span> {{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
                                 {{else}}
                                 <ul><li>No Items</li></ul>
                                 {{/if}}
@@ -146,9 +146,9 @@
 
 </div>
 
-<script src="31012014092034/js/app/i18n/en_GB.js"></script>
+<script src="03022014043059/js/app/i18n/en_GB.js"></script>
 
-<script src='31012014092034/js/combined.js' ></script>
+<script src='03022014043059/js/combined.js' ></script>
 
 </body>
 </html>
