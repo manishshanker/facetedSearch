@@ -4,7 +4,7 @@
     APP.controller.DiscoverPage = HAF.Controller.extend({
         autoLoadControls: true,
         autoShowHide: true,
-        injectMessageBus: true,
+        injectLocalMessageBus: true,
         inject: {
             views: ["discoverPage"],
             controls: ["searchList", "breadcrumb", "searchFiltering", "questions", "searchResults"],
@@ -13,7 +13,7 @@
         load: function () {
             var that = this;
             that._super();
-            that.messageBus.subscribe(that, {
+            that.localMessageBus.subscribe(that, {
                 "search-list-hide": function () {
                     hideList(that);
                 },

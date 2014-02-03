@@ -39,7 +39,7 @@
     });
 
     function onSearchListShow(e, ctx) {
-        ctx.parentMessageBus.publish("search-list-show");
+        ctx.messageBus.publish("search-list-show");
         e.preventDefault();
     }
 }(HAF));

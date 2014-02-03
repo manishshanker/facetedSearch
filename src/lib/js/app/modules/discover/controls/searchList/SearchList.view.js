@@ -29,7 +29,7 @@
     }
 
     function onSearchListHide(e, ctx) {
-        ctx.parentMessageBus.publish("search-list-hide");
+        ctx.messageBus.publish("search-list-hide");
         e.preventDefault();
     }
 
