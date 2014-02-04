@@ -14,16 +14,21 @@
         removeList: function (direction, onRemove) {
             var that = this;
             hideAndRemoveList(that, direction, onRemove);
+        },
+        show: function (hideListShowHideControl) {
+            this._super();
+            this.$el.find(".hide-list")[hideListShowHideControl ? "hide" : "show"]();
         }
     });
 
     function addAndShowList(ctx, direction, html) {
         ctx.$el.append(html);
+        var $element = ctx.$el.find(".item").eq(0);
         if (direction === 1) {
-            ctx.$el.find(".item").eq(0).removeClass("hide").addClass("show");
+            $element.removeClass("hide").addClass("show");
         } else {
             window.setTimeout(function () {
-                ctx.$el.find(".item").eq(0).removeClass("hide").addClass("show");
+                $element.removeClass("hide").addClass("show");
             }, 10);
         }
     }
@@ -34,9 +39,10 @@
     }
 
     function hideAndRemoveList(ctx, direction, onRemove) {
-        ctx.$el.find(".item").removeClass("show").addClass(direction === -1 ? "hide" : "hide-back");
+        var $element = ctx.$el.find(".item");
+        $element.removeClass("show").addClass(direction === -1 ? "hide" : "hide-back");
         setTimeout(function () {
-            ctx.$el.find(".item").remove();
+            $element.remove();
             onRemove();
         }, 500);
     }

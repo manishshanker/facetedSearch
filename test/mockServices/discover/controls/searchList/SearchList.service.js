@@ -25,31 +25,26 @@
                 {
                     title: "Basic Materials",
                     id: "11",
-                    subGroup: getMock("11"),
-                    count: 200
+                    subGroup: getMock("11")
                 },
                 {
                     title: "Business Services",
                     id: "12",
-                    subGroup: getMock("12"),
-                    count: 200
+                    subGroup: getMock("12")
                 },
                 {
                     title: "Consumer Cyclicals",
                     id: "13",
-                    subGroup: getMock("13"),
-                    count: 400
+                    subGroup: getMock("13")
                 },
                 {
                     title: "Consumer Non-Cyclicals",
                     id: "15",
-                    subGroup: getMock("15"),
-                    count: 300
+                    subGroup: getMock("15")
                 },
                 {
                     title: "Financials",
                     id: "16",
-                    count: 350,
                     subGroup: {
                         id: "161",
                         title: "Sectors",

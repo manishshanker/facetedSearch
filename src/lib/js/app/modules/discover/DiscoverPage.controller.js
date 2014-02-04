@@ -23,10 +23,10 @@
         },
         routes: {
             "/discover/:id": function (id) {
-                showResults(this, id);
+                showFiltering(this, id);
             },
             "/discover": function () {
-                hideResults(this);
+                hideFiltering(this);
             }
         },
         controlMessages: {
@@ -36,7 +36,7 @@
         }
     });
 
-    function hideResults(ctx) {
+    function hideFiltering(ctx) {
         loadSearchItem(ctx);
         hideSearchFiltering(ctx);
         hideBreadcrumb(ctx);
@@ -44,15 +44,16 @@
         showList(ctx);
     }
 
-    function showResults(ctx, id) {
+    function showFiltering(ctx, id) {
         loadSearchItem(ctx, id);
         showSearchFiltering(ctx);
         showBreadcrumb(ctx, id);
         hideQuestions(ctx);
+        ctx.controls.searchList.show(false);
     }
 
     function showList(ctx) {
-        ctx.controls.searchList.show();
+        ctx.controls.searchList.show(true);
         ctx.views.discoverPage.withoutResults();
         ctx.controls.breadcrumb.hideTopic();
         ctx.controls.searchFiltering.layoutChange();
