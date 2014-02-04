@@ -33,8 +33,7 @@ describe("DiscoverPage.controller", function () {
             controller.load();
             expect(messageBus.subscribe).toHaveBeenCalledWith(jasmine.any(Object), {
                 "search-list-show": jasmine.any(Function),
-                "search-list-hide": jasmine.any(Function),
-                "search-filtering-changed": jasmine.any(Function)
+                "search-list-hide": jasmine.any(Function)
             });
         });
     });
