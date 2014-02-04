@@ -16,6 +16,24 @@
         }
     };
 
+    var STYLE = {
+        parentNode: {
+            color: {background: "#ddd"},
+            radius: 10,
+            fontSize: 14
+        },
+        relationshipNode: {
+            color: {background: "#eea409"},
+            fontColor: "#BD8001"
+        },
+        relationshipEdge: {
+            length: 150,
+            color: "rgba(219, 195, 144, 0.71)"
+        },
+        itemNode: {
+            fontColor: "#555"
+        }
+    };
 
     APP.view.VisualFiltering = HAF.View.extend({
         autoLayout: true,
@@ -52,6 +70,9 @@
         },
         setStateLoading: function() {
             this.$el.addClass("loading");
+        },
+        getStyle: function() {
+            return STYLE;
         }
     });
 

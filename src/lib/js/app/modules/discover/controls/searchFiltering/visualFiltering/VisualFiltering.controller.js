@@ -19,7 +19,7 @@
         },
         update: function (data) {
             var that = this;
-            data = that.services.visualFiltering.transformData(data);
+            data = that.services.visualFiltering.transformData(data, this.views.visualFiltering.getStyle());
             var graphData = getNewDataSet(that);
             graphData.nodes.add(data.nodes);
             graphData.edges.add(data.edges);

@@ -1,4 +1,4 @@
-(function (HAF) {
+(function (HAF, $) {
     "use strict";
 
     APP.service.VisualFiltering = HAF.Service.extend({
@@ -8,40 +8,32 @@
         }
     });
 
-    function transformData(data) {
+    function transformData(data, style) {
         var dataset = {
             nodes: [],
             edges: []
         };
         var parentId = "P_" + data.id;
-        dataset.nodes.push({
+        dataset.nodes.push($.extend({
             id: parentId,
-            label: convertSpaceToNewLineAndAddCount(data.title, data.count),
-            color: {background: "#ddd"},
-            radius: 10,
-            fontSize: 14
-        });
+            label: convertSpaceToNewLineAndAddCount(data.title, data.count)
+        }, style.parentNode));
         HAF.each(data.relations, function (relation) {
             var relationshipId = "R_" + relation.id;
-            dataset.nodes.push({
+            dataset.nodes.push($.extend({
                 id: relationshipId,
-                label: relation.type,
-                color: {background: "#eea409"},
-                fontColor: "#BD8001"
-            });
-            dataset.edges.push({
+                label: relation.type
+            }, style.relationshipNode));
+            dataset.edges.push($.extend({
                 from: parentId,
-                to: relationshipId,
-                length: 150,
-                color: "rgba(219, 195, 144, 0.71)"
-            });
+                to: relationshipId
+            }, style.relationshipEdge));
             HAF.each(relation.items, function (item) {
                 var itemId = "I_" + item.id;
-                dataset.nodes.push({
+                dataset.nodes.push($.extend({
                     id: itemId,
-                    label: convertSpaceToNewLineAndAddCount(item.title, item.count),
-                    fontColor: "#555"
-                });
+                    label: convertSpaceToNewLineAndAddCount(item.title, item.count)
+                }, style.itemNode));
                 dataset.edges.push({from: relationshipId, to: itemId});
             });
         });
@@ -52,4 +44,4 @@
         return (title + "\n(" + count + ")");
     }
 
-}(HAF));
+}(HAF, jQuery));
