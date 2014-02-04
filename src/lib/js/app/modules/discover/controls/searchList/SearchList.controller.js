@@ -33,6 +33,7 @@
             });
             ctx.currentLevel = id ? id.split("_").length : 0;
         });
+        ctx.views.searchList.hideHideListLink(!id);
     }
 
 }(HAF));

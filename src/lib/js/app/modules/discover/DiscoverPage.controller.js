@@ -49,11 +49,10 @@
         showSearchFiltering(ctx);
         showBreadcrumb(ctx, id);
         hideQuestions(ctx);
-        ctx.controls.searchList.show(false);
     }
 
     function showList(ctx) {
-        ctx.controls.searchList.show(true);
+        ctx.controls.searchList.show();
         ctx.views.discoverPage.withoutResults();
         ctx.controls.breadcrumb.hideTopic();
         ctx.controls.searchFiltering.layoutChange();

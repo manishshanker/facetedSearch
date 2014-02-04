@@ -15,9 +15,8 @@
             var that = this;
             hideAndRemoveList(that, direction, onRemove);
         },
-        show: function (hideListShowHideControl) {
-            this._super();
-            this.$el.find(".hide-list")[hideListShowHideControl ? "hide" : "show"]();
+        hideHideListLink: function(hide) {
+            this.$el.find(".hide-list")[hide ? "hide" : "show"]();
         }
     });
 
