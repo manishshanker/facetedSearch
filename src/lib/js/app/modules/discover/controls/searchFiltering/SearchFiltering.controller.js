@@ -31,13 +31,21 @@
             });
             that.currentControl = that.controls.visualFiltering;
         },
-        update: function () {
+        update: function (newData) {
             var that = this;
-            that.services.searchFiltering.fetch(that, function (data) {
-                onUpdate(that, data);
-            });
+            if (newData) {
+                onUpdate(that, newData);
+            } else {
+                getTopLevelData(that);
+            }
         }
     });
+
+    function getTopLevelData(ctx) {
+        ctx.services.searchFiltering.fetch(ctx, function (data) {
+            onUpdate(ctx, data);
+        });
+    }
 
     function onUpdate(ctx, data) {
         ctx.lastDataSet = data;

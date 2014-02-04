@@ -15,8 +15,8 @@
 
     function getChildMock(id) {
         return {
-            title: "Lorem Parent",
-            count: 400,
+            title: "Lorem Parent " + id,
+            count: Math.floor(Math.random() * 500),
             id: id,
             relations: [
                 {
@@ -27,6 +27,21 @@
                         for (var n = 1; n < ((Math.floor(Math.random() * 6)) + 8); n++) {
                             data.push({
                                 id: id + n,
+                                title: "Lorem " + id + n,
+                                count: [100, 200, 400, 50][Math.floor(Math.random() * 4)]
+                            });
+                        }
+                        return data;
+                    })()
+                },
+                {
+                    type: "broader term",
+                    id: "99",
+                    items: (function () {
+                        var data = [];
+                        for (var n = 1; n < ((Math.floor(Math.random() * 6)) + 8); n++) {
+                            data.push({
+                                id: (id*2) + n,
                                 title: "Lorem " + id + n,
                                 count: [100, 200, 400, 50][Math.floor(Math.random() * 4)]
                             });
