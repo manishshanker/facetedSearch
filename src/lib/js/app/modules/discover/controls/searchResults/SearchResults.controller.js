@@ -8,18 +8,18 @@
             templates: ["searchResults"],
             services: ["searchResults"]
         },
-        update: function (data) {
+        update: function () {
             var that = this;
-            that.templates.searchResults.load(function() {
-                that.views.searchResults.render(that.templates.searchResults.process(data));
-            });
-        },
-        fetch: function () {
-            var ctx = this;
-            ctx.services.searchResults.fetch(function (data) {
-                ctx.update(data);
+            that.services.searchResults.fetch(function (data) {
+                onUpdate(that, data);
             });
         }
     });
+
+    function onUpdate(ctx, data) {
+        ctx.templates.searchResults.load(function() {
+            ctx.views.searchResults.render(ctx.templates.searchResults.process(data));
+        });
+    }
 
 }(HAF));

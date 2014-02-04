@@ -65,7 +65,7 @@
         ctx.controls.breadcrumb.showTopic(ctx.controls.searchList.getCurrentFilterInfo());
         ctx.controls.searchFiltering.layoutChange();
         ctx.controls.searchResults.show();
-        ctx.controls.searchResults.fetch();
+        ctx.controls.searchResults.update();
     }
 
     function hideQuestions(ctx) {
@@ -91,15 +91,15 @@
     function showSearchFiltering(ctx) {
         var searchFiltering = ctx.controls.searchFiltering;
         searchFiltering.show();
-        ctx.controls.searchFiltering.fetch();
+        ctx.controls.searchFiltering.update();
     }
 
     function hideSearchFiltering(ctx) {
         ctx.controls.searchFiltering.hide();
     }
 
-    function loadSearchItem(ctx, ids) {
-        ctx.controls.searchList.load(ids);
+    function loadSearchItem(ctx, id) {
+        ctx.controls.searchList.update(id);
     }
 
 }(HAF));

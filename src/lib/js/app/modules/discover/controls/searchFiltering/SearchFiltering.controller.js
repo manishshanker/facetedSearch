@@ -31,14 +31,18 @@
             });
             that.currentControl = that.controls.visualFiltering;
         },
-        update: function (data) {
-            this.lastDataSet = data;
-            this.currentControl.update(this.lastDataSet);
-        },
-        fetch: function() {
-            this.services.searchFiltering.fetch(this, this.update);
+        update: function () {
+            var that = this;
+            that.services.searchFiltering.fetch(that, function (data) {
+                onUpdate(that, data);
+            });
         }
     });
+
+    function onUpdate(ctx, data) {
+        ctx.lastDataSet = data;
+        ctx.currentControl.update(ctx.lastDataSet);
+    }
 
     function onSearchFilteringChanged(id, ctx) {
         ctx.services.searchFiltering.getChild(id, function (data) {
