@@ -12,6 +12,7 @@
             controls: ["visualFiltering", "listFiltering"],
             services: ["searchFiltering"]
         },
+        dataIsDirty: true,
         load: function () {
             var that = this;
             that._super();
@@ -24,7 +25,8 @@
                     that.currentControl = tabName === "appListFiltering" ? that.controls.listFiltering : that.controls.visualFiltering;
 
                     //if the control was rendered already, update it when the tab is switched
-                    if (that.lastDataSet) {
+                    if (that.lastDataSet && that.dataIsDirty) {
+                        that.dataIsDirty = false;
                         that.currentControl.update(that.lastDataSet);
                     }
                 }
@@ -43,6 +45,7 @@
 
     function getTopLevelData(ctx) {
         ctx.services.searchFiltering.fetch(ctx, function (data) {
+            ctx.dataIsDirty = true;
             onUpdate(ctx, data);
         });
     }
@@ -54,6 +57,7 @@
 
     function onSearchFilteringChanged(id, ctx) {
         ctx.services.searchFiltering.getChild(id, function (data) {
+            ctx.dataIsDirty = true;
             ctx.update(data);
         });
     }
