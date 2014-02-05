@@ -1281,7 +1281,13 @@
                             // block the browser events
                             if( (inst.options.drag_block_vertical && Hammer.utils.isVertical(ev.direction)) ||
                                 (inst.options.drag_block_horizontal && !Hammer.utils.isVertical(ev.direction))) {
-                                ev.preventDefault();
+
+
+                                //MS: PATCHED
+                                vis.util.preventDefault(ev);
+                                //ev.preventDefault();
+                                //MS:PATCH END
+
                             }
                             break;
 
@@ -1333,7 +1339,12 @@
 
                     // prevent default when two fingers are on the screen
                     if(inst.options.transform_always_block) {
-                        ev.preventDefault();
+
+                        //MS: PATCHED
+                        vis.util.preventDefault(ev);
+                        //ev.preventDefault();
+                        //MS:PATCH END
+
                     }
 
                     switch(ev.eventType) {
@@ -1414,7 +1425,12 @@
                     }
 
                     if(inst.options.prevent_default) {
-                        ev.preventDefault();
+
+                        //MS: PATCHED
+                        vis.util.preventDefault(ev);
+                        //ev.preventDefault();
+                        //MS:PATCH END
+
                     }
 
                     if(ev.eventType ==  Hammer.EVENT_START) {
@@ -13485,7 +13501,12 @@
             }
 
             // Prevent default actions caused by mouse wheel.
-            event.preventDefault();
+
+            //MS: PATCHED
+            vis.util.preventDefault(event);
+            //event.preventDefault();
+            //MS:PATCH END
+
         };
 
 
