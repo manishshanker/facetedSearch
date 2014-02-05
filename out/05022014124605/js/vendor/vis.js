@@ -13635,11 +13635,6 @@ Graph.prototype._create = function () {
 
   // create the graph canvas (HTML canvas element)
   this.frame.canvas = document.createElement( 'canvas' );
-
-    try {
-        G_vmlCanvasManager.initElement(this.frame.canvas);
-    } catch(e) {}
-
   this.frame.canvas.style.position = 'relative';
   this.frame.appendChild(this.frame.canvas);
   if (!this.frame.canvas.getContext) {
