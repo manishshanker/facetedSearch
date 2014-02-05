@@ -28,7 +28,7 @@
         z-index: 2000;
 	}
 
-	li {
+    li {
 		display: inline-block;
 		position: relative;
 		.opacity(0);
@@ -56,4 +56,19 @@
         right: 0;
     }
 
+}
+
+.lt-ie9 .breadcrumb {
+    visibility: hidden;
+
+    &.show {
+        visibility: visible;
+    }
+
+    li {
+        visibility: hidden;
+        &.show {
+            visibility: visible;
+        }
+    }
 }

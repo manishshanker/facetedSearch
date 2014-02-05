@@ -28,7 +28,7 @@
         font-size: 80%;
     }
 
-	.item {
+    .item {
 		top: 400px;
 		.opacity(0);
 		.transition(opacity 0.5s, top 0.5s);
@@ -58,4 +58,28 @@
 		}
 
 	}
+}
+
+.lt-ie9 {
+    .search-list {
+        visibility: visible;
+        &.hide {
+            visibility: hidden;
+        }
+
+        .item {
+            visibility: hidden;
+            &.show {
+                visibility: visible;
+            }
+
+            &.hide {
+                visibility: hidden;
+            }
+
+            &.hide-back {
+                visibility: hidden;
+            }
+        }
+    }
 }
