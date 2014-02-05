@@ -181,7 +181,12 @@
                 on: function onEvent(gesture, handler){
                     var gestures = gesture.split(' ');
                     for(var t=0; t<gestures.length; t++) {
-                        this.element.addEventListener(gestures[t], handler, false);
+
+                        //MS: PATCH
+                        vis.util.addEventListener(this.element, gestures[t], handler, false);
+                        //this.element.addEventListener(gestures[t], handler, false);
+                        //MS: PATCH END
+
                     }
                     return this;
                 },
@@ -270,7 +275,12 @@
                 bindDom: function(element, type, handler) {
                     var types = type.split(' ');
                     for(var t=0; t<types.length; t++) {
-                        element.addEventListener(types[t], handler, false);
+
+                        //MS: PATCH
+                        vis.util.addEventListener(element, types[t], handler, false);
+                        //element.addEventListener(types[t], handler, false);
+                        //MS: PATCH END
+
                     }
                 },
 
