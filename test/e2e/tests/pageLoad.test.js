@@ -14,11 +14,11 @@ test.describe('Page Loads', function () {
             build();
     });
 
-    test.it('should redirect to introduction', function () {
-        driver.get(util.getURL("/playArea/HAF_Boilerplate/src/index.html"));
+    test.it('should redirect to discover', function () {
+        driver.get(util.getURL("/src/index.html"));
         driver.wait(function () {
             return driver.getCurrentUrl().then(function (url) {
-                return util.getURL("/playArea/HAF_Boilerplate/src/index.html#/introduction") === url;
+                return util.getURL("/src/index.html#/discover") === url;
             });
         }, 1000);
     });
