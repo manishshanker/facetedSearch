@@ -13132,6 +13132,15 @@
 
             // create the graph canvas (HTML canvas element)
             this.frame.canvas = document.createElement( 'canvas' );
+
+            //MS: PATCH TO ADD IE8 SUPPORT
+            try {
+                if (window.G_vmlCanvasManager.initElement) {
+                    window.G_vmlCanvasManager.initElement(this.frame.canvas);
+                }
+            } catch(e) {}
+            //MS: PATCH END
+
             this.frame.canvas.style.position = 'relative';
             this.frame.appendChild(this.frame.canvas);
             if (!this.frame.canvas.getContext) {
