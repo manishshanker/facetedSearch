@@ -119,12 +119,12 @@
             },
 
             onBeforeCompute: function () {
+                ctx.scrollToCenter();
                 ctx.setStateLoading();
             },
 
             onAfterCompute: function () {
                 ctx.setStateLoaded();
-                ctx.scrollToCenter();
             },
 
             onCreateLabel: function (label, node) {
