@@ -4,7 +4,12 @@
     var STYLE = {
         relationshipNode: {
             color: "#999",
-            backgroundColor: "#EFF8FF"
+            backgroundColor: "#B6E1FF"
+        },
+        itemNode: {
+            color: "#000",
+            highlightedBGColor: "#eea409",
+            backgroundColor: "#ddd"
         }
     };
 
@@ -74,7 +79,7 @@
                 height: 20,
                 width: NODE_WIDTH,
                 type: "nodeLine",
-                color: "#23A4FF",
+                color: STYLE.relationshipNode.backgroundColor,
                 lineWidth: 2,
                 align: "center",
                 overridable: true
@@ -83,7 +88,7 @@
             Edge: {
                 type: "bezier",
                 lineWidth: 2,
-                color: "#23A4FF",
+                color: STYLE.relationshipNode.backgroundColor,
                 overridable: true
             },
 
@@ -120,16 +125,16 @@
                     }
                     st.onClick(node.id);
                     if (ctx.lastSelectedNode) {
-                        ctx.lastSelectedNode.style.backgroundColor = "#ddd";
+                        ctx.lastSelectedNode.style.backgroundColor = STYLE.itemNode.backgroundColor;
                     }
-                    style.backgroundColor = "#eea409";
+                    style.backgroundColor = STYLE.itemNode.highlightedBGColor;
                     ctx.lastSelectedNode = label;
                 };
                 style.width = NODE_WIDTH + "px";
                 style.height = 17 + "px";
                 style.cursor = node.data.type === "R" ? "default" : "pointer";
-                style.color = node.data.color || "#000";
-                style.backgroundColor = node.data.backgroundColor || node.data.$bgcolor || "#ddd";
+                style.color = node.data.color || STYLE.itemNode.color;
+                style.backgroundColor = node.data.backgroundColor || node.data.$backgroundColor || STYLE.itemNode.backgroundColor;
                 style.fontSize = "0.7em";
                 style.textAlign = "center";
                 style.textDecoration = node.data.type === "R" ? "none" : "underline";
@@ -138,15 +143,15 @@
 
             onBeforePlotNode: function (node) {
                 if (node.selected) {
-                    node.data.$bgcolor = "#eea409";
+                    node.data.$backgroundColor = STYLE.itemNode.highlightedBGColor;
                 } else {
-                    delete node.data.$color;
+                    delete node.data.$backgroundColor;
                 }
             },
 
             onBeforePlotLine: function (adj) {
                 if (adj.nodeFrom.selected && adj.nodeTo.selected) {
-                    adj.data.$color = "#eea409";
+                    adj.data.$color = STYLE.itemNode.highlightedBGColor;
                     adj.data.$lineWidth = 3;
                 } else {
                     delete adj.data.$color;
@@ -184,5 +189,3 @@
     });
 
 }(HAF, $jit));
-
-
