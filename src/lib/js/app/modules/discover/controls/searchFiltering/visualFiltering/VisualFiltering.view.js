@@ -65,14 +65,19 @@
         $jit.ST.Plot.NodeTypes.implement({
             nodeLine: {
                 render: function (node, canvas, animating) {
-                    if (/expand|contract/.test(animating)) {
+                    if(animating === "expand" || animating === "contract") {
                         var pos = node.pos.getc(true), nodeConfig = this.node;
-                        var width = nodeConfig.width, height = nodeConfig.height;
+                        var width  = nodeConfig.width, height = nodeConfig.height;
                         var alignPos = this.getAlignedPos(pos, width, height);
-                        var ctx = canvas.getCtx();
+                        var ctx = canvas.getCtx(), ort = this.config.orientation;
                         ctx.beginPath();
-                        ctx.moveTo(alignPos.x + width / 2, alignPos.y);
-                        ctx.lineTo(alignPos.x + width / 2, alignPos.y + height);
+                        if(ort === "left" || ort === "right") {
+                            ctx.moveTo(alignPos.x, alignPos.y + height / 2);
+                            ctx.lineTo(alignPos.x + width, alignPos.y + height / 2);
+                        } else {
+                            ctx.moveTo(alignPos.x + width / 2, alignPos.y);
+                            ctx.lineTo(alignPos.x + width / 2, alignPos.y + height);
+                        }
                         ctx.stroke();
                     }
                 }
