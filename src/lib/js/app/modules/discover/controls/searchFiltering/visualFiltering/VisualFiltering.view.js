@@ -1,4 +1,4 @@
-(function (HAF) {
+(function (HAF, $jit) {
     "use strict";
 
     var STYLE = {
@@ -183,6 +183,6 @@
         }
     });
 
-}(HAF));
+}(HAF, $jit));
 
 
