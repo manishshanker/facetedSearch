@@ -15,11 +15,14 @@
         dataset.name = convertSpaceToNewLineAndAddCount(data.title, data.count);
         dataset.data = {};
         dataset.children = [];
+        var relNodeData = $.extend({
+            type: "R"
+        }, style.relationshipNode);
         HAF.each(data.relations, function (relation) {
             var child = {
                 id: relation.id + "___" + timestamp,
                 name: relation.type,
-                data: style.relationshipNode,
+                data: relNodeData,
                 children: []
             };
             HAF.each(relation.items, function (item) {

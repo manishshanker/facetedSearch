@@ -62,28 +62,6 @@
     }
 
     function renderGraph(ctx, graphData) {
-        $jit.ST.Plot.NodeTypes.implement({
-            nodeLine: {
-                render: function (node, canvas, animating) {
-                    if(animating === "expand" || animating === "contract") {
-                        var pos = node.pos.getc(true), nodeConfig = this.node;
-                        var width  = nodeConfig.width, height = nodeConfig.height;
-                        var alignPos = this.getAlignedPos(pos, width, height);
-                        var ctx = canvas.getCtx(), ort = this.config.orientation;
-                        ctx.beginPath();
-                        if(ort === "left" || ort === "right") {
-                            ctx.moveTo(alignPos.x, alignPos.y + height / 2);
-                            ctx.lineTo(alignPos.x + width, alignPos.y + height / 2);
-                        } else {
-                            ctx.moveTo(alignPos.x + width / 2, alignPos.y);
-                            ctx.lineTo(alignPos.x + width / 2, alignPos.y + height);
-                        }
-                        ctx.stroke();
-                    }
-                }
-            }
-        });
-
         var NODE_WIDTH = 150;
 
         var st = new $jit.ST({
@@ -137,6 +115,9 @@
                 label.innerHTML = node.name;
                 var style = label.style;
                 label.onclick = function () {
+                    if (node.data.type === "R") {
+                        return;
+                    }
                     st.onClick(node.id);
                     if (ctx.lastSelectedNode) {
                         ctx.lastSelectedNode.style.backgroundColor = "#ddd";
@@ -146,12 +127,12 @@
                 };
                 style.width = NODE_WIDTH + "px";
                 style.height = 17 + "px";
-                style.cursor = "pointer";
+                style.cursor = node.data.type === "R" ? "default" : "pointer";
                 style.color = node.data.color || "#000";
                 style.backgroundColor = node.data.backgroundColor || node.data.$bgcolor || "#ddd";
                 style.fontSize = "0.7em";
                 style.textAlign = "center";
-                style.textDecoration = "underline";
+                style.textDecoration = node.data.type === "R" ? "none" : "underline";
                 style.paddingTop = "3px";
             },
 
@@ -179,6 +160,28 @@
         ctx.scrollToCenter();
         ctx.st = st;
     }
+
+    $jit.ST.Plot.NodeTypes.implement({
+        nodeLine: {
+            render: function (node, canvas, animating) {
+                if(animating === "expand" || animating === "contract") {
+                    var pos = node.pos.getc(true), nodeConfig = this.node;
+                    var width  = nodeConfig.width, height = nodeConfig.height;
+                    var alignPos = this.getAlignedPos(pos, width, height);
+                    var canvasCtx = canvas.getCtx(), ort = this.config.orientation;
+                    canvasCtx.beginPath();
+                    if(ort === "left" || ort === "right") {
+                        canvasCtx.moveTo(alignPos.x, alignPos.y + height / 2);
+                        canvasCtx.lineTo(alignPos.x + width, alignPos.y + height / 2);
+                    } else {
+                        canvasCtx.moveTo(alignPos.x + width / 2, alignPos.y);
+                        canvasCtx.lineTo(alignPos.x + width / 2, alignPos.y + height);
+                    }
+                    canvasCtx.stroke();
+                }
+            }
+        }
+    });
 
 }(HAF));
 
