@@ -5,7 +5,7 @@
         fetch: function (context, callback) {
             //TODO: make ajax call and send processedResponse
         },
-        getChild: function () {
+        getChild: function (id) {
             //TODO: make ajax call
         }
     });

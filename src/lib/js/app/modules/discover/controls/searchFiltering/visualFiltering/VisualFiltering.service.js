@@ -4,44 +4,37 @@
     APP.service.VisualFiltering = HAF.Service.extend({
         transformData: transformData,
         parseId: function (id) {
-            return id.substr(2);
+            return id.split("___")[0];
         }
     });
 
     function transformData(data, style) {
-        var dataset = {
-            nodes: [],
-            edges: []
-        };
-        var parentId = "P_" + data.id;
-        dataset.nodes.push($.extend({
-            id: parentId,
-            label: convertSpaceToNewLineAndAddCount(data.title, data.count)
-        }, style.parentNode));
+        var dataset = {};
+        var timestamp = new Date().getTime();
+        dataset.id = data.id + "___" + timestamp;
+        dataset.name = convertSpaceToNewLineAndAddCount(data.title, data.count);
+        dataset.data = {};
+        dataset.children = [];
         HAF.each(data.relations, function (relation) {
-            var relationshipId = "R_" + relation.id;
-            dataset.nodes.push($.extend({
-                id: relationshipId,
-                label: relation.type
-            }, style.relationshipNode));
-            dataset.edges.push($.extend({
-                from: parentId,
-                to: relationshipId
-            }, style.relationshipEdge));
+            var child = {
+                id: relation.id + "___" + timestamp,
+                name: relation.type,
+                data: style.relationshipNode,
+                children: []
+            };
             HAF.each(relation.items, function (item) {
-                var itemId = "I_" + item.id;
-                dataset.nodes.push($.extend({
-                    id: itemId,
-                    label: convertSpaceToNewLineAndAddCount(item.title, item.count)
-                }, style.itemNode));
-                dataset.edges.push({from: relationshipId, to: itemId});
+                child.children.push({
+                    id: item.id + "___" + timestamp,
+                    name: convertSpaceToNewLineAndAddCount(item.title, item.count)
+                });
             });
+            dataset.children.push(child);
         });
         return dataset;
     }
 
     function convertSpaceToNewLineAndAddCount(title, count) {
-        return (title + "\n(" + count + ")");
+        return (title + " (" + count + ")");
     }
 
 }(HAF, jQuery));

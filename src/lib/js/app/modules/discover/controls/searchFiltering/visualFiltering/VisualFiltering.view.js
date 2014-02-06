@@ -1,37 +1,10 @@
 (function (HAF) {
     "use strict";
 
-    var GRAPH_OPTIONS = {
-        nodes: {
-            fontSize: 11,
-            color: {
-                background: "#cccccc"
-            },
-            shape: "dot",
-            radius: 3
-        },
-        edges: {
-            color: "#ddd",
-            length: 50
-        }
-    };
-
     var STYLE = {
-        parentNode: {
-            color: {background: "#ddd"},
-            radius: 10,
-            fontSize: 14
-        },
         relationshipNode: {
-            color: {background: "#eea409"},
-            fontColor: "#BD8001"
-        },
-        relationshipEdge: {
-            length: 150,
-            color: "rgba(219, 195, 144, 0.71)"
-        },
-        itemNode: {
-            fontColor: "#555"
+            color: "#999",
+            backgroundColor: "#EFF8FF"
         }
     };
 
@@ -44,71 +17,162 @@
         render: function (data) {
             var that = this;
             that.lastDataSet = data;
-            hideGraph(that);
-            setTimeout(function () {
-                renderGraph(that, data);
-                showGraph(that);
-                that.$el.removeClass("loading");
-            }, 300);
+            renderGraph(that, data);
+            that.setStateLoaded();
+            that.loaded = true;
         },
         layoutChange: function () {
             var that = this;
             if (!that.loaded) {
                 return;
             }
-            that.$el.find(".graph").css({
-                opacity: 0
-            });
-            clearTimeout(this.rerenderTimer);
-            this.rerenderTimer = setTimeout(function () {
-                that.render(that.lastDataSet);
-                that.graph.redraw();
-                setTimeout(function () {
-                    showGraph(that);
-                }, 500);
+            clearTimeout(that.rerenderTimer);
+            that.rerenderTimer = setTimeout(function () {
+                that.scrollToCenter();
             }, 500);
         },
-        setStateLoading: function() {
+        setStateLoading: function () {
+            positionLoadingMessage(this);
             this.$el.addClass("loading");
+        },
+        setStateLoaded: function () {
+            this.$el.removeClass("loading");
         },
         getStyle: function() {
             return STYLE;
+        },
+        scrollToCenter: function() {
+            var that = this;
+            that.$el.animate({
+                scrollTop: that.$el.find(".graph").height()/2 - (that.$el.height()/2),
+                scrollLeft: that.$el.find(".graph").width()/2 - (that.$el.width()/2)
+            }, 200, function() {
+                positionLoadingMessage(that);
+            });
         }
     });
 
-    function hideGraph(that) {
-        that.$el.find(".graph").animate({
-            opacity: 0
-        }, 200);
+    function positionLoadingMessage(ctx) {
+        ctx.$el.find(".loading-message").css({
+            top: 20 + ctx.$el.scrollTop(),
+            left: 20 + ctx.$el.scrollLeft(),
+            bottom: "auto",
+            right: "auto"
+        });
     }
 
-    function showGraph(that) {
-        that.$el.find(".graph").animate({
-            opacity: 1
-        }, 200);
-    }
+    function renderGraph(ctx, graphData) {
+        $jit.ST.Plot.NodeTypes.implement({
+            nodeLine: {
+                render: function (node, canvas, animating) {
+                    if (/expand|contract/.test(animating)) {
+                        var pos = node.pos.getc(true), nodeConfig = this.node;
+                        var width = nodeConfig.width, height = nodeConfig.height;
+                        var alignPos = this.getAlignedPos(pos, width, height);
+                        var ctx = canvas.getCtx();
+                        ctx.beginPath();
+                        ctx.moveTo(alignPos.x + width / 2, alignPos.y);
+                        ctx.lineTo(alignPos.x + width / 2, alignPos.y + height);
+                        ctx.stroke();
+                    }
+                }
+            }
+        });
 
-    function renderGraph(that, data) {
-        var container = that.$el.find(".graph")[0];
-        that.graph = that.graph || new vis.Graph(container, {}, GRAPH_OPTIONS);
-        that.graph.setData(data);
-        if (!that.loaded) {
-            vis.events.addListener(that.graph, "select", function () {
-                onSelect(that);
-            });
-            that.loaded = true;
-        }
-    }
+        var NODE_WIDTH = 150;
 
-    function onSelect(ctx) {
-        var selectedItems = ctx.graph.getSelection();
-        var selectedItemId = (selectedItems && selectedItems.length && selectedItems[0]) || null;
-        if (ctx.lastSelectedNode === selectedItemId) {
-            ctx.messageBus.publish("search-filtering-changed", selectedItemId);
-            ctx.lastSelectedNode = null;
-        }
-        ctx.lastSelectedNode = selectedItemId;
-        ctx.graph.setSelection([]);
+        var st = new $jit.ST({
+            injectInto: "appVisualFilteringGraph",
+            duration: 500,
+            transition: $jit.Trans.Quart.easeInOut,
+            levelDistance: 40,
+            levelsToShow: 2,
+            Node: {
+                height: 20,
+                width: NODE_WIDTH,
+                type: "nodeLine",
+                color: "#23A4FF",
+                lineWidth: 2,
+                align: "center",
+                overridable: true
+            },
+
+            Edge: {
+                type: "bezier",
+                lineWidth: 2,
+                color: "#23A4FF",
+                overridable: true
+            },
+
+            request: function (nodeId, level, onComplete) {
+                ctx.cacheData = ctx.cacheData || {};
+                if (ctx.cacheData[nodeId]) {
+                    onComplete.onComplete(nodeId, ctx.cacheData[nodeId]);
+                    ctx.setStateLoaded();
+                } else {
+                    ctx.messageBus.publish("app-search-filtering-changed", {nodeId: nodeId, level: level, callback: function (data) {
+                        ctx.cacheData[nodeId] = data;
+                        onComplete.onComplete(nodeId, data);
+                        ctx.setStateLoaded();
+                    }});
+                }
+            },
+
+            onBeforeCompute: function () {
+                ctx.setStateLoading();
+            },
+
+            onAfterCompute: function () {
+                ctx.$el.remove("loading");
+            },
+
+            onCreateLabel: function (label, node) {
+                label.id = node.id;
+                label.innerHTML = node.name;
+                var style = label.style;
+                label.onclick = function () {
+                    st.onClick(node.id);
+                    if (ctx.lastSelectedNode) {
+                        ctx.lastSelectedNode.style.backgroundColor = "#ddd";
+                    }
+                    style.backgroundColor = "#eea409";
+                    ctx.lastSelectedNode = label;
+                    ctx.scrollToCenter();
+                };
+                style.width = NODE_WIDTH + "px";
+                style.height = 17 + "px";
+                style.cursor = "pointer";
+                style.color = node.data.color || "#000";
+                style.backgroundColor = node.data.backgroundColor || node.data.$bgcolor || "#ddd";
+                style.fontSize = "0.7em";
+                style.textAlign = "center";
+                style.textDecoration = "underline";
+                style.paddingTop = "3px";
+            },
+
+            onBeforePlotNode: function (node) {
+                if (node.selected) {
+                    node.data.$bgcolor = "#eea409";
+                } else {
+                    delete node.data.$color;
+                }
+            },
+
+            onBeforePlotLine: function (adj) {
+                if (adj.nodeFrom.selected && adj.nodeTo.selected) {
+                    adj.data.$color = "#eea409";
+                    adj.data.$lineWidth = 3;
+                } else {
+                    delete adj.data.$color;
+                    delete adj.data.$lineWidth;
+                }
+            }
+        });
+        st.loadJSON(graphData);
+        st.compute();
+        st.onClick(st.root);
+        ctx.scrollToCenter();
+        ctx.st = st;
     }
 
 }(HAF));
