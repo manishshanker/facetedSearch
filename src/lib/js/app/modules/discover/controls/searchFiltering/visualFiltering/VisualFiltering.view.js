@@ -123,7 +123,8 @@
             },
 
             onAfterCompute: function () {
-                ctx.$el.remove("loading");
+                ctx.setStateLoaded();
+                ctx.scrollToCenter();
             },
 
             onCreateLabel: function (label, node) {
@@ -137,7 +138,6 @@
                     }
                     style.backgroundColor = "#eea409";
                     ctx.lastSelectedNode = label;
-                    ctx.scrollToCenter();
                 };
                 style.width = NODE_WIDTH + "px";
                 style.height = 17 + "px";
