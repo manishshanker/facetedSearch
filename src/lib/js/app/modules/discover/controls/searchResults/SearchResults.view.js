@@ -1,7 +1,7 @@
 (function (HAF, $) {
     "use strict";
 
-    APP.view.SearchResults = HAF.View.extend({
+    ICEX.view.SearchResults = HAF.View.extend({
         container: "#appSearchResults",
         bindings: {
             "mouseenter .results-item": function (e, item) {

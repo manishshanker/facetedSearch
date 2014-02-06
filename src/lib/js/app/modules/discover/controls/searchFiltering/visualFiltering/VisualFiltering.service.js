@@ -1,7 +1,7 @@
 (function (HAF, $) {
     "use strict";
 
-    APP.service.VisualFiltering = HAF.Service.extend({
+    ICEX.service.VisualFiltering = HAF.Service.extend({
         transformData: transformData,
         parseId: function (id) {
             return id.split("___")[0];

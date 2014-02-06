@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.SearchResults = HAF.Controller.extend({
+    ICEX.controller.SearchResults = HAF.Controller.extend({
         autoShowHide: true,
         inject: {
             views: ["searchResults"],

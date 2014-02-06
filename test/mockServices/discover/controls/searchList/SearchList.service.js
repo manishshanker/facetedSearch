@@ -1,7 +1,7 @@
-(function (APP) {
+(function (ICEX) {
     "use strict";
 
-    APP.service.SearchList = APP.service.SearchList.extend({
+    ICEX.service.SearchList = ICEX.service.SearchList.extend({
         cachedResultData: null,
         fetch: function (context, ids, callback) {
             callback = callback || this.updated;
@@ -103,4 +103,4 @@
         };
     }
 
-}(APP));
+}(ICEX));

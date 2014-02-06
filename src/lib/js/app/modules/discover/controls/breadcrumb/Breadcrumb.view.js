@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.view.Breadcrumb = HAF.View.extend({
+    ICEX.view.Breadcrumb = HAF.View.extend({
         level: 0,
         container: "#appBreadcrumb",
         render: function (html) {

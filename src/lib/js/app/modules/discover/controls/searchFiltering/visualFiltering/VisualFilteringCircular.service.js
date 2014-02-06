@@ -1,7 +1,7 @@
 (function (HAF, $) {
     "use strict";
 
-    APP.service.VisualFilteringCircular = HAF.Service.extend({
+    ICEX.service.VisualFilteringCircular = HAF.Service.extend({
         transformData: transformData,
         parseId: function (id) {
             return id.substr(2);

@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.service.SearchFiltering = HAF.Service.extend({
+    ICEX.service.SearchFiltering = HAF.Service.extend({
         fetch: function (context, callback) {
             //TODO: make ajax call and send processedResponse
         },

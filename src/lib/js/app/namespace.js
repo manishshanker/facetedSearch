@@ -1,12 +1,12 @@
-(function (APP, window) {
+(function (ICEX, window) {
     "use strict";
 
-    APP = APP || {};
-    APP.controller = {};
-    APP.service = {};
-    APP.view = {};
-    APP.template = {};
-    APP.dependency = {};
+    ICEX = ICEX || {};
+    ICEX.controller = {};
+    ICEX.service = {};
+    ICEX.view = {};
+    ICEX.template = {};
+    ICEX.dependency = {};
 
-    window.APP = APP;
-}(window.APP, window));
+    window.ICEX = ICEX;
+}(window.ICEX, window));

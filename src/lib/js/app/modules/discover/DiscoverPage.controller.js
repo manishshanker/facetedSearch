@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.DiscoverPage = HAF.Controller.extend({
+    ICEX.controller.DiscoverPage = HAF.Controller.extend({
         autoLoadControls: true,
         autoShowHide: true,
         injectLocalMessageBus: true,

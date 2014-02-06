@@ -13,7 +13,7 @@
         }
     };
 
-    APP.view.VisualFiltering = HAF.View.extend({
+    ICEX.view.VisualFiltering = HAF.View.extend({
         autoLayout: true,
         container: "#appVisualFiltering",
         graph: null,

@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.view.Questions = HAF.View.extend({
+    ICEX.view.Questions = HAF.View.extend({
         container: "#appQuestions"
     });
 

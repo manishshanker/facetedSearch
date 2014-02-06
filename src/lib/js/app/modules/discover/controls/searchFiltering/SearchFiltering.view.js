@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.view.SearchFiltering = HAF.View.extend({
+    ICEX.view.SearchFiltering = HAF.View.extend({
         container: "#appSearchFiltering",
         render: function() {
             var that = this;

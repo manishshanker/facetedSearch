@@ -1,7 +1,7 @@
 (function (HAF, $) {
     "use strict";
 
-    APP.service.SearchList = HAF.Service.extend({
+    ICEX.service.SearchList = HAF.Service.extend({
         cachedResultData: null,
         currentFilterInfo: null,
         fetch: function (context, ids, callback) {

@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.SearchFiltering = HAF.Controller.extend({
+    ICEX.controller.SearchFiltering = HAF.Controller.extend({
         currentControl: null,
         autoLoadControls: true,
         autoLayout: true,

@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    APP.service.SearchFiltering = APP.service.SearchFiltering.extend({
+    ICEX.service.SearchFiltering = ICEX.service.SearchFiltering.extend({
         fetch: function (context, callback) {
             callback = callback || HAF.noop;
             callback.call(context, getMockData());

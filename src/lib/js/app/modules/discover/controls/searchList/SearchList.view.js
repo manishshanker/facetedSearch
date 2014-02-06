@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.view.SearchList = HAF.View.extend({
+    ICEX.view.SearchList = HAF.View.extend({
         container: "#appSearchList",
         bindings: {
             "click .hide-list": function (e) {

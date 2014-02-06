@@ -3,7 +3,7 @@
 
     var cachedSearchResponse = {};
 
-    APP.controller.GlobalSearch = HAF.Controller.extend({
+    ICEX.controller.GlobalSearch = HAF.Controller.extend({
         inject: function () {
             return {
                 views: ["globalSearch"],

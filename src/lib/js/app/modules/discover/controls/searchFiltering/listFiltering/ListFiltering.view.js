@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.view.ListFiltering = HAF.View.extend({
+    ICEX.view.ListFiltering = HAF.View.extend({
         container: "#appListFiltering"
     });
 

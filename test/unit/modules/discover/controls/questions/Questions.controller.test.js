@@ -3,7 +3,7 @@ describe("Questions.controller", function () {
 
     describe(".init", function () {
         it("should initialise without error", function () {
-            var controller = new APP.controller.Questions();
+            var controller = new ICEX.controller.Questions();
         });
     });
 

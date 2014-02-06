@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.Questions = HAF.Controller.extend({
+    ICEX.controller.Questions = HAF.Controller.extend({
         autoShowHide: true,
         inject: {
             views: ["questions"]

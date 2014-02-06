@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
 
-    APP.service.GlobalSearch = APP.service.GlobalSearch.extend({
+    ICEX.service.GlobalSearch = ICEX.service.GlobalSearch.extend({
         fetch: function (requestData, callback) {
             callback(mockData(requestData.term));
         }

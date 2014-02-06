@@ -1,11 +1,11 @@
 (function (HAF) {
     "use strict";
 
-    HAF.init(APP, APP.i18nT);
+    HAF.init(ICEX, ICEX.i18nT);
 
     HAF.each({
-        discoverPage: new APP.controller.DiscoverPage(),
-        search: new APP.controller.GlobalSearch()
+        discoverPage: new ICEX.controller.DiscoverPage(),
+        search: new ICEX.controller.GlobalSearch()
     }, function(module) {
         module.load();
     });

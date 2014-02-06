@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    APP.serviceURL = {
+    ICEX.serviceURL = {
         newsList: {
             fetch: ""
         }

@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.Breadcrumb = HAF.Controller.extend({
+    ICEX.controller.Breadcrumb = HAF.Controller.extend({
         autoShowHide: true,
         inject: {
             templates: ["breadcrumbItem"],

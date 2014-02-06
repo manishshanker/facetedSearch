@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.VisualFiltering = HAF.Controller.extend({
+    ICEX.controller.VisualFiltering = HAF.Controller.extend({
         autoLayout: true,
         injectLocalMessageBus: true,
         inject: {

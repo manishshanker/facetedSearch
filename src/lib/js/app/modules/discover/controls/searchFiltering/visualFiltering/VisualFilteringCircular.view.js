@@ -35,7 +35,7 @@
         }
     };
 
-    APP.view.VisualFilteringCircular = HAF.View.extend({
+    ICEX.view.VisualFilteringCircular = HAF.View.extend({
         autoLayout: true,
         container: "#appVisualFiltering",
         graph: null,

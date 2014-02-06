@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.SearchList = HAF.Controller.extend({
+    ICEX.controller.SearchList = HAF.Controller.extend({
         autoShowHide: true,
         currentLevel: -1,
         inject: {

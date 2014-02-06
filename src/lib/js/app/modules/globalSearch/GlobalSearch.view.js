@@ -1,7 +1,7 @@
 (function (HAF, $) {
     "use strict";
 
-    APP.view.GlobalSearch = HAF.View.extend({
+    ICEX.view.GlobalSearch = HAF.View.extend({
         container: "#appGlobalSearch",
         render: function (dataSource, templateProvider, onSelect) {
             var that = this;

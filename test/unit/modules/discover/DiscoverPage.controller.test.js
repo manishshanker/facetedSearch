@@ -4,7 +4,7 @@ describe("DiscoverPage.controller", function () {
     var $fragments;
 
     beforeEach(function () {
-        HAF.init(APP, APP.i18nT);
+        HAF.init(ICEX, ICEX.i18nT);
         $fragments = $("<div id='fragments'></div>");
         $fragments.html("<div id='tmplSearchList'>{{title}}</div><div id='tmplSearchResults'>{{title}}</div><div id='tmplBreadcrumbItem'>{{title}}</div><div id='tmplListFiltering'>{{title}}</div>");
         $("body").append($fragments);
@@ -16,7 +16,7 @@ describe("DiscoverPage.controller", function () {
 
     describe(".init", function () {
         it("should initialise without error", function () {
-            var controller = new APP.controller.DiscoverPage();
+            var controller = new ICEX.controller.DiscoverPage();
             controller.load();
         });
     });
@@ -25,7 +25,7 @@ describe("DiscoverPage.controller", function () {
         it("should subscribe to messages", function () {
             var messageBus = new HAF.Messaging();
             spyOn(messageBus, "subscribe");
-            var controller = new APP.controller.DiscoverPage({
+            var controller = new ICEX.controller.DiscoverPage({
                 inject: {
                     localMessageBus: messageBus
                 }

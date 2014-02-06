@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.controller.ListFiltering = HAF.Controller.extend({
+    ICEX.controller.ListFiltering = HAF.Controller.extend({
         inject: {
             templates: ["listFiltering"],
             views: ["listFiltering"],

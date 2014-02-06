@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.service.ListFiltering = HAF.Service.extend({
+    ICEX.service.ListFiltering = HAF.Service.extend({
         transformData: transformData
     });
 

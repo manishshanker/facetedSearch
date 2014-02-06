@@ -1,7 +1,7 @@
 (function (HAF) {
     "use strict";
 
-    APP.service.SearchResults = HAF.Service.extend({
+    ICEX.service.SearchResults = HAF.Service.extend({
         fetch: function (callback) {
             setTimeout(function () {
                 callback(getMockData());
