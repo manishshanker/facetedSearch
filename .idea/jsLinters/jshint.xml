@@ -63,7 +63,7 @@
     <option passfail="false" />
     <option white="false" />
     <option maxerr="50" />
-    <option predef="HAF, ICEX, Handlebars, jQuery, vis, confirm, describe, it, jasmine, expect, spyOn, $, beforeEach, afterEach, Object" />
+    <option predef="HAF, ICEX, Handlebars, jQuery, vis, confirm, describe, it, jasmine, expect, spyOn, $, beforeEach, afterEach, Object, requirejs, define, require" />
   </component>
 </project>
 

@@ -17,20 +17,8 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
     <!--MERGE STYLES-->
-    <link rel="stylesheet" type="text/css" href="lib/css/vendor/jquery-ui-1.10.4.custom.css" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/vendor/reset.less" />
     <link rel="stylesheet/less" type="text/css" href="lib/css/main.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/itemList.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/header.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/navigation.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/discoverPage.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/breadcrumb.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/listFiltering.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/searchList.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/searchFiltering.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/searchResults.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/globalSearch.less" />
-    <link rel="stylesheet/less" type="text/css" href="lib/css/tabs.less" />
+	<script> less = { env: "production" /*"development"*/}; </script>
     <script src="lib/js/vendor/---less.min.js"></script>
     <!--/MERGE STYLES-->
 
@@ -127,13 +115,13 @@
                 </div>
 	            <div id="appSearchResults">
                     <script id="tmplSearchResults" type="text/x-handlebars-template">
-                        {{#list results 'results'}}
-                            <h3>{{#if pdfLink}}<a href="{{pdfLink}}" class="pdf-icon"></a>{{/if}}{{#if unlock}}<a href="{{unlockUrl}}" class="lock-icon"></a>{{/if}}{{title}}</h3>
-                            <h4>{{subTitle}}</h4>
-                            <h5>{{contributor}}</h5>
-                            <p>{{description}}</p>
-                            {{#list tags 'tags'}}<span>{{name}}</span>{{/list}}<a href="#" class="show-more">show more...</a><a href="#" class="show-less">show less</a>
-                        {{/list}}
+                    {{#list results 'results'}}
+                        <h3>{{#if pdfLink}}<a href="{{pdfLink}}" class="pdf-icon"></a>{{/if}}{{#if unlock}}<a href="{{unlockUrl}}" class="lock-icon"></a>{{/if}}{{title}}</h3>
+                        <h4>{{subTitle}}</h4>
+                        <h5>{{contributor}}</h5>
+                        <p>{{description}}</p>
+                        {{#list tags 'tags'}}<span>{{name}}</span>{{/list}}<a href="#" class="show-more">show more...</a><a href="#" class="show-less">show less</a>
+                    {{/list}}
                     </script>
 	            </div>
             </div>
@@ -168,53 +156,7 @@
 <script src="lib/js/app/i18n/en_GB.js"></script>
 
 <!--MERGE SCRIPTS-->
-<script src="lib/js/vendor/jquery.min.js"></script>
-<script src="lib/js/vendor/handlebars-v1.1.2.js"></script>
-<script src="lib/js/vendor/HAF.min.js"></script>
-<script src="lib/js/vendor/jit.js"></script>
-<script src="lib/js/vendor/vis.min.patched.js"></script>
-<script src="lib/js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
-
-<script src="lib/js/app/namespace.js"></script>
-<script src="lib/js/app/serviceURLs.js"></script>
-
-<script src="lib/js/app/plugins/jquery.tab.js"></script>
-<script src="lib/js/app/plugins/hb.urlWithBaseHelper.js"></script>
-<script src="lib/js/app/modules/globalSearch/GlobalSearch.controller.js"></script>
-<script src="lib/js/app/modules/globalSearch/GlobalSearch.template.js"></script>
-<script src="lib/js/app/modules/globalSearch/GlobalSearch.service.js"></script>
-<script src="lib/js/app/modules/globalSearch/GlobalSearch.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.controller.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.service.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/listFiltering/ListFiltering.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.controller.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.service.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFilteringCircular.service.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFilteringCircular.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchList/SearchList.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchList/SearchList.service.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchList/SearchList.controller.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.service.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.controller.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchFiltering/SearchFiltering.dependency.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.service.js"></script>
-<script src="lib/js/app/modules/discover/controls/searchResults/SearchResults.controller.js"></script>
-<script src="lib/js/app/modules/discover/controls/questions/Questions.controller.js"></script>
-<script src="lib/js/app/modules/discover/controls/questions/Questions.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/breadcrumb/Breadcrumb.view.js"></script>
-<script src="lib/js/app/modules/discover/controls/breadcrumb/Breadcrumb.controller.js"></script>
-<script src="lib/js/app/modules/discover/DiscoverPage.view.js"></script>
-<script src="lib/js/app/modules/discover/DiscoverPage.controller.js"></script>
-
-<script src="../test/mockServices/discover/controls/searchFiltering/SearchFiltering.service.js"></script>
-<script src="../test/mockServices/discover/controls/searchList/SearchList.service.js"></script>
-<script src="../test/mockServices/globalSearch/GlobalSearch.service.js"></script>
-
-<script src="lib/js/app/appCache.js"></script>
-<script src="lib/js/app/main.js"></script>
+<script data-main="lib/js/app/---init" src="lib/js/vendor/---require.js"></script>
 <!--/MERGE SCRIPTS-->
 
 </body>
