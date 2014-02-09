@@ -1,7 +1,0 @@
-{{#list results 'results'}}
-	<h3>{{#if pdfLink}}<a href="{{pdfLink}}" class="pdf-icon"></a>{{/if}}{{#if unlock}}<a href="{{unlockUrl}}" class="lock-icon"></a>{{/if}}{{title}}</h3>
-	<h4>{{subTitle}}</h4>
-	<h5>{{contributor}}</h5>
-	<p>{{description}}</p>
-    {{#list tags 'tags'}}<span>{{name}}</span>{{/list}}<a href="#" class="show-more">show more...</a><a href="#" class="show-less">show less</a>
-{{/list}}
