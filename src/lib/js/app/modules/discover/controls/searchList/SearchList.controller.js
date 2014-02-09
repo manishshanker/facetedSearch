@@ -7,7 +7,7 @@
         inject: {
             views: ["searchList"],
             templates: {
-                searchList: "tmpl!searchList"
+                searchList: "tmpl!SearchList"
             },
             services: ["searchList"]
         },

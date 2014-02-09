@@ -5,7 +5,7 @@
         autoShowHide: true,
         inject: {
             templates: {
-                breadcrumbItem: "tmpl!breadcrumbItem"
+                breadcrumbItem: "tmpl!BreadcrumbItem"
             },
             views: ["breadcrumb"]
         },

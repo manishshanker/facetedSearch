@@ -4,7 +4,7 @@
     ICEX.controller.ListFiltering = HAF.Controller.extend({
         inject: {
             templates: {
-                listFiltering: "tmpl!listFiltering"
+                listFiltering: "tmpl!ListFiltering"
             },
             views: ["listFiltering"],
             services: ["listFiltering"]

@@ -6,7 +6,7 @@
         inject: {
             views: ["searchResults"],
             templates: {
-                searchResults: "tmpl!searchResults"
+                searchResults: "tmpl!SearchResults"
             },
             services: ["searchResults"]
         },
