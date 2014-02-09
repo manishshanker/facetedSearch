@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.SearchResults = HAF.Controller.extend({
+    ICEX.controller.SearchResults = Mettle.Controller.extend({
         autoShowHide: true,
         inject: {
             views: ["searchResults"],
@@ -24,4 +24,4 @@
         });
     }
 
-}(HAF));
+}(Mettle));

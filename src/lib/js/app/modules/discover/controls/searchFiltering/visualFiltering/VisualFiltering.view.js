@@ -1,4 +1,4 @@
-(function (HAF, $jit) {
+(function (Mettle, $jit) {
     "use strict";
 
     var STYLE = {
@@ -13,7 +13,7 @@
         }
     };
 
-    ICEX.view.VisualFiltering = HAF.View.extend({
+    ICEX.view.VisualFiltering = Mettle.View.extend({
         autoLayout: true,
         container: "#appVisualFiltering",
         graph: null,
@@ -188,4 +188,4 @@
         }
     });
 
-}(HAF, $jit));
+}(Mettle, $jit));

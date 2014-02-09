@@ -11,8 +11,8 @@ load({dependencyMap: {
         file: "plugins/jquery.tab",
         deps: ["jquery", "jqueryUI"]
     },
-    HAF: {
-        file: "../vendor/HAF.min",
+    Mettle: {
+        file: "../vendor/Mettle.min",
         deps: ["jquery", "handlebars"]
     },
     hbUrlWithBaseHelper: {
@@ -28,11 +28,11 @@ load({dependencyMap: {
     },
     "GlobalSearchServiceTemplate": {
         file: "modules/globalSearch/GlobalSearch.template",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "GlobalSearchService": {
         file: "modules/globalSearch/GlobalSearch.service",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "GlobalSearchServiceMock": {
         file: "../../../../test/mockServices/globalSearch/GlobalSearch.service",
@@ -40,7 +40,7 @@ load({dependencyMap: {
     },
     "GlobalSearchView": {
         file: "modules/globalSearch/GlobalSearch.view",
-        deps: ["HAF", "jqueryUI"]
+        deps: ["Mettle", "jqueryUI"]
     },
     "ListFilteringController": {
         file: "modules/discover/controls/searchFiltering/listFiltering/ListFiltering.controller",
@@ -48,11 +48,11 @@ load({dependencyMap: {
     },
     "ListFilteringService": {
         file: "modules/discover/controls/searchFiltering/listFiltering/ListFiltering.service",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "ListFilteringView": {
         file: "modules/discover/controls/searchFiltering/listFiltering/ListFiltering.view",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "VisualFilteringController": {
         file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.controller",
@@ -60,27 +60,27 @@ load({dependencyMap: {
     },
     "VisualFilteringService": {
         file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.service",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
 //    "VisualFilteringCircularService": {
 //        file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFilteringCircular.service",
-//        deps: ["HAF"]
+//        deps: ["Mettle"]
 //    },
 //    "VisualFilteringCircularView": {
 //        file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFilteringCircular.view",
-//        deps: ["HAF", "vis"]
+//        deps: ["Mettle", "vis"]
 //    },
     "VisualFilteringView": {
         file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.view",
-        deps: ["HAF", "jit"]
+        deps: ["Mettle", "jit"]
     },
     "SearchListView": {
         file: "modules/discover/controls/searchList/SearchList.view",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "SearchListService": {
         file: "modules/discover/controls/searchList/SearchList.service",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "SearchListServiceMock": {
         file: "../../../../test/mockServices/discover/controls/searchList/SearchList.service",
@@ -93,11 +93,11 @@ load({dependencyMap: {
 
     "SearchFilteringView": {
         file: "modules/discover/controls/searchFiltering/SearchFiltering.view",
-        deps: ["HAF", "jqueryTab"]
+        deps: ["Mettle", "jqueryTab"]
     },
     "SearchFilteringService": {
         file: "modules/discover/controls/searchFiltering/SearchFiltering.service",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "SearchFilteringController": {
         file: "modules/discover/controls/searchFiltering/SearchFiltering.controller",
@@ -113,11 +113,11 @@ load({dependencyMap: {
 
     "SearchResultsView": {
         file: "modules/discover/controls/searchResults/SearchResults.view",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "SearchResultsService": {
         file: "modules/discover/controls/searchResults/SearchResults.service",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "SearchResultsController": {
         file: "modules/discover/controls/searchResults/SearchResults.controller",
@@ -129,11 +129,11 @@ load({dependencyMap: {
     },
     "QuestionsView": {
         file: "modules/discover/controls/questions/Questions.view",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "BreadcrumbView": {
         file: "modules/discover/controls/breadcrumb/Breadcrumb.view",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "BreadcrumbController": {
         file: "modules/discover/controls/breadcrumb/Breadcrumb.controller",
@@ -141,7 +141,7 @@ load({dependencyMap: {
     },
     "DiscoverPageView": {
         file: "modules/discover/DiscoverPage.view",
-        deps: ["HAF"]
+        deps: ["Mettle"]
     },
     "DiscoverPageController": {
         file: "modules/discover/DiscoverPage.controller",
@@ -153,7 +153,7 @@ load({dependencyMap: {
     main: {
         file: "main",
         deps: [
-            "HAF", "namespace", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
+            "Mettle", "namespace", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
             "GlobalSearchController", "DiscoverPageController"
         ]
     }

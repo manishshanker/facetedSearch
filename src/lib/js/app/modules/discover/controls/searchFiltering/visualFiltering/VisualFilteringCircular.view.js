@@ -1,4 +1,4 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
     var GRAPH_OPTIONS = {
@@ -35,7 +35,7 @@
         }
     };
 
-    ICEX.view.VisualFilteringCircular = HAF.View.extend({
+    ICEX.view.VisualFilteringCircular = Mettle.View.extend({
         autoLayout: true,
         container: "#appVisualFiltering",
         graph: null,
@@ -113,6 +113,6 @@
         ctx.graph.setSelection([]);
     }
 
-}(HAF));
+}(Mettle));
 
 

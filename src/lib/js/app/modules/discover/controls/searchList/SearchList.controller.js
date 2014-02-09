@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.SearchList = HAF.Controller.extend({
+    ICEX.controller.SearchList = Mettle.Controller.extend({
         autoShowHide: true,
         currentLevel: -1,
         inject: {
@@ -38,4 +38,4 @@
         ctx.views.searchList.hideHideListLink(!id);
     }
 
-}(HAF));
+}(Mettle));

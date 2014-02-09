@@ -1,7 +1,7 @@
-(function (HAF, $) {
+(function (Mettle, $) {
     "use strict";
 
-    ICEX.service.VisualFilteringCircular = HAF.Service.extend({
+    ICEX.service.VisualFilteringCircular = Mettle.Service.extend({
         transformData: transformData,
         parseId: function (id) {
             return id.substr(2);
@@ -18,7 +18,7 @@
             id: parentId,
             label: convertSpaceToNewLineAndAddCount(data.title, data.count)
         }, style.parentNode));
-        HAF.each(data.relations, function (relation) {
+        Mettle.each(data.relations, function (relation) {
             var relationshipId = "R_" + relation.id;
             dataset.nodes.push($.extend({
                 id: relationshipId,
@@ -28,7 +28,7 @@
                 from: parentId,
                 to: relationshipId
             }, style.relationshipEdge));
-            HAF.each(relation.items, function (item) {
+            Mettle.each(relation.items, function (item) {
                 var itemId = "I_" + item.id;
                 dataset.nodes.push($.extend({
                     id: itemId,
@@ -58,4 +58,4 @@
         return (title + "\n(" + count + ")");
     }
 
-}(HAF, jQuery));
+}(Mettle, jQuery));

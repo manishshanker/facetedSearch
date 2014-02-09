@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.Breadcrumb = HAF.Controller.extend({
+    ICEX.controller.Breadcrumb = Mettle.Controller.extend({
         autoShowHide: true,
         inject: {
             templates: {
@@ -29,4 +29,4 @@
         }
     });
 
-}(HAF));
+}(Mettle));

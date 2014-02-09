@@ -1,7 +1,7 @@
-(function (HAF, $) {
+(function (Mettle, $) {
     "use strict";
 
-    ICEX.service.SearchList = HAF.Service.extend({
+    ICEX.service.SearchList = Mettle.Service.extend({
         cachedResultData: null,
         currentFilterInfo: null,
         fetch: function (context, ids, callback) {
@@ -51,4 +51,4 @@
         return itemFound;
     }
 
-}(HAF, jQuery));
+}(Mettle, jQuery));

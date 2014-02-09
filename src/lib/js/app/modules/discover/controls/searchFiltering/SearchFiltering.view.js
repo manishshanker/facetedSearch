@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.view.SearchFiltering = HAF.View.extend({
+    ICEX.view.SearchFiltering = Mettle.View.extend({
         container: "#appSearchFiltering",
         render: function() {
             var that = this;
@@ -13,4 +13,4 @@
         }
     });
 
-}(HAF));
+}(Mettle));

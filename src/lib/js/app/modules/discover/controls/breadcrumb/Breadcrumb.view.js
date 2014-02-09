@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.view.Breadcrumb = HAF.View.extend({
+    ICEX.view.Breadcrumb = Mettle.View.extend({
         level: 0,
         container: "#appBreadcrumb",
         render: function (html) {
@@ -42,4 +42,4 @@
         ctx.messageBus.publish("search-list-show");
         e.preventDefault();
     }
-}(HAF));
+}(Mettle));

@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.SearchFiltering = HAF.Controller.extend({
+    ICEX.controller.SearchFiltering = Mettle.Controller.extend({
         currentControl: null,
         autoLoadControls: true,
         autoLayout: true,
@@ -62,4 +62,4 @@
         });
     }
 
-}(HAF));
+}(Mettle));

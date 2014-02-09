@@ -1,8 +1,8 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.view.Questions = HAF.View.extend({
+    ICEX.view.Questions = Mettle.View.extend({
         container: "#appQuestions"
     });
 
-}(HAF));
+}(Mettle));

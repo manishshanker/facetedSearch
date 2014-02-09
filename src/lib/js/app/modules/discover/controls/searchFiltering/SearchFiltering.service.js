@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.service.SearchFiltering = HAF.Service.extend({
+    ICEX.service.SearchFiltering = Mettle.Service.extend({
         fetch: function (context, callback) {
             //TODO: make ajax call and send processedResponse
         },
@@ -10,4 +10,4 @@
         }
     });
 
-}(HAF));
+}(Mettle));

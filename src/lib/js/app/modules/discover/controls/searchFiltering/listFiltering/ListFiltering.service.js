@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.service.ListFiltering = HAF.Service.extend({
+    ICEX.service.ListFiltering = Mettle.Service.extend({
         transformData: transformData
     });
 
@@ -16,9 +16,9 @@
             count: data.count,
             type: "parent"
         });
-        HAF.each(data.relations, function (relation) {
+        Mettle.each(data.relations, function (relation) {
             var type = relation.type;
-            HAF.each(relation.items, function (item) {
+            Mettle.each(relation.items, function (item) {
                 dataset.relations.push({
                     id: item.id,
                     title: item.title,
@@ -30,4 +30,4 @@
         return dataset;
     }
 
-}(HAF));
+}(Mettle));

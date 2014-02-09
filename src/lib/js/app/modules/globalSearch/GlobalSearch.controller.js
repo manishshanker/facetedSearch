@@ -1,9 +1,9 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
     var cachedSearchResponse = {};
 
-    ICEX.controller.GlobalSearch = HAF.Controller.extend({
+    ICEX.controller.GlobalSearch = Mettle.Controller.extend({
         inject: function () {
             return {
                 views: ["globalSearch"],
@@ -53,11 +53,11 @@
             var label = markSearchedText(ctx, item.label, term);
             var desc = markSearchedText(ctx, item.desc, term);
             return ctx.templates.globalSearchItem.process({
-                label: HAF.TemplateSafeString(label),
-                desc: HAF.TemplateSafeString(desc)
+                label: Mettle.TemplateSafeString(label),
+                desc: Mettle.TemplateSafeString(desc)
             });
         };
     }
 
 
-}(HAF));
+}(Mettle));

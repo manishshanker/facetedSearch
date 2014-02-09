@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.DiscoverPage = HAF.Controller.extend({
+    ICEX.controller.DiscoverPage = Mettle.Controller.extend({
         autoLoadControls: true,
         autoShowHide: true,
         injectLocalMessageBus: true,
@@ -102,4 +102,4 @@
         ctx.controls.searchList.update(id);
     }
 
-}(HAF));
+}(Mettle));

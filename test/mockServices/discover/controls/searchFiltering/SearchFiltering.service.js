@@ -3,7 +3,7 @@
 
     ICEX.service.SearchFiltering = ICEX.service.SearchFiltering.extend({
         fetch: function (context, callback) {
-            callback = callback || HAF.noop;
+            callback = callback || Mettle.noop;
             callback.call(context, getMockData());
         },
         getChild: function (id, callback) {

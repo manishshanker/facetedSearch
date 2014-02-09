@@ -1,11 +1,11 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.Questions = HAF.Controller.extend({
+    ICEX.controller.Questions = Mettle.Controller.extend({
         autoShowHide: true,
         inject: {
             views: ["questions"]
         }
     });
 
-}(HAF));
+}(Mettle));

@@ -1,14 +1,14 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.VisualFiltering = HAF.Controller.extend({
+    ICEX.controller.VisualFiltering = Mettle.Controller.extend({
         autoLayout: true,
         injectLocalMessageBus: true,
         inject: {
             views: [{visualFiltering: "visualFiltering"}],
             services: [{visualFiltering: "visualFiltering"}]
         },
-        processData: HAF.noop,
+        processData: Mettle.noop,
         load: function() {
             var that = this;
             that.localMessageBus.subscribe("app-search-filtering-changed", function (data) {
@@ -31,4 +31,4 @@
         }
     });
 
-}(HAF));
+}(Mettle));

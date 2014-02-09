@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.view.SearchList = HAF.View.extend({
+    ICEX.view.SearchList = Mettle.View.extend({
         container: "#appSearchList",
         bindings: {
             "click .hide-list": function (e) {
@@ -46,4 +46,4 @@
         }, 500);
     }
 
-}(HAF));
+}(Mettle));

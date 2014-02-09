@@ -1,10 +1,10 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.view.ListFiltering = HAF.View.extend({
+    ICEX.view.ListFiltering = Mettle.View.extend({
         container: "#appListFiltering"
     });
 
-}(HAF));
+}(Mettle));
 
 

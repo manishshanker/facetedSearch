@@ -1,7 +1,7 @@
-(function (HAF, $) {
+(function (Mettle, $) {
     "use strict";
 
-    ICEX.view.GlobalSearch = HAF.View.extend({
+    ICEX.view.GlobalSearch = Mettle.View.extend({
         container: "#appGlobalSearch",
         render: function (dataSource, templateProvider, onSelect) {
             var that = this;
@@ -28,4 +28,4 @@
         };
     }
 
-}(HAF, jQuery));
+}(Mettle, jQuery));

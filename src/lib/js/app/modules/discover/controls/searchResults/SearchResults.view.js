@@ -1,7 +1,7 @@
-(function (HAF, $) {
+(function (Mettle, $) {
     "use strict";
 
-    ICEX.view.SearchResults = HAF.View.extend({
+    ICEX.view.SearchResults = Mettle.View.extend({
         container: "#appSearchResults",
         bindings: {
             "mouseenter .results-item": function (e, item) {
@@ -21,4 +21,4 @@
         }
     });
 
-}(HAF, jQuery));
+}(Mettle, jQuery));

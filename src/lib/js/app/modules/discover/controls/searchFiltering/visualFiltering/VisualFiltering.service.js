@@ -1,7 +1,7 @@
-(function (HAF, $) {
+(function (Mettle, $) {
     "use strict";
 
-    ICEX.service.VisualFiltering = HAF.Service.extend({
+    ICEX.service.VisualFiltering = Mettle.Service.extend({
         transformData: transformData,
         parseId: function (id) {
             return id.split("___")[0];
@@ -18,14 +18,14 @@
         var relNodeData = $.extend({
             type: "R"
         }, style.relationshipNode);
-        HAF.each(data.relations, function (relation) {
+        Mettle.each(data.relations, function (relation) {
             var child = {
                 id: relation.id + "___" + timestamp,
                 name: relation.type,
                 data: relNodeData,
                 children: []
             };
-            HAF.each(relation.items, function (item) {
+            Mettle.each(relation.items, function (item) {
                 child.children.push({
                     id: item.id + "___" + timestamp,
                     name: convertSpaceToNewLineAndAddCount(item.title, item.count)
@@ -40,4 +40,4 @@
         return (title + " (" + count + ")");
     }
 
-}(HAF, jQuery));
+}(Mettle, jQuery));

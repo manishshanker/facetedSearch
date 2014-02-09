@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.view.DiscoverPage = HAF.View.extend({
+    ICEX.view.DiscoverPage = Mettle.View.extend({
         container: "#discover",
         withResults: function () {
             this.$el.find(".sub-content").addClass("with-results");
@@ -19,4 +19,4 @@
         }
     });
 
-}(HAF));
+}(Mettle));

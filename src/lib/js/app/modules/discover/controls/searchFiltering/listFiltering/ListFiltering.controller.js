@@ -1,7 +1,7 @@
-(function (HAF) {
+(function (Mettle) {
     "use strict";
 
-    ICEX.controller.ListFiltering = HAF.Controller.extend({
+    ICEX.controller.ListFiltering = Mettle.Controller.extend({
         inject: {
             templates: {
                 listFiltering: "tmpl!ListFiltering"
@@ -17,4 +17,4 @@
         }
     });
 
-}(HAF));
+}(Mettle));
