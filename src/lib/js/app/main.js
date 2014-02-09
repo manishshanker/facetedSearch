@@ -1,6 +1,8 @@
 (function (HAF) {
     "use strict";
 
+    HAF.Template.LOAD.BY_URL_DEFAULT_PATH = "lib/templates";
+
     HAF.init(ICEX, ICEX.i18nT);
 
     HAF.each({

@@ -65,25 +65,11 @@
         <section class="page" id="discover">
 	        <div id="appBreadcrumb" class="breadcrumb">
 		        <a href="#" class="show-list">Show</a>
-		        <ul>
-			        <script id="tmplBreadcrumbItem" type="text/x-handlebars-template">
-				        <li><a href="{{urlWithBase 'discover'}}/{{pathId}}" class="title">{{title}}</a><span class="arrow"></span></li>
-			        </script>
-		        </ul>
+		        <ul></ul>
 	        </div>
             <div class="content">
                 <div id="appSearchList" class="search-list">
                     <a href="#" class="hide-list">Hide</a>
-                    <script id="tmplSearchList" type="text/x-handlebars-template">
-                    <div class="item">
-	                    <h2>{{subGroup.title}}</h2>
-	                    {{#if subGroup.items}}
-	                        {{#list subGroup.items 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
-	                    {{else}}
-	                        <ul><li>No Items</li></ul>
-	                    {{/if}}
-                    </div>
-                    </script>
                 </div>
                 <div id="appQuestions" class="questions sub-content">
                     <ul>
@@ -101,29 +87,9 @@
                         <div id="appVisualFilteringGraph" class="graph"></div>
                         <div class="loading-message">Loading...</div>
                     </div>
-                    <div id="appListFiltering" class="tab-content">
-                        <script id="tmplListFiltering" type="text/x-handlebars-template">
-                            <div class="item">
-                                {{#if relations}}
-                                {{#list relations 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}"><span class="type">({{type}})</span> {{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
-                                {{else}}
-                                <ul><li>No Items</li></ul>
-                                {{/if}}
-                            </div>
-                        </script>
-                    </div>
+                    <div id="appListFiltering" class="tab-content"></div>
                 </div>
-	            <div id="appSearchResults">
-                    <script id="tmplSearchResults" type="text/x-handlebars-template">
-                    {{#list results 'results'}}
-                        <h3>{{#if pdfLink}}<a href="{{pdfLink}}" class="pdf-icon"></a>{{/if}}{{#if unlock}}<a href="{{unlockUrl}}" class="lock-icon"></a>{{/if}}{{title}}</h3>
-                        <h4>{{subTitle}}</h4>
-                        <h5>{{contributor}}</h5>
-                        <p>{{description}}</p>
-                        {{#list tags 'tags'}}<span>{{name}}</span>{{/list}}<a href="#" class="show-more">show more...</a><a href="#" class="show-less">show less</a>
-                    {{/list}}
-                    </script>
-	            </div>
+	            <div id="appSearchResults"></div>
             </div>
         </section>
 

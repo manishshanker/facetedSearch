@@ -6,7 +6,9 @@
         currentLevel: -1,
         inject: {
             views: ["searchList"],
-            templates: ["searchList"],
+            templates: {
+                searchList: "tmpl!searchList"
+            },
             services: ["searchList"]
         },
         update: function (id) {

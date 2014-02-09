@@ -160,11 +160,15 @@
 
     <target name="add-timestamp-to-path">
         <echo message="BEGIN: ADD TIMESTAMP (${TIMESTAMP}) TO PATH"/>
-        <move file="${outputDir}\lib" tofile="${outputDir}\${TIMESTAMP}"/>
         <replaceregexp file="${outputHtmlFile}"
                        match="lib/"
                        flags="gs"
                        replace="${TIMESTAMP}/"/>
+        <replaceregexp file="${jsOutput}\combined.js"
+                       match="lib/"
+                       flags="gs"
+                       replace="${TIMESTAMP}/"/>
+        <move file="${outputDir}\lib" tofile="${outputDir}\${TIMESTAMP}"/>
         <echo message="END: ADD TIMESTAMP TO PATH"/>
     </target>
 

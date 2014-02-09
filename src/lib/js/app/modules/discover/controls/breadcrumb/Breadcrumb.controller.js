@@ -4,7 +4,9 @@
     ICEX.controller.Breadcrumb = HAF.Controller.extend({
         autoShowHide: true,
         inject: {
-            templates: ["breadcrumbItem"],
+            templates: {
+                breadcrumbItem: "tmpl!breadcrumbItem"
+            },
             views: ["breadcrumb"]
         },
         update: function (items) {

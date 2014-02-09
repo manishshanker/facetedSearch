@@ -5,7 +5,9 @@
         autoShowHide: true,
         inject: {
             views: ["searchResults"],
-            templates: ["searchResults"],
+            templates: {
+                searchResults: "tmpl!searchResults"
+            },
             services: ["searchResults"]
         },
         update: function () {
