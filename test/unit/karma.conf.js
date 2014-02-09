@@ -35,6 +35,7 @@ module.exports = function (config) {
         // list of files to exclude
         exclude: [
             '../../src/lib/js/app/main.js',
+            '../../src/lib/js/app/---init.js',
             '../../src/lib/js/vendor/---less.min.js'
         ],
 
