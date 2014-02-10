@@ -12,7 +12,7 @@
         },
         update: function () {
             var that = this;
-            that.services.searchResults.fetch(function (data) {
+            that.services.searchResults.fetch(null, function (data) {
                 onUpdate(that, data);
             });
         }
