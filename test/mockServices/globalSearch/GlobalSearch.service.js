@@ -8,7 +8,7 @@
     });
 
     function mockData(ctx, term) {
-        return $.grep(ctx.transformData(data), function (item) {
+        return $.grep(ctx.transformData(data, term), function (item) {
             return item.value.toLowerCase().indexOf(term.toLowerCase()) > -1;
         });
     }

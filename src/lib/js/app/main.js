@@ -1,9 +1,6 @@
 (function (Mettle) {
     "use strict";
 
-    Mettle.Template.LOAD.BY_URL_DEFAULT_PATH = "lib/templates";
-    Mettle.Template.LOAD.BY_URL_DEFAULT_EXTENSION = ".html";
-
     Mettle.init(ICEX, ICEX.i18nT);
 
     Mettle.each({

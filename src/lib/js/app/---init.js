@@ -13,7 +13,7 @@ load({dependencyMap: {
     },
     Mettle: {
         file: "../vendor/Mettle.min",
-        deps: ["jquery", "handlebars"]
+        deps: ["jquery", "handlebars", "config"]
     },
     hbUrlWithBaseHelper: {
         file: "plugins/hb.urlWithBaseHelper",
@@ -161,7 +161,7 @@ load({dependencyMap: {
     main: {
         file: "main",
         deps: [
-            "Mettle", "namespace", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
+            "config", "Mettle", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
             "GlobalSearchController", "DiscoverPageController"
         ]
     }

@@ -61,8 +61,8 @@
             <union>
                 <fileset dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
                 <fileset dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
+                <fileset dir="${jsSource}" casesensitive="false" includes="config.js"/>
                 <fileset excludes="**/---*" dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
-                <fileset dir="${jsSource}" casesensitive="false" includes="namespace.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
                 <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
                 <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
