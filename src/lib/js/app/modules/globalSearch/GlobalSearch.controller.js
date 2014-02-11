@@ -8,15 +8,13 @@
             return {
                 views: ["globalSearch"],
                 services: ["globalSearch"],
-                templates: ["globalSearchItem", "globalSearchHighlight"]
+                templates: ["globalSearchItem"]
             };
         },
         load: function () {
             var that = this;
             that.templates.globalSearchItem.load(function () {
-                that.templates.globalSearchHighlight.load(function () {
-                    that.views.globalSearch.render(getDataSource(that), getTemplateProvider(that), onSelect);
-                });
+                that.views.globalSearch.render(getDataSource(that), getTemplateProvider(that), onSelect);
             });
         }
     });
@@ -41,21 +39,9 @@
         };
     }
 
-    function markSearchedText(ctx, label, term) {
-        var re = new RegExp(term, "i");
-        return label.replace(re, function (match) {
-            return ctx.templates.globalSearchHighlight.process({term: match});
-        });
-    }
-
     function getTemplateProvider(ctx) {
         return function templateProvider(term, item) {
-            var label = markSearchedText(ctx, item.label, term);
-            var desc = markSearchedText(ctx, item.desc, term);
-            return ctx.templates.globalSearchItem.process({
-                label: Mettle.TemplateSafeString(label),
-                desc: Mettle.TemplateSafeString(desc)
-            });
+            return ctx.templates.globalSearchItem.process(item);
         };
     }
 

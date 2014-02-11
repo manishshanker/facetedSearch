@@ -19,12 +19,16 @@ load({dependencyMap: {
         file: "plugins/hb.urlWithBaseHelper",
         deps: ["handlebars"]
     },
+    hbHighlightHelper: {
+        file: "plugins/hb.highlightHelper",
+        deps: ["handlebars"]
+    },
     namespace: "namespace",
     serviceURLs: "serviceURLs",
 
     "GlobalSearchController": {
         file: "modules/globalSearch/GlobalSearch.controller",
-        deps: ["GlobalSearchView", "GlobalSearchServiceTemplate", "GlobalSearchServiceMock"]
+        deps: ["GlobalSearchView", "GlobalSearchServiceTemplate", "GlobalSearchServiceMock", "hbHighlightHelper"]
     },
     "GlobalSearchServiceTemplate": {
         file: "modules/globalSearch/GlobalSearch.template",
