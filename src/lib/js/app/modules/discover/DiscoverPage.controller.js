@@ -3,11 +3,10 @@
 
     ICEX.controller.DiscoverPage = Mettle.Controller.extend({
         autoLoadControls: true,
-        autoShowHide: true,
         injectLocalMessageBus: true,
         inject: {
             views: ["discoverPage"],
-            controls: ["searchList", "breadcrumb", "searchFiltering", "questions", "searchResults"]
+            controls: ["searchList", "breadcrumb", "searchFiltering", "questions", "searchResults", "modalDialog"]
         },
         load: function () {
             var that = this;
@@ -18,6 +17,9 @@
                 },
                 "search-list-show": function () {
                     showList(that);
+                },
+                "app-modules-discover-controls-searchResults-item-selected": function(data) {
+                    showDialog(that, data);
                 }
             });
         },
@@ -37,6 +39,7 @@
     });
 
     function hideFiltering(ctx) {
+        ctx.controls.modalDialog.hide();
         loadSearchItem(ctx);
         hideSearchFiltering(ctx);
         hideBreadcrumb(ctx);
@@ -45,10 +48,15 @@
     }
 
     function showFiltering(ctx, id) {
+        ctx.controls.modalDialog.hide();
         loadSearchItem(ctx, id);
         showSearchFiltering(ctx);
         showBreadcrumb(ctx, id);
         hideQuestions(ctx);
+    }
+
+    function showDialog(ctx, data) {
+        ctx.controls.modalDialog.show(data);
     }
 
     function showList(ctx) {

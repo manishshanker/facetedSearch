@@ -13,10 +13,15 @@
             "click .show-more": function (e, item) {
                 $(item).parents(".results-item").eq(0).addClass("show-all");
                 e.preventDefault();
+                e.stopPropagation();
             },
             "click .show-less": function (e, item) {
                 $(item).parents(".results-item").eq(0).removeClass("show-all");
                 e.preventDefault();
+                e.stopPropagation();
+            },
+            "click .results-item": function(e) {
+                this.messageBus.publish("app-modules-discover-controls-searchResults-item-selected", {id: 10});
             }
         }
     });

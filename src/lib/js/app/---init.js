@@ -153,9 +153,16 @@ load({dependencyMap: {
     },
     "DiscoverPageController": {
         file: "modules/discover/DiscoverPage.controller",
-        deps: ["DiscoverPageView", "SearchListController", "SearchFilteringController", "SearchResultsController", "QuestionsController", "BreadcrumbController"]
+        deps: ["DiscoverPageView", "ModalDialogController", "SearchListController", "SearchFilteringController", "SearchResultsController", "QuestionsController", "BreadcrumbController"]
     },
-
+    "ModalDialogController": {
+        file: "modules/discover/controls/modalDialog/ModalDialog.controller",
+        deps: ["Mettle", "ModalDialogView"]
+    },
+    "ModalDialogView": {
+        file: "modules/discover/controls/modalDialog/ModalDialog.view",
+        deps: ["Mettle"]
+    },
     appCache: "appCache",
 
     main: {
