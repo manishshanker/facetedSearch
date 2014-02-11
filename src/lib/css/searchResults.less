@@ -52,18 +52,10 @@
         display: none;
     }
 
-    .show-all {
-        .show-less {
-            display: inline-block;
-        }
-        .show-more {
-            display: none;
-        }
-    }
-
     .tags {
 
         display: inline-block;
+        max-width: 90%;
 
         .tags-item {
             background-color: @bgc-tags;
@@ -72,6 +64,22 @@
             color: @tc-tags;
             margin-right: 3px;
             padding: 2px 5px;
+        }
+    }
+
+    .tags-secondary {
+        display: none;
+    }
+
+    .show-all {
+        .show-less {
+            display: inline-block;
+        }
+        .show-more {
+            display: none;
+        }
+        .tags-secondary {
+            display: inline-block;
         }
     }
 

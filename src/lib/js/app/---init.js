@@ -123,9 +123,13 @@ load({dependencyMap: {
         file: "modules/discover/controls/searchResults/SearchResults.service",
         deps: ["Mettle"]
     },
+    "SearchResultsServiceMock": {
+        file: "../../../../test/mockServices/discover/controls/searchResults/SearchResults.service",
+        deps: ["SearchResultsService"]
+    },
     "SearchResultsController": {
         file: "modules/discover/controls/searchResults/SearchResults.controller",
-        deps: ["SearchResultsView", "SearchResultsService"]
+        deps: ["SearchResultsView", "SearchResultsServiceMock"]
     },
     "QuestionsController": {
         file: "modules/discover/controls/questions/Questions.controller",
