@@ -13,10 +13,14 @@ load({dependencyMap: {
     },
     Mettle: {
         file: "../vendor/Mettle.min",
-        deps: ["jquery", "handlebars"]
+        deps: ["jquery", "handlebars", "config"]
     },
     hbUrlWithBaseHelper: {
         file: "plugins/hb.urlWithBaseHelper",
+        deps: ["handlebars"]
+    },
+    hbHighlightHelper: {
+        file: "plugins/hb.highlightHelper",
         deps: ["handlebars"]
     },
     namespace: "namespace",
@@ -24,7 +28,7 @@ load({dependencyMap: {
 
     "GlobalSearchController": {
         file: "modules/globalSearch/GlobalSearch.controller",
-        deps: ["GlobalSearchView", "GlobalSearchServiceTemplate", "GlobalSearchServiceMock"]
+        deps: ["GlobalSearchView", "GlobalSearchServiceTemplate", "GlobalSearchServiceMock", "hbHighlightHelper"]
     },
     "GlobalSearchServiceTemplate": {
         file: "modules/globalSearch/GlobalSearch.template",
@@ -119,9 +123,13 @@ load({dependencyMap: {
         file: "modules/discover/controls/searchResults/SearchResults.service",
         deps: ["Mettle"]
     },
+    "SearchResultsServiceMock": {
+        file: "../../../../test/mockServices/discover/controls/searchResults/SearchResults.service",
+        deps: ["SearchResultsService"]
+    },
     "SearchResultsController": {
         file: "modules/discover/controls/searchResults/SearchResults.controller",
-        deps: ["SearchResultsView", "SearchResultsService"]
+        deps: ["SearchResultsView", "SearchResultsServiceMock"]
     },
     "QuestionsController": {
         file: "modules/discover/controls/questions/Questions.controller",
@@ -153,7 +161,7 @@ load({dependencyMap: {
     main: {
         file: "main",
         deps: [
-            "Mettle", "namespace", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
+            "config", "Mettle", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
             "GlobalSearchController", "DiscoverPageController"
         ]
     }
