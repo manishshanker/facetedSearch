@@ -11,18 +11,18 @@
         processData: Mettle.noop,
         load: function() {
             var that = this;
-            that.localMessageBus.subscribe("app-search-filtering-changed", function (data) {
+            that.localMessageBus.subscribe("visualFiltering-changed", function (data) {
                 that.views.visualFiltering.setStateLoading();
-                that.messageBus.publish("search-filtering-changed", that.services.visualFiltering.parseId(data.nodeId));
+                that.messageBus.publish("searchFiltering-changed", that.services.visualFiltering.parseId(data.nodeId));
                 that.processData = function(newData) {
                     data.callback(newData);
                 };
             });
         },
-        update: function (data) {
+        update: function (data, reRender) {
             var that = this;
             data = that.services.visualFiltering.transformData(data, this.views.visualFiltering.getStyle());
-            if (!that.loaded) {
+            if (!that.loaded || reRender) {
                 this.views.visualFiltering.render(data);
                 that.loaded = true;
             } else {

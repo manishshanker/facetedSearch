@@ -39,7 +39,7 @@
     });
 
     function onSearchListShow(e, ctx) {
-        ctx.messageBus.publish("search-list-show");
+        ctx.messageBus.publish("searchList-show");
         e.preventDefault();
     }
 }(Mettle));

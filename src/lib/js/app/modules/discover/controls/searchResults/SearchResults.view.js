@@ -20,8 +20,8 @@
                 e.preventDefault();
                 e.stopPropagation();
             },
-            "click .results-item": function(e) {
-                this.messageBus.publish("app-modules-discover-controls-searchResults-item-selected", {id: 10});
+            "click .results-item": function() {
+                this.messageBus.publish("searchFiltering-itemSelected", {id: 10});
             }
         }
     });

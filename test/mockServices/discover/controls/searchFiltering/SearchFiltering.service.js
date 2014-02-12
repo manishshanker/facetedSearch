@@ -2,9 +2,9 @@
     "use strict";
 
     ICEX.service.SearchFiltering = ICEX.service.SearchFiltering.extend({
-        fetch: function (context, callback) {
+        fetch: function (context, id, callback) {
             callback = callback || Mettle.noop;
-            callback.call(context, getMockData());
+            callback.call(context, getMockData(id));
         },
         getChild: function (id, callback) {
             setTimeout(function () {
@@ -54,9 +54,9 @@
         };
     }
 
-    function getMockData() {
+    function getMockData(id) {
         return {
-            title: "Topics",
+            title: "Topics:"+id,
             count: 400,
             id: 1,
             relations: [

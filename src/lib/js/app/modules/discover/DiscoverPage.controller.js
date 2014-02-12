@@ -12,16 +12,16 @@
             var that = this;
             that._super();
             that.localMessageBus.subscribe(that, {
-                "search-list-hide": function () {
+                "searchList-hide": function () {
                     hideList(that);
                 },
-                "search-list-show": function () {
+                "searchList-show": function () {
                     showList(that);
                 },
-                "app-modules-discover-controls-searchResults-item-selected": function(data) {
+                "searchFiltering-itemSelected": function(data) {
                     showDialog(that, data);
                 },
-                "search-filtering-changed": function(id) {
+                "searchFiltering-changed": function(id) {
                     this.controls.searchResults.update(id);
                 }
             });
@@ -53,7 +53,7 @@
     function showFiltering(ctx, id) {
         ctx.controls.modalDialog.hide();
         loadSearchItem(ctx, id);
-        showSearchFiltering(ctx);
+        showSearchFiltering(ctx, id);
         showBreadcrumb(ctx, id);
         hideQuestions(ctx);
     }
@@ -76,7 +76,7 @@
         ctx.controls.breadcrumb.showTopic(ctx.controls.searchList.getCurrentFilterInfo());
         ctx.controls.searchFiltering.layoutChange();
         ctx.controls.searchResults.show();
-        ctx.controls.searchResults.update();
+        ctx.controls.searchResults.update(ctx.controls.searchFiltering.getCurrentId());
     }
 
     function hideQuestions(ctx) {
@@ -99,10 +99,10 @@
         });
     }
 
-    function showSearchFiltering(ctx) {
+    function showSearchFiltering(ctx, id) {
         var searchFiltering = ctx.controls.searchFiltering;
         searchFiltering.show();
-        ctx.controls.searchFiltering.update();
+        ctx.controls.searchFiltering.update(id);
     }
 
     function hideSearchFiltering(ctx) {

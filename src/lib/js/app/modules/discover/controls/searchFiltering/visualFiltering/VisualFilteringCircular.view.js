@@ -104,7 +104,7 @@
         var selectedItems = ctx.graph.getSelection();
         var selectedItemId = (selectedItems && selectedItems.length && selectedItems[0]) || null;
         if (ctx.lastSelectedNode === selectedItemId) {
-            ctx.messageBus.publish("app-search-filtering-changed", {nodeId: selectedItemId, callback: function(data) {
+            ctx.messageBus.publish("visualFiltering-changed", {nodeId: selectedItemId, callback: function(data) {
                 ctx.render(data);
             }});
             ctx.lastSelectedNode = null;

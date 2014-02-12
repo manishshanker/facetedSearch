@@ -33,7 +33,7 @@
     }
 
     function onSearchListHide(e, ctx) {
-        ctx.messageBus.publish("search-list-hide");
+        ctx.messageBus.publish("searchList-hide");
         e.preventDefault();
     }
 

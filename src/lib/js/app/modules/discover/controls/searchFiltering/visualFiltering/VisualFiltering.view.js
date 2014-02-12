@@ -22,6 +22,7 @@
         render: function (data) {
             var that = this;
             that.lastDataSet = data;
+            clearStage(that);
             renderGraph(that, data);
             that.setStateLoaded();
             that.loaded = true;
@@ -54,6 +55,9 @@
             }, 200, function() {
                 positionLoadingMessage(that);
             });
+        },
+        destroy: function() {
+            clearStage(this);
         }
     });
 
@@ -64,6 +68,13 @@
             bottom: "auto",
             right: "auto"
         });
+    }
+
+    function clearStage(ctx) {
+        if (ctx.st) {
+            $("#appVisualFilteringGraph").empty();
+            ctx.st = null;
+        }
     }
 
     function renderGraph(ctx, graphData) {
@@ -98,7 +109,7 @@
                     onComplete.onComplete(nodeId, ctx.cacheData[nodeId]);
                     ctx.setStateLoaded();
                 } else {
-                    ctx.messageBus.publish("app-search-filtering-changed", {nodeId: nodeId, level: level, callback: function (data) {
+                    ctx.messageBus.publish("visualFiltering-changed", {nodeId: nodeId, level: level, callback: function (data) {
                         ctx.cacheData[nodeId] = data;
                         onComplete.onComplete(nodeId, data);
                         ctx.setStateLoaded();

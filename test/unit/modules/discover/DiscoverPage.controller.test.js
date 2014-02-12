@@ -32,8 +32,10 @@ describe("DiscoverPage.controller", function () {
             });
             controller.load();
             expect(messageBus.subscribe).toHaveBeenCalledWith(jasmine.any(Object), {
-                "search-list-show": jasmine.any(Function),
-                "search-list-hide": jasmine.any(Function)
+                "searchList-show": jasmine.any(Function),
+                "searchFiltering-itemSelected": jasmine.any(Function),
+                "searchFiltering-changed": jasmine.any(Function),
+                "searchList-hide": jasmine.any(Function)
             });
         });
     });

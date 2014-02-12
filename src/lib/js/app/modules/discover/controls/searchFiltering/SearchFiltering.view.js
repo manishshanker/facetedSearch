@@ -7,9 +7,13 @@
             var that = this;
             that.$el.tabs({
                 onChange: function(data) {
-                    that.messageBus.publish("search-filter-tab-changes", data);
+                    that.messageBus.publish("searchFilter-tabChange", data);
                 }
             });
+        },
+        destroy: function() {
+            this.$el.tabs($.tabs.destroy);
+            this._super();
         }
     });
 
