@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<!--suppress HtmlUnknownAnchorTarget, HtmlUnknownTarget -->
+<!--suppress HtmlUnknownAnchorTarget -->
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
 <!--[if IE 7]>
 <html class="no-js lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8]>
 <html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]>
+<!--[if gt IE 8]><!-->
 <html class="no-js"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
     <title>ICEX Application</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,13 +21,13 @@
     <!--MERGE STYLES-->
     <link rel="stylesheet/less" type="text/css" href="lib/css/main.less" />
 	<script> less = { env: "production" /*"development"*/}; </script>
-    <script src="lib/js/vendor/---less.min.js"></script>
+    <script src="lib/js/vendor/conditional/less.min.js"></script>
     <!--/MERGE STYLES-->
 
-    <!--[if lt IE 9]>
-    <script src="lib/js/vendor/ie8/---excanvas.js"></script>
-    <!--<![endif]-->
-    <script src="lib/js/vendor/---modernizr-2.6.2.min.js"></script>
+	<!--[if lt IE 9]>
+    <script src="lib/js/vendor/conditional/excanvas.js"></script>
+	<![endif]-->
+    <script src="lib/js/vendor/conditional/modernizr-2.6.2.min.js"></script>
 
 </head>
 <body>
@@ -123,7 +125,7 @@
 </div>
 <script type="text/javascript" src="lib/js/app/i18n/en_GB.js"></script>
 <!--MERGE SCRIPTS-->
-<script type="text/javascript" data-main="lib/js/app/---init" src="lib/js/vendor/---require.js"></script>
+<script type="text/javascript" data-main="lib/js/app/init" src="lib/js/vendor/conditional/require.js"></script>
 <!--/MERGE SCRIPTS-->
 
 </body>

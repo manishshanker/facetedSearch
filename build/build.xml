@@ -7,6 +7,7 @@
     <property name="jsOutput" value="${outputDir}\lib\js"/>
     <property name="cssOutput" value="${outputDir}\lib\css"/>
     <property name="outputHtmlFile" value="${outputDir}\index.html"/>
+    <property name="jsMergeExcludePattern" value="**/conditional/*"/>
 
     <property name="rhinoJAR" value="${basedir}\build\jars\js.jar"/>
     <property name="rhinoLESSJS" value="${basedir}\build\jars\less-rhino-1.4.0.js"/>
@@ -62,15 +63,15 @@
                 <fileset dir="${jsLibSource}" casesensitive="false" includes="jquery.min.js"/>
                 <fileset dir="${jsLibSource}" casesensitive="false" includes="handlebars-v1.1.2.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="config.js"/>
-                <fileset excludes="**/---*" dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
+                <fileset excludes="${jsMergeExcludePattern}" dir="${jsLibSource}" casesensitive="false" includes="**/*.js"/>
                 <fileset dir="${jsSource}" casesensitive="false" includes="serviceURLs.js"/>
-                <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
-                <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
-                <fileset excludes="**/---*" dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
-                <fileset excludes="**/---*" dir="${jsSource}" casesensitive="false" includes="*.js" />
+                <fileset excludes="${jsMergeExcludePattern}" dir="${jsSource}" casesensitive="false" includes="plugins/**/*.js" />
+                <fileset excludes="${jsMergeExcludePattern}" dir="${jsSource}" casesensitive="false" includes="modules/**/*.js" />
+                <fileset excludes="${jsMergeExcludePattern}" dir="${outputDir}\mockServices" casesensitive="false" includes="**/*.js"/>
+                <fileset excludes="${jsMergeExcludePattern}" dir="${jsSource}" casesensitive="false" includes="*.js" />
             </union>
         </concat>
-        <delete dir="${jsOutput}" includeemptydirs="true" includes="**/*.js" excludes="combined.js, **/---*, **/i18n/*"/>
+        <delete dir="${jsOutput}" includeemptydirs="true" includes="**/*.js" excludes="combined.js, ${jsMergeExcludePattern}, **/i18n/*"/>
         <delete dir="${outputDir}\mockServices" includeemptydirs="true"/>
         <echo message="END: JS MERGE"/>
         </sequential>

@@ -35,7 +35,7 @@ module.exports = function (config) {
         // list of files to exclude
         exclude: [
             '../../src/lib/js/app/main.js',
-            '../../src/lib/js/**/---*'
+            '../../src/lib/js/**/conditional/*'
         ],
 
         coverageReporter: {
