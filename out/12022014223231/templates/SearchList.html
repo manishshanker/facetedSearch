@@ -1,0 +1,8 @@
+<div class="item">
+	<h2>{{subGroup.title}}</h2>
+    {{#if subGroup.items}}
+        {{#list subGroup.items 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}">{{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+    {{else}}
+		<ul><li>No Items</li></ul>
+    {{/if}}
+</div>

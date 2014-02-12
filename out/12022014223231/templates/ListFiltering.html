@@ -1,0 +1,7 @@
+<div class="item">
+    {{#if relations}}
+        {{#list relations 'item-list'}}<a href="{{urlWithBase 'discover'}}/{{id}}"><span class="type">({{type}})</span> {{title}}{{#if count}}<span class="count">{{count}}</span>{{/if}}</a>{{/list}}
+    {{else}}
+		<ul><li>No Items</li></ul>
+    {{/if}}
+</div>
