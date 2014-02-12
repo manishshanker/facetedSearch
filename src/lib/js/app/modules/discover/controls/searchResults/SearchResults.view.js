@@ -21,7 +21,12 @@
                 e.stopPropagation();
             },
             "click .results-item": function() {
-                this.messageBus.publish("searchFiltering-itemSelected", {id: 10});
+                var that = this;
+                Mettle.messaging.publish("authenticator-authenticated", {
+                    successCallback: function() {
+                        that.messageBus.publish("searchFiltering-itemSelected", {id: 10});
+                    }
+                });
             }
         }
     });

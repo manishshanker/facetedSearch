@@ -26,141 +26,145 @@ load({dependencyMap: {
     namespace: "namespace",
     serviceURLs: "serviceURLs",
 
-    "GlobalSearchController": {
+    GlobalSearchController: {
         file: "modules/globalSearch/GlobalSearch.controller",
         deps: ["GlobalSearchView", "GlobalSearchServiceTemplate", "GlobalSearchServiceMock", "hbHighlightHelper"]
     },
-    "GlobalSearchServiceTemplate": {
+    GlobalSearchServiceTemplate: {
         file: "modules/globalSearch/GlobalSearch.template",
         deps: ["Mettle"]
     },
-    "GlobalSearchService": {
+    GlobalSearchService: {
         file: "modules/globalSearch/GlobalSearch.service",
         deps: ["Mettle"]
     },
-    "GlobalSearchServiceMock": {
+    GlobalSearchServiceMock: {
         file: "../../../../test/mockServices/globalSearch/GlobalSearch.service",
         deps: ["GlobalSearchService"]
     },
-    "GlobalSearchView": {
+    GlobalSearchView: {
         file: "modules/globalSearch/GlobalSearch.view",
         deps: ["Mettle", "jqueryUI"]
     },
-    "ListFilteringController": {
+    ListFilteringController: {
         file: "modules/discover/controls/searchFiltering/listFiltering/ListFiltering.controller",
         deps: ["ListFilteringView", "ListFilteringService"]
     },
-    "ListFilteringService": {
+    ListFilteringService: {
         file: "modules/discover/controls/searchFiltering/listFiltering/ListFiltering.service",
         deps: ["Mettle"]
     },
-    "ListFilteringView": {
+    ListFilteringView: {
         file: "modules/discover/controls/searchFiltering/listFiltering/ListFiltering.view",
         deps: ["Mettle"]
     },
-    "VisualFilteringController": {
+    VisualFilteringController: {
         file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.controller",
         deps: ["VisualFilteringView", "VisualFilteringService"]
     },
-    "VisualFilteringService": {
+    VisualFilteringService: {
         file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.service",
         deps: ["Mettle"]
     },
-//    "VisualFilteringCircularService": {
+//    VisualFilteringCircularService: {
 //        file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFilteringCircular.service",
 //        deps: ["Mettle"]
 //    },
-//    "VisualFilteringCircularView": {
+//    VisualFilteringCircularView: {
 //        file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFilteringCircular.view",
 //        deps: ["Mettle", "vis"]
 //    },
-    "VisualFilteringView": {
+    VisualFilteringView: {
         file: "modules/discover/controls/searchFiltering/visualFiltering/VisualFiltering.view",
         deps: ["Mettle", "jit"]
     },
-    "SearchListView": {
+    SearchListView: {
         file: "modules/discover/controls/searchList/SearchList.view",
         deps: ["Mettle"]
     },
-    "SearchListService": {
+    SearchListService: {
         file: "modules/discover/controls/searchList/SearchList.service",
         deps: ["Mettle"]
     },
-    "SearchListServiceMock": {
+    SearchListServiceMock: {
         file: "../../../../test/mockServices/discover/controls/searchList/SearchList.service",
         deps: ["SearchListService"]
     },
-    "SearchListController": {
+    SearchListController: {
         file: "modules/discover/controls/searchList/SearchList.controller",
         deps: ["SearchListView", "SearchListServiceMock"]
     },
 
-    "SearchFilteringView": {
+    SearchFilteringView: {
         file: "modules/discover/controls/searchFiltering/SearchFiltering.view",
         deps: ["Mettle", "jqueryTab"]
     },
-    "SearchFilteringService": {
+    SearchFilteringService: {
         file: "modules/discover/controls/searchFiltering/SearchFiltering.service",
         deps: ["Mettle"]
     },
-    "SearchFilteringController": {
+    SearchFilteringController: {
         file: "modules/discover/controls/searchFiltering/SearchFiltering.controller",
         deps: ["SearchFiltering.dependency", "SearchFilteringView", "VisualFilteringController", "ListFilteringController", "SearchFilteringServiceMock"]
     },
     "SearchFiltering.dependency": {
         file: "modules/discover/controls/searchFiltering/SearchFiltering.dependency"
     },
-    "SearchFilteringServiceMock": {
+    SearchFilteringServiceMock: {
         file: "../../../../test/mockServices/discover/controls/searchFiltering/SearchFiltering.service",
         deps: ["SearchFilteringService"]
     },
 
-    "SearchResultsView": {
+    SearchResultsView: {
         file: "modules/discover/controls/searchResults/SearchResults.view",
         deps: ["Mettle"]
     },
-    "SearchResultsService": {
+    SearchResultsService: {
         file: "modules/discover/controls/searchResults/SearchResults.service",
         deps: ["Mettle"]
     },
-    "SearchResultsServiceMock": {
+    SearchResultsServiceMock: {
         file: "../../../../test/mockServices/discover/controls/searchResults/SearchResults.service",
         deps: ["SearchResultsService"]
     },
-    "SearchResultsController": {
+    SearchResultsController: {
         file: "modules/discover/controls/searchResults/SearchResults.controller",
         deps: ["SearchResultsView", "SearchResultsServiceMock"]
     },
-    "QuestionsController": {
+    QuestionsController: {
         file: "modules/discover/controls/questions/Questions.controller",
         deps: ["QuestionsView"]
     },
-    "QuestionsView": {
+    QuestionsView: {
         file: "modules/discover/controls/questions/Questions.view",
         deps: ["Mettle"]
     },
-    "BreadcrumbView": {
+    BreadcrumbView: {
         file: "modules/discover/controls/breadcrumb/Breadcrumb.view",
         deps: ["Mettle"]
     },
-    "BreadcrumbController": {
+    BreadcrumbController: {
         file: "modules/discover/controls/breadcrumb/Breadcrumb.controller",
         deps: ["BreadcrumbView"]
     },
-    "DiscoverPageView": {
+    DiscoverPageView: {
         file: "modules/discover/DiscoverPage.view",
         deps: ["Mettle"]
     },
-    "DiscoverPageController": {
+    DiscoverPageController: {
         file: "modules/discover/DiscoverPage.controller",
         deps: ["DiscoverPageView", "ModalDialogController", "SearchListController", "SearchFilteringController", "SearchResultsController", "QuestionsController", "BreadcrumbController"]
     },
-    "ModalDialogController": {
+    ModalDialogController: {
         file: "modules/discover/controls/modalDialog/ModalDialog.controller",
         deps: ["Mettle", "ModalDialogView"]
     },
-    "ModalDialogView": {
+    ModalDialogView: {
         file: "modules/discover/controls/modalDialog/ModalDialog.view",
+        deps: ["Mettle"]
+    },
+    AuthenticationController: {
+        file: "modules/authentication/Authentication.controller",
         deps: ["Mettle"]
     },
     appCache: "appCache",
@@ -168,7 +172,7 @@ load({dependencyMap: {
     main: {
         file: "main",
         deps: [
-            "config", "Mettle", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
+            "config", "Mettle", "AuthenticationController", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
             "GlobalSearchController", "DiscoverPageController"
         ]
     }
