@@ -23,6 +23,9 @@
         hide: function() {
             var that = this;
             that.$el.dialog("close");
+        },
+        destroy: function() {
+            this.$el.dialog("destroy");
         }
     });
 
