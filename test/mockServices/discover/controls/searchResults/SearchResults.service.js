@@ -4,19 +4,19 @@
     ICEX.service.SearchResults = ICEX.service.SearchResults.extend({
         fetch: function (id, callback) {
             setTimeout(function () {
-                callback(getMockData());
+                callback(getMockData(id));
             }, 1);
         }
     });
 
-    function getMockData() {
+    function getMockData(id) {
         return {
             "results": (function(){
                 var a = [];
                 for (var n=0; n<15; n++) {
                     a.push({
                         "title": "Santander: Lowing expectations for 2012 and the UK",
-                        "subTitle": "Morgan Stanley Research Europe",
+                        "subTitle": "Morgan Stanley Research Europe  | For ID:" + id,
                         "updateDate": "3 October 2011",
                         "contributor": "Alvaro Serrano",
                         "description": "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",

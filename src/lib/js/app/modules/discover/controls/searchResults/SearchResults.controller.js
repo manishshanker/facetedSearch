@@ -10,9 +10,9 @@
             },
             services: ["searchResults"]
         },
-        update: function () {
+        update: function (id) {
             var that = this;
-            that.services.searchResults.fetch(null, function (data) {
+            that.services.searchResults.fetch(id, function (data) {
                 onUpdate(that, data);
             });
         }

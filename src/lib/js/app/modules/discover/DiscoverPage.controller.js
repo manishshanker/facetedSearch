@@ -20,6 +20,9 @@
                 },
                 "app-modules-discover-controls-searchResults-item-selected": function(data) {
                     showDialog(that, data);
+                },
+                "search-filtering-changed": function(id) {
+                    this.controls.searchResults.update(id);
                 }
             });
         },

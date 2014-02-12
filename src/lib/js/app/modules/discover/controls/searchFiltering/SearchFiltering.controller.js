@@ -22,13 +22,7 @@
                     onSearchFilteringChanged(id, that);
                 },
                 "search-filter-tab-changes": function (tabName) {
-                    that.currentControl = tabName === "appListFiltering" ? that.controls.listFiltering : that.controls.visualFiltering;
-
-                    //if the control was rendered already, update it when the tab is switched
-                    if (that.lastDataSet && that.dataIsDirty) {
-                        that.dataIsDirty = false;
-                        that.currentControl.update(that.lastDataSet);
-                    }
+                    onViewChange(that, tabName);
                 }
             });
             that.currentControl = that.controls.visualFiltering;
@@ -42,6 +36,16 @@
             }
         }
     });
+
+    function onViewChange(ctx, tabName) {
+        ctx.currentControl = tabName === "appListFiltering" ? ctx.controls.listFiltering : ctx.controls.visualFiltering;
+
+        //if the control was rendered already, update it when the tab is switched
+        if (ctx.lastDataSet && ctx.dataIsDirty) {
+            ctx.dataIsDirty = false;
+            ctx.currentControl.update(ctx.lastDataSet);
+        }
+    }
 
     function getTopLevelData(ctx) {
         ctx.services.searchFiltering.fetch(ctx, function (data) {
