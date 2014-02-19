@@ -7,6 +7,9 @@ load({dependencyMap: {
         file: "../vendor/jquery-ui-1.10.4.custom.min",
         deps: ["jquery"]
     },
+    config: {
+        file: "config"
+    },
     jqueryTab: {
         file: "plugins/jquery.tab",
         deps: ["jquery", "jqueryUI"]
@@ -188,16 +191,16 @@ function load(dmap) {
         if (dmap.dependencyMap.hasOwnProperty(dependency)) {
             var value = dmap.dependencyMap[dependency];
             if ((typeof value === "string")) {
-                config.paths[dependency] = value;
+                config.paths[dependency] = "../" + value;
             } else {
-                config.paths[dependency] = value.file;
+                config.paths[dependency] = "../" + value.file;
                 config.shim[dependency] = {};
                 config.shim[dependency].deps = value.deps;
             }
         }
     }
     requirejs.config(config);
-    define(["../main"], function () {});
+    define(["main"], function () {});
 }
 
 
