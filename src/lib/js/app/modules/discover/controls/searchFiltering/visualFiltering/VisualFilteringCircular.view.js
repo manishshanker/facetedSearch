@@ -44,12 +44,11 @@
         render: function (data) {
             var that = this;
             that.lastDataSet = data;
-            hideGraph(that);
-            setTimeout(function () {
+            hideGraph(that, function () {
                 renderGraph(that, data);
                 showGraph(that);
                 that.$el.removeClass("loading");
-            }, 300);
+            });
         },
         layoutChange: function () {
             var that = this;
@@ -76,10 +75,12 @@
         }
     });
 
-    function hideGraph(that) {
+    function hideGraph(that, onAnimateEnd) {
         that.$el.find(".graph").animate({
             opacity: 0
-        }, 200);
+        }, 200, function() {
+            onAnimateEnd();
+        });
     }
 
     function showGraph(that) {

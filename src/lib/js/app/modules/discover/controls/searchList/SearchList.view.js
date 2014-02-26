@@ -26,9 +26,7 @@
         if (direction === 1) {
             $element.removeClass("hide").addClass("show");
         } else {
-            window.setTimeout(function () {
-                $element.removeClass("hide").addClass("show");
-            }, 10);
+            $element.delayedAddRemoveClass("show", "hide");
         }
     }
 
@@ -40,10 +38,9 @@
     function hideAndRemoveList(ctx, direction, onRemove) {
         var $element = ctx.$el.find(".item");
         $element.removeClass("show").addClass(direction === -1 ? "hide" : "hide-back");
-        setTimeout(function () {
-            $element.remove();
+        $element.delayedRemove(function () {
             onRemove();
-        }, 500);
+        });
     }
 
 }(Mettle));

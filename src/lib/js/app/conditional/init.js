@@ -10,6 +10,10 @@ load({dependencyMap: {
     config: {
         file: "config"
     },
+    jqueryDelayedCalls: {
+        file: "plugins/jquery.delayedCalls",
+        deps: ["jquery"]
+    },
     jqueryTab: {
         file: "plugins/jquery.tab",
         deps: ["jquery", "jqueryUI"]
@@ -176,7 +180,7 @@ load({dependencyMap: {
         file: "main",
         deps: [
             "config", "Mettle", "AuthenticationController", "serviceURLs", "hbUrlWithBaseHelper", "appCache",
-            "GlobalSearchController", "DiscoverPageController"
+            "GlobalSearchController", "DiscoverPageController", "jqueryDelayedCalls"
         ]
     }
 }});
